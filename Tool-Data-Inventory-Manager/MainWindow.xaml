@@ -7,6 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
         <Grid>
-            
+        <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+ 
+        <TextBlock Text="Felhasználónév:" Grid.Row="0" Margin="10"/>
+        <TextBox Grid.Row="0" Margin="80,10,10,10" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
+ 
+        <TextBlock Text="Jelszó:" Grid.Row="1" Margin="10"/>
+        <PasswordBox x:Name="PasswordBox" Grid.Row="1" Margin="80,10,10,10" />
+        <Button Content="Bejelentkezés" Grid.Row="2" Margin="10" Click="LoginButton_Click"/>
+        <Button Content="Regisztráció" Grid.Row="3" Margin="10" Click="RegisterButton_Click"/>
         </Grid>
 </Window>
