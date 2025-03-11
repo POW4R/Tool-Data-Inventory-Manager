@@ -9,4 +9,10 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.5.1" />
+    <PackageReference Include="MaterialDesignColors" Version="5.2.2-ci921" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.2.2-ci921" />
+  </ItemGroup>
+
 </Project>
