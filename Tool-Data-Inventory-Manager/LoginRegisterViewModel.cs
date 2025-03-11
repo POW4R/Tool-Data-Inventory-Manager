@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 
 namespace Tool_Data_Inventory_Manager
 {
-    public class LoginRegisterViewModel : INotifyPropertyChanged
+    public partial class LoginRegisterViewModel : INotifyPropertyChanged
     {
         private string _username;
         private string _password;
@@ -21,7 +21,7 @@ namespace Tool_Data_Inventory_Manager
             get => _username;
             set { _username = value; OnPropertyChanged(nameof(Username)); }
         }
-
+        
         public string Password
         {
             get => _password;

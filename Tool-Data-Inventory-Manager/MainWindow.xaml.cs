@@ -20,5 +20,6 @@ namespace Tool_Data_Inventory_Manager
         {
             InitializeComponent();
         }
+
     }
 }
