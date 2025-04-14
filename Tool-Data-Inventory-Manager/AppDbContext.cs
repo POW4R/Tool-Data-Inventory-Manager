@@ -8,7 +8,7 @@ namespace Tool_Data_Inventory_Manager
         public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer("Server=YOUR_SERVER_NAME;Database=UserDb;Trusted_Connection=True;TrustServerCertificate=True;");
+            options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;Encrypt=False;");
         }
     }
 }
