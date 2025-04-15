@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tool_Data_Inventory_Manager"
         mc:Ignorable="d"
-        Title="RegisterViewModel" Height="450" Width="800">
+        Title="RegisterViewModel" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
