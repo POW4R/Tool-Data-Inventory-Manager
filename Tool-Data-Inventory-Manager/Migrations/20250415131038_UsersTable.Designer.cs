@@ -11,8 +11,8 @@ using Tool_Data_Inventory_Manager;
 namespace Tool_Data_Inventory_Manager.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250415115107_UserTable")]
-    partial class UserTable
+    [Migration("20250415131038_UsersTable")]
+    partial class UsersTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,11 +36,15 @@ namespace Tool_Data_Inventory_Manager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -12,16 +12,27 @@ namespace Tool_Data_Inventory_Manager
 {
     public class LoginRegisterViewModel : INotifyPropertyChanged
     {
-        private string _username;
+        private string _firstname;
+        private string _lastname;
         private string _password;
+        private string _email;
         private readonly AppDbContext _dbContext;
 
-        public string Username
+        public string Email
         {
-            get => _username;
-            set { _username = value; OnPropertyChanged(nameof(Username)); }
+            get => _email;
+            set { _email = value; OnPropertyChanged(nameof(Email)); }
         }
-
+        public string FirstName
+        {
+            get => _firstname;
+            set { _firstname = value; OnPropertyChanged(nameof(FirstName)); }
+        }
+        public string LastName
+        {
+            get => _lastname;
+            set { _lastname = value; OnPropertyChanged(nameof(LastName)); }
+        }
         public string Password
         {
             get => _password;
@@ -39,20 +50,20 @@ namespace Tool_Data_Inventory_Manager
 
         public async Task Register()
         {
-            if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
+            if (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
             {
-                MessageBox.Show("A felhasználónév és jelszó kitöltése kötelező!");
+                MessageBox.Show("A mezők kitöltése kötelező!");
                 return;
             }
 
-            if (_dbContext.Users.Any(u => u.Username == Username))
+            if (_dbContext.Users.Any(u => u.Email == Email))
             {
-                MessageBox.Show("Ez a felhasználónév már foglalt.");
+                MessageBox.Show("Ez az e-mail cím már foglalt.");
                 return;
             }
 
             string hashedPassword = HashPassword(Password);
-            var user = new User { Username = Username, PasswordHash = hashedPassword };
+            var user = new User { FirstName = FirstName, LastName = LastName, PasswordHash = hashedPassword };
 
             _dbContext.Users.Add(user);
             await _dbContext.SaveChangesAsync();
@@ -63,7 +74,7 @@ namespace Tool_Data_Inventory_Manager
         public void Login()
         {
             string hashedPassword = HashPassword(Password);
-            var user = _dbContext.Users.FirstOrDefault(u => u.Username == Username && u.PasswordHash == hashedPassword);
+            var user = _dbContext.Users.FirstOrDefault(u => u.Email == Email && u.PasswordHash == hashedPassword);
 
             if (user != null)
             {
@@ -71,7 +82,7 @@ namespace Tool_Data_Inventory_Manager
             }
             else
             {
-                MessageBox.Show("Hibás felhasználónév vagy jelszó.");
+                MessageBox.Show("Hibás e-mail vagy jelszó.");
             }
         }
 
