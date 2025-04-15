@@ -25,8 +25,9 @@ namespace Tool_Data_Inventory_Manager
         }
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.Password = PasswordBox.Password;
-            await _viewModel.Register();
+            RegisterViewModel rw = new RegisterViewModel();
+            this.Close();
+            rw.Show();
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
