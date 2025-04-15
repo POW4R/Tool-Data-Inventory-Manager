@@ -5,21 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tool_Data_Inventory_Manager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-        <Grid>
-        <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
- 
-        <TextBlock Text="Felhasználónév:" Grid.Row="0" Margin="10"/>
-        <TextBox Grid.Row="0" Margin="80,10,10,10" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
- 
-        <TextBlock Text="Jelszó:" Grid.Row="1" Margin="10"/>
-        <PasswordBox x:Name="PasswordBox" Grid.Row="1" Margin="80,10,10,10" />
-        <Button Content="Bejelentkezés" Grid.Row="2" Margin="10" Click="LoginButton_Click"/>
-        <Button Content="Regisztráció" Grid.Row="3" Margin="10" Click="RegisterButton_Click"/>
-        </Grid>
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Üdvözlünk" Height="400" Width="600"
+        Background="{DynamicResource MaterialDesignPaper}"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="30">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <TextBlock Text="Üdvözlünk!" 
+                       FontSize="28" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Center"
+                       Foreground="{DynamicResource MaterialDesignBody}" />
+
+            <TextBlock Text="Kérlek válassz egy lehetőséget:" 
+                       FontSize="16" 
+                       HorizontalAlignment="Center"
+                       Foreground="{DynamicResource MaterialDesignBody}" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Bejelentkezés" 
+                        x:Name="btn_login"
+                        Style="{DynamicResource MaterialDesignRaisedButton}"
+                        Width="120"
+                        Click="btn_login_Click"/>
+
+                <Button Content="Regisztráció" 
+                        x:Name="btn_register"
+                        Style="{DynamicResource MaterialDesignOutlinedButton}"
+                        Width="120"
+                        Click="btn_register_Click"/>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
 </Window>

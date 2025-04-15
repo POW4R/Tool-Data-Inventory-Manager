@@ -16,24 +16,23 @@ namespace Tool_Data_Inventory_Manager
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly LoginRegisterViewModel _viewModel;
-        public MainWindow()
+       public MainWindow()
         {
             InitializeComponent();
-            _viewModel = new LoginRegisterViewModel();
-            DataContext = _viewModel;
         }
-        private async void RegisterButton_Click(object sender, RoutedEventArgs e)
+
+        private void btn_register_Click(object sender, RoutedEventArgs e)
         {
             RegisterViewModel rw = new RegisterViewModel();
             this.Close();
             rw.Show();
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private void btn_login_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.Password = PasswordBox.Password;
-            _viewModel.Login();
+            Login l = new Login();
+            this.Close();
+            l.Show();
         }
     }
 }
