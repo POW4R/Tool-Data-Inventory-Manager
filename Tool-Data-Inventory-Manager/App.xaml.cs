@@ -9,6 +9,9 @@ namespace Tool_Data_Inventory_Manager
     /// </summary>
     public partial class App : Application
     {
+        public App() {
+        
+        }
     }
 
 }

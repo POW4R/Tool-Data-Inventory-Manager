@@ -3,12 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Tool_Data_Inventory_Manager"        
+        xmlns:local="clr-namespace:Tool_Data_Inventory_Manager"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:helper="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Login" Height="400" Width="650"
         WindowStartupLocation="CenterScreen">
-
     <Border Width="650"
             Height="400"
             Background="White"
@@ -21,14 +21,13 @@
                               Color ="Gray" />
         </Border.Effect>
         <StackPanel Orientation="Vertical"
-                    Margin="20">
+                    Margin="10,20,10,20">
             <TextBlock Text="Login" 
                        FontSize="25"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"
                        FontWeight="Bold"
-                       Padding="10"
-                       />
+                       Padding="10"/>
             <Grid VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -37,22 +36,30 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Email:" 
-                   Grid.Row="0"
-                   Margin="90,33,0,33"
-                   HorizontalAlignment="Left" Grid.RowSpan="2"/>
-                <TextBox
+                   Grid.Row="1"
+                   Margin="89,41,0,33"
+                   HorizontalAlignment="Left"/>
+                <TextBox Name="MyTextBox"
                   Grid.Row="1"
                   Padding="0,5"
                   Width="254"
                   BorderThickness="0,0,0,1"
                   HorizontalAlignment="Center"
-                  Text="example@example.com" Margin="0,33,0,33"/>
+                  Margin="0,33,0,33" Tag=""/>
+                <TextBlock Text="example@example.com"
+               IsHitTestVisible="False"
+               Foreground="Gray"
+               Margin="188,37,188,0"
+               VerticalAlignment="Top"
+               Visibility="{Binding Text.IsEmpty, 
+                   ElementName=MyTextBox, 
+                   Converter={StaticResource BoolToVisibilityConverter}}" Grid.Row="1"/>
                 <TextBlock Text="Password" 
                    Grid.Row="3"
                    Margin="89,0,0,-3"
                    HorizontalAlignment="Left"/>
                 <PasswordBox Grid.Row="3"
-                      Password="mpcodes"
+                      Password=""
                       Padding="0,5"                           
                       Width="255"
                       BorderThickness="0,0,0,1"
@@ -90,7 +97,7 @@
                 </Button.Style>
             </Button>
             <TextBlock Text="Not a member?"
-                         Margin="0,5"
+                         Margin="2"
                        VerticalAlignment="Bottom"
                        HorizontalAlignment="Center"/>
             <Button Content="Back"
