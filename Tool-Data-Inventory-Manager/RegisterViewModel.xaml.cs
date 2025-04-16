@@ -24,7 +24,12 @@ namespace Tool_Data_Inventory_Manager
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btn_reg_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mw = new MainWindow();
             this.Close();

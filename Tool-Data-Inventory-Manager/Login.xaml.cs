@@ -26,17 +26,11 @@ namespace Tool_Data_Inventory_Manager
             _viewModel = new LoginRegisterViewModel();
             DataContext = _viewModel;
         }
-        private async void RegisterButton_Click(object sender, RoutedEventArgs e)
+        private void btn_back_Click(object sender, RoutedEventArgs e)
         {
-            RegisterViewModel rw = new RegisterViewModel();
+            MainWindow mw = new MainWindow();
             this.Close();
-            rw.Show();
-        }
-
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            _viewModel.Password = PasswordBox.Password;
-            _viewModel.Login();
+            mw.Show();
         }
     }
 }
