@@ -35,6 +35,7 @@
                 <ComboBox Width="200" 
                           materialDesign:HintAssist.Hint="gyártott termék szám / SAP product id">
                     <!-- Items go here -->
+                    asd
                 </ComboBox>
                 <ComboBox Width="200" 
                           materialDesign:HintAssist.Hint="Select machine">
