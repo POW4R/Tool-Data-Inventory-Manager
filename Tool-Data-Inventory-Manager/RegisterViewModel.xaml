@@ -1,60 +1,133 @@
 ﻿<Window x:Class="Tool_Data_Inventory_Manager.RegisterViewModel"
-       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-       xmlns:local="clr-namespace:Tool_Data_Inventory_Manager"
-       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-       mc:Ignorable="d"
-       Title="RegisterViewModel" Height="450" Width="800"
-       WindowStartupLocation="CenterScreen">
-   <Grid Margin="20">
-       <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tool_Data_Inventory_Manager"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Regisztráció" Height="500" Width="650"
+        WindowStartupLocation="CenterScreen">
+    <Border Width="650"
+            Height="500"
+            Background="White"
+            CornerRadius="6">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="15"
+                              Direction ="-90" 
+                              RenderingBias ="Quality" 
+                              ShadowDepth ="2" 
+                              Color ="Gray" />
+        </Border.Effect>
+        <StackPanel Orientation="Vertical" Margin="10,20,10,20">
+            <TextBlock Text="Regisztráció" 
+                       FontSize="25"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       FontWeight="Bold"
+                       Padding="10"/>
+            <Grid VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-           <TextBlock Text="Regisztráció" FontSize="24" FontWeight="Bold"
-                      HorizontalAlignment="Center" Margin="0,0,0,10"
-                      Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                <!-- Vezetéknév -->
+                <TextBlock Text="Vezetéknév:" Grid.Row="0" Margin="89,10,0,0" HorizontalAlignment="Left"/>
+                <TextBox x:Name="tb_LastName"
+                         Grid.Row="0"
+                         Width="254"
+                         Padding="0,5"
+                         BorderThickness="0,0,0,1"
+                         HorizontalAlignment="Center"
+                         Margin="0,0,0,10"/>
 
-           <!-- Vezetéknév -->
-           <TextBox x:Name="LastNameTextBox"
-                    materialDesign:HintAssist.Hint="Vezetéknév"
-                    Height="30" />
+                <!-- Keresztnév -->
+                <TextBlock Text="Keresztnév:" Grid.Row="1" Margin="89,0,0,0" HorizontalAlignment="Left"/>
+                <TextBox x:Name="tb_FirstName"
+                         Grid.Row="1"
+                         Width="254"
+                         Padding="0,5"
+                         BorderThickness="0,0,0,1"
+                         HorizontalAlignment="Center"
+                         Margin="0,0,0,10"/>
 
-           <!-- Keresztnév -->
-           <TextBox x:Name="FirstNameTextBox"
-                    materialDesign:HintAssist.Hint="Keresztnév"
-                    Height="30" />
+                <!-- Email -->
+                <TextBlock Text="Email cím:" Grid.Row="2" Margin="89,0,0,0" HorizontalAlignment="Left"/>
+                <TextBox x:Name="tb_RegEmail"
+                         Grid.Row="2"
+                         Width="254"
+                         Padding="0,5"
+                         BorderThickness="0,0,0,1"
+                         HorizontalAlignment="Center"
+                         Margin="0,0,0,10"/>
 
-           <!-- Email -->
-           <TextBox x:Name="EmailTextBox"
-                    materialDesign:HintAssist.Hint="Email cím"
-                    Height="30" />
+                <!-- Jelszó -->
+                <TextBlock Text="Jelszó:" Grid.Row="3" Margin="89,0,0,0" HorizontalAlignment="Left"/>
+                <PasswordBox x:Name="pb_Password"
+                             Grid.Row="3"
+                             Width="254"
+                             Padding="0,5"
+                             BorderThickness="0,0,0,1"
+                             HorizontalAlignment="Center"
+                             Margin="0,0,0,10"/>
 
-           <!-- Jelszó -->
-           <PasswordBox x:Name="PasswordBox"
-                        materialDesign:HintAssist.Hint="Jelszó"
-                        Height="30" />
+                <!-- Jelszó megerősítése -->
+                <TextBlock Text="Jelszó megerősítése:" Grid.Row="4" Margin="89,0,0,0" HorizontalAlignment="Left"/>
+                <PasswordBox x:Name="pb_ConfirmPassword"
+                             Grid.Row="4"
+                             Width="254"
+                             Padding="0,5"
+                             BorderThickness="0,0,0,1"
+                             HorizontalAlignment="Center"
+                             Margin="0,0,0,10"/>
+            </Grid>
 
-           <!-- Jelszó megerősítése -->
-           <PasswordBox x:Name="ConfirmPasswordBox"
-                        materialDesign:HintAssist.Hint="Jelszó megerősítése"
-                        Height="30" />
+            <!-- Regisztráció gomb -->
+            <Button x:Name="btn_reg" 
+                    Content="Regisztráció" 
+                    Foreground="White"
+                    Background="Black"
+                    Margin="0,25"
+                    Height="35"
+                    Width="250"
+                    Click="btn_reg_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="RegisterBorder" Background="{TemplateBinding Background}" CornerRadius="16">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="AliceBlue" TargetName="RegisterBorder"/>
+                                            <Setter Property="TextBlock.Foreground" Value="Black" TargetName="RegisterBorder"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
 
-           <!-- Gombok -->
-           <Button Content="Regisztráció"
-                   x:Name="btn_reg"
-                   Height="25"
-                   Margin="0,20,0,0"
-                   Foreground="{DynamicResource PrimaryHueMidBrush}"
-                   FontWeight="Bold"
-                   Click="btn_reg_Click" />
-
-           <Button Content="Vissza"
-                   x:Name="btn_back"
-                   Height="25"
-                   Foreground="{DynamicResource PrimaryHueMidBrush}"
-                   FontWeight="SemiBold"
-                   Click="btn_back_Click" />
-       </StackPanel>
-   </Grid>
-</Window>  
+            <!-- Vissza gomb -->
+            <TextBlock Text="Már van fiókod?" 
+                       Margin="2"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Center"/>
+            <Button Content="Vissza"
+                    x:Name="btn_back"
+                    Margin="0,10"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    Click="btn_back_Click"/>
+        </StackPanel>
+    </Border>
+</Window>

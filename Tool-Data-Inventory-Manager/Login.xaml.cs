@@ -32,5 +32,12 @@ namespace Tool_Data_Inventory_Manager
             this.Close();
             mw.Show();
         }
+
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string email = tb_Email.Text;
+            string password = pb_password.Password;
+            _viewModel.Login(email, password);
+        }
     }
 }

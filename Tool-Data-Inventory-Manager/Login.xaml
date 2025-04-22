@@ -39,7 +39,7 @@
                    Grid.Row="1"
                    Margin="89,41,0,33"
                    HorizontalAlignment="Left"/>
-                <TextBox Name="MyTextBox"
+                <TextBox Name="tb_Email"
                   Grid.Row="1"
                   Padding="0,5"
                   Width="254"
@@ -52,13 +52,15 @@
                Margin="188,37,188,0"
                VerticalAlignment="Top"
                Visibility="{Binding Text.IsEmpty, 
-                   ElementName=MyTextBox, 
+                   ElementName=tb_Email, 
                    Converter={StaticResource BoolToVisibilityConverter}}" Grid.Row="1"/>
                 <TextBlock Text="Password" 
                    Grid.Row="3"
                    Margin="89,0,0,-3"
                    HorizontalAlignment="Left"/>
-                <PasswordBox Grid.Row="3"
+                <PasswordBox 
+                    x:Name="pb_password"
+                    Grid.Row="3"
                       Password=""
                       Padding="0,5"                           
                       Width="255"
@@ -73,7 +75,8 @@
                     Background="Black"
                     Margin="0,25"
                     Height="35"
-                    Width="250">
+                    Width="250"
+                    Click="LoginBtn_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Template">

@@ -6,38 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 
 
 namespace Tool_Data_Inventory_Manager
 {
     public class LoginRegisterViewModel : INotifyPropertyChanged
     {
-        private string _firstname;
-        private string _lastname;
-        private string _password;
-        private string _email;
-        private readonly AppDbContext _dbContext;
 
-        public string Email
-        {
-            get => _email;
-            set { _email = value; OnPropertyChanged(nameof(Email)); }
-        }
-        public string FirstName
-        {
-            get => _firstname;
-            set { _firstname = value; OnPropertyChanged(nameof(FirstName)); }
-        }
-        public string LastName
-        {
-            get => _lastname;
-            set { _lastname = value; OnPropertyChanged(nameof(LastName)); }
-        }
-        public string Password
-        {
-            get => _password;
-            set { _password = value; OnPropertyChanged(nameof(Password)); }
-        }
+        private readonly AppDbContext _dbContext;
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -48,11 +25,28 @@ namespace Tool_Data_Inventory_Manager
             _dbContext.Database.EnsureCreated();
         }
 
-        public async Task Register()
+        public async Task Register(string FirstName, string LastName, string Email, string Password, string ConfirmPassword)
         {
-            if (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
+            if(Password != ConfirmPassword)
+            {
+                MessageBox.Show("A jelszavak nem egyeznek meg.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(ConfirmPassword))
             {
                 MessageBox.Show("A mezők kitöltése kötelező!");
+                return;
+            }
+
+            if (!IsValidEmail(Email))
+            {
+                MessageBox.Show("Hibás e-mail cím formátum.");
+                return;
+            }
+
+            if(!IsValidPassword(Password))
+            {
+                MessageBox.Show("A jelszónak legalább 8 karakter hosszúnak kell lennie, és tartalmaznia kell nagybetűt, kisbetűt, számot és speciális karaktert.");
                 return;
             }
 
@@ -63,16 +57,28 @@ namespace Tool_Data_Inventory_Manager
             }
 
             string hashedPassword = HashPassword(Password);
-            var user = new User { FirstName = FirstName, LastName = LastName, PasswordHash = hashedPassword };
+            var user = new User { FirstName = FirstName, LastName = LastName, Email=Email,PasswordHash = hashedPassword };
 
-            _dbContext.Users.Add(user);
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                _dbContext.Users.Add(user);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 
             MessageBox.Show("Sikeres regisztráció!");
         }
 
-        public void Login()
+        public void Login(string Email, string Password)
         {
+            if (Password == null || Email == null)
+            {
+                MessageBox.Show("A mezők kitöltése kötelező!");
+                return;
+            }
             string hashedPassword = HashPassword(Password);
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == Email && u.PasswordHash == hashedPassword);
 
@@ -98,6 +104,28 @@ namespace Tool_Data_Inventory_Manager
                 }
                 return builder.ToString();
             }
+        }
+        private static bool IsValidPassword(string password)
+        {
+            if (string.IsNullOrWhiteSpace(password))
+                return false;
+
+            if (password.Length < 8)
+                return false;
+
+            bool hasUpperCase = Regex.IsMatch(password, @"[A-Z]");
+            bool hasLowerCase = Regex.IsMatch(password, @"[a-z]");
+            bool hasDigit = Regex.IsMatch(password, @"\d");
+            bool hasSpecialChar = Regex.IsMatch(password, @"[\W_]"); // \W vagy _
+
+            return hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar;
+        }
+        private static bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase);
         }
     }
 }
