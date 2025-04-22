@@ -72,12 +72,18 @@ namespace Tool_Data_Inventory_Manager
             MessageBox.Show("Sikeres regisztráció!");
         }
 
-        public void Login(string Email, string Password)
+        /**
+         * Bejelentkezés
+         * @param Email
+         * @param Password
+         * @return true, ha a bejelentkezés sikeres, false, ha nem
+         */
+        public bool Login(string Email, string Password)
         {
             if (Password == null || Email == null)
             {
                 MessageBox.Show("A mezők kitöltése kötelező!");
-                return;
+                return false;
             }
             string hashedPassword = HashPassword(Password);
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == Email && u.PasswordHash == hashedPassword);
@@ -85,10 +91,12 @@ namespace Tool_Data_Inventory_Manager
             if (user != null)
             {
                 MessageBox.Show("Sikeres bejelentkezés!");
+                return true;
             }
             else
             {
                 MessageBox.Show("Hibás e-mail vagy jelszó.");
+                return false;
             }
         }
 

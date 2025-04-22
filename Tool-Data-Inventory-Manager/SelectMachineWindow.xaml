@@ -1,0 +1,58 @@
+﻿<Window x:Class="Tool_Data_Inventory_Manager.SelectMachineWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Tool_Data_Inventory_Manager"
+        mc:Ignorable="d"
+        Title="SelectMachineWindow" 
+        Width="700"
+        Height="400">
+    <Grid Background="White">
+        <Grid.Resources>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="10"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="10"/>
+            </Style>
+        </Grid.Resources>
+
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Left Column -->
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <ComboBox Width="200" 
+                          materialDesign:HintAssist.Hint="gyártott termék szám / SAP product id">
+                    <!-- Items go here -->
+                </ComboBox>
+                <ComboBox Width="200" 
+                          materialDesign:HintAssist.Hint="Select machine">
+                    <!-- Items go here -->
+                </ComboBox>
+            </StackPanel>
+
+            <!-- Middle Column -->
+            <StackPanel Grid.Row="0" Grid.Column="1">
+                <Button Content="Add SAPproductid" Width="150"/>
+                <Button Content="Add machine" Width="150"/>
+            </StackPanel>
+
+            <!-- Right Column -->
+            <StackPanel Grid.Row="0" Grid.Column="2">
+                <Button Content="Delete SAPproductid" Width="150"/>
+                <Button Content="Delete machine" Width="150"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

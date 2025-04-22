@@ -37,7 +37,12 @@ namespace Tool_Data_Inventory_Manager
         {
             string email = tb_Email.Text;
             string password = pb_password.Password;
-            _viewModel.Login(email, password);
+            if(_viewModel.Login(email, password))
+            {
+                SelectMachineWindow smw = new SelectMachineWindow();
+                this.Close();
+                smw.Show();
+            }
         }
     }
 }
