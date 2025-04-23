@@ -23,5 +23,13 @@ namespace Tool_Data_Inventory_Manager
         {
             InitializeComponent();
         }
+        private void cb_Machine_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            bool isMachineSelected = cb_Machine.SelectedItem != null;
+            cb_SapProductId.IsEnabled = isMachineSelected;
+            btn_AddSapProductId.IsEnabled = isMachineSelected;
+            btn_DeleteSapProductId.IsEnabled = isMachineSelected;
+            btn_DeleteMachine.IsEnabled = isMachineSelected;
+        }
     }
 }

@@ -32,27 +32,42 @@
 
             <!-- Left Column -->
             <StackPanel Grid.Row="0" Grid.Column="0">
-                <ComboBox Width="200" 
+                <ComboBox x:Name="cb_SapProductId"
+                          IsEnabled="False"
+                          Width="200" 
                           materialDesign:HintAssist.Hint="gyártott termék szám / SAP product id">
                     <!-- Items go here -->
-                    asd
                 </ComboBox>
-                <ComboBox Width="200" 
+                <ComboBox x:Name="cb_Machine"
+                          SelectionChanged="cb_Machine_SelectionChanged"
+                          Width="200" 
                           materialDesign:HintAssist.Hint="Select machine">
                     <!-- Items go here -->
+                    asd
                 </ComboBox>
             </StackPanel>
 
             <!-- Middle Column -->
             <StackPanel Grid.Row="0" Grid.Column="1">
-                <Button Content="Add SAPproductid" Width="150"/>
-                <Button Content="Add machine" Width="150"/>
+                <Button Content="Add SAPproductid"
+                        x:Name="btn_AddSapProductId"
+                        Width="150"
+                        IsEnabled="False"/>
+                <Button Content="Add machine" 
+                        Width="150"
+                        />
             </StackPanel>
 
             <!-- Right Column -->
             <StackPanel Grid.Row="0" Grid.Column="2">
-                <Button Content="Delete SAPproductid" Width="150"/>
-                <Button Content="Delete machine" Width="150"/>
+                <Button Content="Delete SAPproductid"
+                        x:Name="btn_DeleteSapProductId"
+                        Width="150"
+                        IsEnabled="False"/>
+                <Button Content="Delete machine" 
+                        x:Name="btn_DeleteMachine"
+                        IsEnabled="False"
+                        Width="150"/>
             </StackPanel>
         </Grid>
     </Grid>
