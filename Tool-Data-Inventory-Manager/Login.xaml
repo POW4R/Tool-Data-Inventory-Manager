@@ -40,6 +40,7 @@
                    Margin="89,41,0,33"
                    HorizontalAlignment="Left"/>
                 <TextBox Name="tb_Email"
+                         Text="slemkev@hilti.com"
                   Grid.Row="1"
                   Padding="0,5"
                   Width="254"
@@ -61,11 +62,10 @@
                 <PasswordBox 
                     x:Name="pb_password"
                     Grid.Row="3"
-                      Password=""
                       Padding="0,5"                           
                       Width="255"
                       BorderThickness="0,0,0,1"
-                      HorizontalAlignment="Center"/>
+                      HorizontalAlignment="Center" Password="SlemKev123."/>
             </Grid>
             <TextBlock Text="forgot password?" 
                        HorizontalAlignment="Right"/>
