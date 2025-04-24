@@ -6,7 +6,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Tool_Data_Inventory_Manager"
         mc:Ignorable="d"
-        Title="SelectMachineWindow" 
+        Title="SelectMachineWindow"
+        WindowStartupLocation="CenterScreen"
         Width="700"
         Height="400">
     <Grid Background="White">
@@ -53,8 +54,10 @@
                         x:Name="btn_AddSapProductId"
                         Width="150"
                         IsEnabled="False"/>
-                <Button Content="Add machine" 
+                <Button Content="Add machine"
+                        x:Name="btn_AddMachine"
                         Width="150"
+                        Click="btn_AddMachine_Click"
                         />
             </StackPanel>
 
