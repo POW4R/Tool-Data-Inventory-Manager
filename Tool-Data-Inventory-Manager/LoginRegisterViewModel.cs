@@ -13,18 +13,14 @@ namespace Tool_Data_Inventory_Manager
 {
     public class LoginRegisterViewModel : INotifyPropertyChanged
     {
-
         private readonly AppDbContext _dbContext;
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
         public LoginRegisterViewModel()
         {
             _dbContext = new AppDbContext();
             _dbContext.Database.EnsureCreated();
         }
-
         public async Task Register(string FirstName, string LastName, string Email, string Password, string ConfirmPassword)
         {
             if(Password != ConfirmPassword)

@@ -44,20 +44,19 @@
                           Width="200" 
                           materialDesign:HintAssist.Hint="Select machine">
                     <!-- Items go here -->
-                    asd
                 </ComboBox>
             </StackPanel>
 
             <!-- Middle Column -->
             <StackPanel Grid.Row="0" Grid.Column="1">
-                <Button Content="Add SAPproductid" Width="150"/>
-                <Button Content="Add machine" Width="150"/>
+                <Button x:Name="btn_add_product" Content="Add SAPproductid" Width="150" Click="btn_add_product_Click"/>
+                <Button x:Name="btn_add_machine" Content="Add machine" Width="150" Click="btn_add_machine_Click"/>
             </StackPanel>
 
             <!-- Right Column -->
             <StackPanel Grid.Row="0" Grid.Column="2">
-                <Button Content="Delete SAPproductid" Width="150"/>
-                <Button Content="Delete machine" Width="150"/>
+                <Button x:Name="btn_del_product" Content="Delete SAPproductid" Width="150" Click="btn_del_product_Click"/>
+                <Button x:Name="btn_del_machine" Content="Delete machine" Width="150" Click="btn_del_machine_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

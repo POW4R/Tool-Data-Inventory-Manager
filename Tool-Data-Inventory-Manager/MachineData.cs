@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,5 +11,8 @@ namespace Tool_Data_Inventory_Manager
     {
         private int _machineNumber;
         private int _sapProductNumber;
+        public MachineData() {
+
+        }
     }
 }

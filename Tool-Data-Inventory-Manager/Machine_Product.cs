@@ -13,6 +13,7 @@ namespace Tool_Data_Inventory_Manager
 
         [Required]
         public int Machine_Number { get; set; }
+
         [Required]
         public int SAP_Product_Number { get; set; }
 

@@ -40,21 +40,19 @@
                    Margin="89,41,0,33"
                    HorizontalAlignment="Left"/>
                 <TextBox Name="tb_Email"
-                         Text="slemkev@hilti.com"
-                  Grid.Row="1"
-                  Padding="0,5"
-                  Width="254"
-                  BorderThickness="0,0,0,1"
-                  HorizontalAlignment="Center"
-                  Margin="0,33,0,33" Tag=""/>
+                         Grid.Row="1"
+                         Padding="0,5"
+                         Width="254"
+                         BorderThickness="0,0,0,1"
+                         HorizontalAlignment="Center"
+                         Margin="0,33,0,33" Tag=""/>
                 <TextBlock Text="example@example.com"
-               IsHitTestVisible="False"
-               Foreground="Gray"
-               Margin="188,37,188,0"
-               VerticalAlignment="Top"
-               Visibility="{Binding Text.IsEmpty, 
-                   ElementName=tb_Email, 
-                   Converter={StaticResource BoolToVisibilityConverter}}" Grid.Row="1"/>
+                           IsHitTestVisible="False"
+                           Foreground="Gray"
+                           Margin="188,37,188,0"
+                           VerticalAlignment="Top"
+                           Visibility="{Binding Text, ElementName=tb_Email, Converter={StaticResource BoolToVisibilityConverter}}"
+                           Grid.Row="1"/>
                 <TextBlock Text="Password" 
                    Grid.Row="3"
                    Margin="89,0,0,-3"

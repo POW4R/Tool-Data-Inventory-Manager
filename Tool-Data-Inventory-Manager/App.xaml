@@ -14,7 +14,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Indigo.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-            <local:ComboBoxSelectionToEnabledConverter x:Key="SelectionToEnabledConverter"/>
+            <local:ComboBoxSelectionToEnabledConverter x:Key="ComboBoxSelectionToEnabledConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

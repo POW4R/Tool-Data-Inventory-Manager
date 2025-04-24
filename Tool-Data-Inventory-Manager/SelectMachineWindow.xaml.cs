@@ -23,5 +23,29 @@ namespace Tool_Data_Inventory_Manager
         {
             InitializeComponent();
         }
+        private void cb_Machine_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            cb_Machine.Items.Add("7350_4");
+        }
+
+        private void btn_add_product_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_add_machine_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("");
+        }
+
+        private void btn_del_product_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_del_machine_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
