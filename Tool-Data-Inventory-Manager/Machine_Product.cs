@@ -12,10 +12,10 @@ namespace Tool_Data_Inventory_Manager
         public int Id { get; set; }
 
         [Required]
-        public int Machine_Number { get; set; }
+        public string Machine_Number { get; set; }
 
         [Required]
-        public int SAP_Product_Number { get; set; }
+        public string SAP_Product_Number { get; set; }
 
     }
 }

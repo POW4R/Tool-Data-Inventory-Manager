@@ -11,6 +11,7 @@ namespace Tool_Data_Inventory_Manager
     {
         private int _machineNumber;
         private int _sapProductNumber;
+        private readonly AppDbContext _dbContext;
         public MachineData() {
 
         }
