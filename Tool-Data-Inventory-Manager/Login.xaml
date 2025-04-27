@@ -40,6 +40,7 @@
                    Margin="89,41,0,33"
                    HorizontalAlignment="Left"/>
                 <TextBox Name="tb_Email"
+                         Text="slemkev@hilti.com"
                          Grid.Row="1"
                          Padding="0,5"
                          Width="254"

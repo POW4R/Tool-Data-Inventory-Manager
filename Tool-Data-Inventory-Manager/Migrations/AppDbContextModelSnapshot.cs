@@ -29,11 +29,13 @@ namespace Tool_Data_Inventory_Manager.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Machine_Number")
-                        .HasColumnType("int");
+                    b.Property<string>("Machine_Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SAP_Product_Number")
-                        .HasColumnType("int");
+                    b.Property<string>("SAP_Product_Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

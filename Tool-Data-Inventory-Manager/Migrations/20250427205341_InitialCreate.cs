@@ -5,11 +5,25 @@
 namespace Tool_Data_Inventory_Manager.Migrations
 {
     /// <inheritdoc />
-    public partial class UsersTable : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Machine_Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Machine_Number = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SAP_Product_Number = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Machine_Products", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
@@ -30,6 +44,9 @@ namespace Tool_Data_Inventory_Manager.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Machine_Products");
+
             migrationBuilder.DropTable(
                 name: "Users");
         }

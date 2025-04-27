@@ -11,8 +11,8 @@ using Tool_Data_Inventory_Manager;
 namespace Tool_Data_Inventory_Manager.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250422181628_Machine")]
-    partial class Machine
+    [Migration("20250427205341_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,11 +32,13 @@ namespace Tool_Data_Inventory_Manager.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Machine_Number")
-                        .HasColumnType("int");
+                    b.Property<string>("Machine_Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SAP_Product_Number")
-                        .HasColumnType("int");
+                    b.Property<string>("SAP_Product_Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
