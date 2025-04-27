@@ -99,9 +99,12 @@
                 </Button.Style>
             </Button>
             <TextBlock Text="Not a member?"
+                       x:Name="tb_notMember"
                          Margin="2"
                        VerticalAlignment="Bottom"
-                       HorizontalAlignment="Center"/>
+                       HorizontalAlignment="Center"
+                       MouseLeftButtonDown="tb_notMember_MouseLeftButtonDown"
+                       />
             <Button Content="Back"
                    x:Name="btn_back"
                    Margin="0,10"

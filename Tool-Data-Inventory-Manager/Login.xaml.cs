@@ -44,5 +44,12 @@ namespace Tool_Data_Inventory_Manager
                 smw.Show();
             }
         }
+
+        private void tb_notMember_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            RegisterViewModel rw = new RegisterViewModel();
+            this.Close();
+            rw.Show();
+        }
     }
 }
