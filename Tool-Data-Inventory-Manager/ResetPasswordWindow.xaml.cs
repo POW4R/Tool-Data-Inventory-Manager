@@ -36,8 +36,9 @@ namespace Tool_Data_Inventory_Manager
             }
 
             await ChangePassword(_email, newPassword, confirmPassword);
-
+            Login l = new Login();
             this.Close();
+            l.Show();
         }
         public async Task ChangePassword(string Email, string NewPassword, string ConfirmNewPassword)
         {
@@ -85,7 +86,9 @@ namespace Tool_Data_Inventory_Manager
 
         private void btn_Back_Click(object sender, RoutedEventArgs e)
         {
+            Login l = new Login();
             this.Close();
+            l.Show();
         }
     }
 }

@@ -44,7 +44,9 @@ namespace Tool_Data_Inventory_Manager
 
         private void btn_Back_Click(object sender, RoutedEventArgs e)
         {
+            Login l = new Login();
             this.Close();
+            l.Show();
         }
     }
 }
