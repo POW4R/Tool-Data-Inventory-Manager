@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,7 +28,7 @@ namespace Tool_Data_Inventory_Manager
         public SelectMachineWindow()
         {
             InitializeComponent();
-            LoadMachines();
+            LoadMachines(true);
         }
         private void cb_Machine_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -44,20 +45,55 @@ namespace Tool_Data_Inventory_Manager
 
         private void btn_del_machine_Click(object sender, RoutedEventArgs e)
         {
+            if (cb_Machine.SelectedItem == null || string.IsNullOrWhiteSpace(cb_Machine.SelectedItem.ToString()))
+            {
+                MessageBox.Show("Please select a machine to delete.");
+                return;
+            }
 
+            string selectedMachine = cb_Machine.SelectedItem.ToString();
+
+            var machinesToDelete = _dbContext.Machine_Products
+                                              .Where(m => m.Machine_Number == selectedMachine)
+                                              .ToList();
+
+            if (!machinesToDelete.Any())
+            {
+                MessageBox.Show("Selected machine not found in the database.");
+                return;
+            }
+
+            _dbContext.Machine_Products.RemoveRange(machinesToDelete);
+
+            try
+            {
+                _dbContext.SaveChangesAsync();
+                MessageBox.Show("Machine deleted successfully.");
+
+                LoadMachines(true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting machine: " + ex.Message);
+            }
         }
 
         private void btn_next_Click(object sender, RoutedEventArgs e)
         {
 
         }
-        private void LoadMachines()
+
+        private void LoadMachines(bool loadWithEmptyField)
         {
             var machines = _dbContext.Machine_Products
-                                      .Select(m => m.Machine_Number)
-                                      .Distinct()
-                                      .ToList();
+                                     .Select(m => m.Machine_Number)
+                                     .Distinct()
+                                     .ToList();
 
+            if (loadWithEmptyField)
+            {
+                machines.Insert(0, string.Empty);
+            }
             cb_Machine.ItemsSource = machines;
         }
 
@@ -80,7 +116,7 @@ namespace Tool_Data_Inventory_Manager
                     _dbContext.SaveChanges();
 
                     MessageBox.Show("Machine added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    LoadMachines(); // frissítjük a listát
+                    LoadMachines(true); // frissítjük a listát
                 }
             }
         }

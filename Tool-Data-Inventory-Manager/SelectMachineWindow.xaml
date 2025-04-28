@@ -43,7 +43,6 @@
                           SelectionChanged="cb_Machine_SelectionChanged"
                           Width="200" 
                           materialDesign:HintAssist.Hint="Select machine">
-                    <!-- Items go here -->
                 </ComboBox>
             </StackPanel>
 
