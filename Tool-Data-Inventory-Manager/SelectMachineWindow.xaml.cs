@@ -32,7 +32,22 @@ namespace Tool_Data_Inventory_Manager
         }
         private void cb_Machine_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(cb_Machine.SelectedItem.ToString().Trim()))
+            {
+                btn_del_machine.IsEnabled = true;
+                cb_SapProductId.IsEnabled = true;
+                btn_add_product.IsEnabled = true;
+                btn_del_product.IsEnabled = true;
+                btn_next.IsEnabled = true;
+            }
+            else
+            {
+                btn_del_machine.IsEnabled = false;
+                cb_SapProductId.IsEnabled = false;
+                btn_add_product.IsEnabled = false;
+                btn_del_product.IsEnabled = false;
+                btn_next.IsEnabled = false;
+            }
         }
         private void btn_add_product_Click(object sender, RoutedEventArgs e)
         {
