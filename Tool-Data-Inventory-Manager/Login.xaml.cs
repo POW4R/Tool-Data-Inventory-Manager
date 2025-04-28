@@ -51,5 +51,12 @@ namespace Tool_Data_Inventory_Manager
             this.Close();
             rw.Show();
         }
+
+        private void tb_forgotPassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ForgotPasswordWindow fpw = new ForgotPasswordWindow();
+            this.Close();
+            fpw.Show();
+        }
     }
 }

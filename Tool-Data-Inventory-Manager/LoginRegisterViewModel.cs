@@ -40,7 +40,7 @@ namespace Tool_Data_Inventory_Manager
                 return;
             }
 
-            if(!IsValidPassword(Password))
+            if(!PasswordManager.IsValidPassword(Password))
             {
                 MessageBox.Show("A jelszónak legalább 8 karakter hosszúnak kell lennie, és tartalmaznia kell nagybetűt, kisbetűt, számot és speciális karaktert.");
                 return;
@@ -52,7 +52,7 @@ namespace Tool_Data_Inventory_Manager
                 return;
             }
 
-            string hashedPassword = HashPassword(Password);
+            string hashedPassword = PasswordManager.HashPassword(Password);
             var user = new User { FirstName = FirstName, LastName = LastName, Email=Email,PasswordHash = hashedPassword };
 
             try
@@ -81,7 +81,7 @@ namespace Tool_Data_Inventory_Manager
                 MessageBox.Show("A mezők kitöltése kötelező!");
                 return false;
             }
-            string hashedPassword = HashPassword(Password);
+            string hashedPassword = PasswordManager.HashPassword(Password);
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == Email && u.PasswordHash == hashedPassword);
 
             if (user != null)
@@ -94,35 +94,6 @@ namespace Tool_Data_Inventory_Manager
                 MessageBox.Show("Hibás e-mail vagy jelszó.");
                 return false;
             }
-        }
-
-        private string HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in bytes)
-                {
-                    builder.Append(b.ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
-        private static bool IsValidPassword(string password)
-        {
-            if (string.IsNullOrWhiteSpace(password))
-                return false;
-
-            if (password.Length < 8)
-                return false;
-
-            bool hasUpperCase = Regex.IsMatch(password, @"[A-Z]");
-            bool hasLowerCase = Regex.IsMatch(password, @"[a-z]");
-            bool hasDigit = Regex.IsMatch(password, @"\d");
-            bool hasSpecialChar = Regex.IsMatch(password, @"[\W_]"); // \W vagy _
-
-            return hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar;
         }
         private static bool IsValidEmail(string email)
         {

@@ -67,7 +67,10 @@
                       HorizontalAlignment="Center" Password="SlemKev123."/>
             </Grid>
             <TextBlock Text="forgot password?" 
-                       HorizontalAlignment="Right"/>
+                          x:Name="tb_forgotPassword"
+                       HorizontalAlignment="Right"
+                       MouseLeftButtonDown="tb_forgotPassword_MouseLeftButtonDown"
+                       />
             <Button x:Name="LoginBtn" 
                     Content="Login" 
                     Foreground="White"
