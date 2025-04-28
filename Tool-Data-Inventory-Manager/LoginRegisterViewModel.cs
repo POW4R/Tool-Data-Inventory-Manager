@@ -34,7 +34,7 @@ namespace Tool_Data_Inventory_Manager
                 return;
             }
 
-            if (!IsValidEmail(Email))
+            if (!EmailValidator.IsValidEmail(Email))
             {
                 MessageBox.Show("Hibás e-mail cím formátum.");
                 return;
@@ -94,13 +94,6 @@ namespace Tool_Data_Inventory_Manager
                 MessageBox.Show("Hibás e-mail vagy jelszó.");
                 return false;
             }
-        }
-        private static bool IsValidEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-                return false;
-            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-            return Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase);
         }
     }
 }

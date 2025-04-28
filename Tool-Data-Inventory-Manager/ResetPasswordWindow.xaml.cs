@@ -35,7 +35,6 @@ namespace Tool_Data_Inventory_Manager
                 return;
             }
 
-            // Jelszó módosítása az adatbázisban
             await ChangePassword(_email, newPassword, confirmPassword);
 
             this.Close();
