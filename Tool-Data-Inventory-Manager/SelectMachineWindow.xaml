@@ -33,28 +33,28 @@
 
             <!-- Left Column -->
             <StackPanel Grid.Row="0" Grid.Column="0">
-                <ComboBox x:Name="cb_SapProductId"
-                          Width="200" 
-                          materialDesign:HintAssist.Hint="gyártott termék szám / SAP product id">
-                    <!-- Items go here -->
-                </ComboBox>
                 <ComboBox x:Name="cb_Machine"
                           SelectionChanged="cb_Machine_SelectionChanged"
                           Width="200" 
                           materialDesign:HintAssist.Hint="Select machine">
                 </ComboBox>
+                <ComboBox x:Name="cb_SapProductId"
+                          Width="200" 
+                          materialDesign:HintAssist.Hint="gyártott termék szám / SAP product id">
+                    <!-- Items go here -->
+                </ComboBox>
             </StackPanel>
 
             <!-- Middle Column -->
             <StackPanel Grid.Row="0" Grid.Column="1">
-                <Button x:Name="btn_add_product" Content="Add SAPproductid" Width="150" Click="btn_add_product_Click"/>
                 <Button x:Name="btn_add_machine" Content="Add machine" Width="150" Click="btn_add_machine_Click"/>
+                <Button x:Name="btn_add_product" Content="Add SAPproductid" Width="150" Click="btn_add_product_Click"/>
             </StackPanel>
 
             <!-- Right Column -->
             <StackPanel Grid.Row="0" Grid.Column="2">
-                <Button x:Name="btn_del_product" Content="Delete SAPproductid" Width="150" Click="btn_del_product_Click"/>
                 <Button x:Name="btn_del_machine" Content="Delete machine" Width="150" Click="btn_del_machine_Click"/>
+                <Button x:Name="btn_del_product" Content="Delete SAPproductid" Width="150" Click="btn_del_product_Click"/>
             </StackPanel>
             <Button x:Name="btn_next" Content="Next" Width="150" Click="btn_next_Click" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="205,10,0,0"/>
         </Grid>
