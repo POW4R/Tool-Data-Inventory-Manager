@@ -108,6 +108,7 @@ namespace Tool_Data_Inventory_Manager
             if (loadWithEmptyField)
             {
                 machines.Insert(0, string.Empty);
+                cb_Machine.SelectedIndex = 0;
             }
             cb_Machine.ItemsSource = machines;
         }
