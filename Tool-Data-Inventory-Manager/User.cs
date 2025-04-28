@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tool_Data_Inventory_Manager
 {
@@ -23,5 +19,7 @@ namespace Tool_Data_Inventory_Manager
         [Required]
         public string PasswordHash { get; set; }
 
+        public int? PasswordResetCode { get; set; }
+        public DateTime? PasswordResetRequestedAt { get; set; }
     }
 }
