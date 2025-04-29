@@ -66,11 +66,6 @@
                       BorderThickness="0,0,0,1"
                       HorizontalAlignment="Center" Password="SlemKev123."/>
             </Grid>
-            <TextBlock Text="forgot password?" 
-                          x:Name="tb_forgotPassword"
-                       HorizontalAlignment="Right"
-                       MouseLeftButtonDown="tb_forgotPassword_MouseLeftButtonDown"
-                       />
             <Button x:Name="LoginBtn" 
                     Content="Login" 
                     Foreground="White"
@@ -101,6 +96,11 @@
                     </Style>
                 </Button.Style>
             </Button>
+            <TextBlock Text="forgot password?" 
+                          x:Name="tb_forgotPassword"
+                       HorizontalAlignment="Right"
+                       MouseLeftButtonDown="tb_forgotPassword_MouseLeftButtonDown"
+                       />
             <TextBlock Text="Not a member?"
                        x:Name="tb_notMember"
                          Margin="2"
@@ -110,10 +110,37 @@
                        />
             <Button Content="Back"
                    x:Name="btn_back"
-                   Margin="0,10"
-                   VerticalAlignment="Bottom"
-                   HorizontalAlignment="Center"
-                   Click="btn_back_Click"/>
+                    
+                    Foreground="White"
+                    Background="Black"
+                    Margin="0,10"
+                    Height="20"
+                    Width="100"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    Click="btn_back_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="BackBorder" Background="{TemplateBinding Background}"
+                                            CornerRadius="16">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="AliceBlue" TargetName="BackBorder"  />
+                                            <Setter Property="TextBlock.Foreground" Value="Black"  TargetName="BackBorder" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
     </Border>
 
