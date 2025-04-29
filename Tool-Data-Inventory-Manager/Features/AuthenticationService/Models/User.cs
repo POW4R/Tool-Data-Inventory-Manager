@@ -21,5 +21,7 @@ namespace Tool_Data_Inventory_Manager
 
         public int? PasswordResetCode { get; set; }
         public DateTime? PasswordResetRequestedAt { get; set; }
+
+        public int PasswordResetAttempts { get; set; } = 0;
     }
 }

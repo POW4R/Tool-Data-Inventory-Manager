@@ -32,6 +32,7 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
 
             user.PasswordResetCode = code;
             user.PasswordResetRequestedAt = DateTime.UtcNow;
+            user.PasswordResetAttempts = 0;
 
             _dbContext.SaveChanges();
 
@@ -53,14 +54,23 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
                 return;
             }
 
+            if (user.PasswordResetAttempts >= 3)
+            {
+                MessageBox.Show("Too many failed attempts. Please request a new password reset.");
+                return;
+            }
+
             if (!int.TryParse(tb_Code.Text.Trim(), out int codeInput))
             {
                 MessageBox.Show("Invalid code format.");
                 return;
             }
+            
 
             if (user.PasswordResetCode != codeInput)
             {
+                user.PasswordResetAttempts++;
+                _dbContext.SaveChanges();
                 MessageBox.Show("Invalid code.");
                 return;
             }
@@ -70,6 +80,8 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
                 MessageBox.Show("The code has expired. Please request a new password reset.");
                 return;
             }
+
+            _dbContext.SaveChanges();
 
             MessageBox.Show("Code verified! Please set a new password.");
             ResetPasswordWindow resetWindow = new ResetPasswordWindow(email);
