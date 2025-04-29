@@ -12,23 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Tool_Data_Inventory_Manager
+namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
 {
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class LoginWindow : Window
     {
-        private readonly LoginRegisterViewModel _viewModel;
-        public Login()
+        private readonly AppDbContext _dbContext;
+        public LoginWindow()
         {
             InitializeComponent();
-            _viewModel = new LoginRegisterViewModel();
-            DataContext = _viewModel;
+            _dbContext = new AppDbContext();
         }
         private void btn_back_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
+            StartWindow mw = new StartWindow();
             this.Close();
             mw.Show();
         }
@@ -37,17 +36,38 @@ namespace Tool_Data_Inventory_Manager
         {
             string email = tb_Email.Text;
             string password = pb_password.Password;
-            if(_viewModel.Login(email, password))
+            if(Login(email, password))
             {
                 SelectMachineWindow smw = new SelectMachineWindow();
                 this.Close();
                 smw.Show();
             }
         }
+        private bool Login(string Email, string Password)
+        {
+            if (Password == null || Email == null)
+            {
+                MessageBox.Show("A mezők kitöltése kötelező!");
+                return false;
+            }
+            string hashedPassword = PasswordManager.HashPassword(Password);
+            var user = _dbContext.Users.FirstOrDefault(u => u.Email == Email && u.PasswordHash == hashedPassword);
+
+            if (user != null)
+            {
+                MessageBox.Show("Sikeres bejelentkezés!");
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Hibás e-mail vagy jelszó.");
+                return false;
+            }
+        }
 
         private void tb_notMember_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            RegisterViewModel rw = new RegisterViewModel();
+            RegisterWindow rw = new RegisterWindow();
             this.Close();
             rw.Show();
         }

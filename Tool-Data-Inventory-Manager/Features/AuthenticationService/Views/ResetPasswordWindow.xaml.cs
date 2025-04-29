@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
 
-namespace Tool_Data_Inventory_Manager
+namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
 {
     public partial class ResetPasswordWindow : Window
     {
@@ -36,9 +36,9 @@ namespace Tool_Data_Inventory_Manager
             }
 
             await ChangePassword(_email, newPassword, confirmPassword);
-            Login l = new Login();
+            LoginWindow lw = new LoginWindow();
             this.Close();
-            l.Show();
+            lw.Show();
         }
         public async Task ChangePassword(string Email, string NewPassword, string ConfirmNewPassword)
         {
@@ -86,9 +86,9 @@ namespace Tool_Data_Inventory_Manager
 
         private void btn_Back_Click(object sender, RoutedEventArgs e)
         {
-            Login l = new Login();
+            LoginWindow lw = new LoginWindow();
             this.Close();
-            l.Show();
+            lw.Show();
         }
     }
 }

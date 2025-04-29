@@ -9,30 +9,30 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Tool_Data_Inventory_Manager
+namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for StartWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StartWindow : Window
     {
-       public MainWindow()
+        public StartWindow()
         {
             InitializeComponent();
         }
 
         private void btn_register_Click(object sender, RoutedEventArgs e)
         {
-            RegisterViewModel rw = new RegisterViewModel();
+            RegisterWindow rw = new RegisterWindow();
             this.Close();
             rw.Show();
         }
 
         private void btn_login_Click(object sender, RoutedEventArgs e)
         {
-            Login l = new Login();
+            LoginWindow lw = new LoginWindow();
             this.Close();
-            l.Show();
+            lw.Show();
         }
     }
 }

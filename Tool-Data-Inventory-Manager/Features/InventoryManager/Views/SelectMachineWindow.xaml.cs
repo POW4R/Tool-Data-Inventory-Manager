@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using MaterialDesignThemes.Wpf;
+using Tool_Data_Inventory_Manager.Features.AuthenticationService.Views;
 
 namespace Tool_Data_Inventory_Manager
 {
@@ -23,7 +24,7 @@ namespace Tool_Data_Inventory_Manager
     /// </summary>
     public partial class SelectMachineWindow : Window
     {
-        private readonly MainWindow _mainWindow;
+        private readonly StartWindow _mainWindow;
         private readonly AppDbContext _dbContext = new AppDbContext();
         public SelectMachineWindow()
         {

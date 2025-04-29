@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Tool_Data_Inventory_Manager
+namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
 {
     public partial class ForgotPasswordWindow : Window
     {
@@ -79,9 +79,9 @@ namespace Tool_Data_Inventory_Manager
 
         private void btn_Back_Click(object sender, RoutedEventArgs e)
         {
-            Login l = new Login();
+            LoginWindow lw = new LoginWindow();
             this.Close();
-            l.Show();
+            lw.Show();
         }
     }
 }

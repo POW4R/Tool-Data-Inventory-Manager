@@ -1,29 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Security.Cryptography;
-using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
-
-namespace Tool_Data_Inventory_Manager
+namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
 {
-    public class LoginRegisterViewModel : INotifyPropertyChanged
+    /// <summary>
+    /// Interaction logic for RegisterWindow.xaml
+    /// </summary>
+    public partial class RegisterWindow : Window
     {
         private readonly AppDbContext _dbContext;
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        public LoginRegisterViewModel()
+        public RegisterWindow()
         {
+            InitializeComponent();
             _dbContext = new AppDbContext();
-            _dbContext.Database.EnsureCreated();
+        }
+
+        private void btn_reg_Click(object sender, RoutedEventArgs e)
+        {
+            string firstName = tb_FirstName.Text;
+            string lastName = tb_LastName.Text;
+            string email = tb_RegEmail.Text;
+            string password = pb_Password.Password;
+            string confirmPassword = pb_ConfirmPassword.Password;
+            Register(firstName, lastName, email, password, confirmPassword);
         }
         public async Task Register(string FirstName, string LastName, string Email, string Password, string ConfirmPassword)
         {
-            if(Password != ConfirmPassword)
+            if (Password != ConfirmPassword)
             {
                 MessageBox.Show("A jelszavak nem egyeznek meg.");
                 return;
@@ -40,7 +54,7 @@ namespace Tool_Data_Inventory_Manager
                 return;
             }
 
-            if(!PasswordManager.IsValidPassword(Password))
+            if (!PasswordManager.IsValidPassword(Password))
             {
                 MessageBox.Show("A jelszónak legalább 8 karakter hosszúnak kell lennie, és tartalmaznia kell nagybetűt, kisbetűt, számot és speciális karaktert.");
                 return;
@@ -53,7 +67,7 @@ namespace Tool_Data_Inventory_Manager
             }
 
             string hashedPassword = PasswordManager.HashPassword(Password);
-            var user = new User { FirstName = FirstName, LastName = LastName, Email=Email,PasswordHash = hashedPassword };
+            var user = new User { FirstName = FirstName, LastName = LastName, Email = Email, PasswordHash = hashedPassword };
 
             try
             {
@@ -68,32 +82,11 @@ namespace Tool_Data_Inventory_Manager
             MessageBox.Show("Sikeres regisztráció!");
         }
 
-        /**
-         * Bejelentkezés
-         * @param Email
-         * @param Password
-         * @return true, ha a bejelentkezés sikeres, false, ha nem
-         */
-        public bool Login(string Email, string Password)
+        private void btn_back_Click(object sender, RoutedEventArgs e)
         {
-            if (Password == null || Email == null)
-            {
-                MessageBox.Show("A mezők kitöltése kötelező!");
-                return false;
-            }
-            string hashedPassword = PasswordManager.HashPassword(Password);
-            var user = _dbContext.Users.FirstOrDefault(u => u.Email == Email && u.PasswordHash == hashedPassword);
-
-            if (user != null)
-            {
-                MessageBox.Show("Sikeres bejelentkezés!");
-                return true;
-            }
-            else
-            {
-                MessageBox.Show("Hibás e-mail vagy jelszó.");
-                return false;
-            }
+            StartWindow mw = new StartWindow();
+            this.Close();
+            mw.Show();
         }
     }
 }
