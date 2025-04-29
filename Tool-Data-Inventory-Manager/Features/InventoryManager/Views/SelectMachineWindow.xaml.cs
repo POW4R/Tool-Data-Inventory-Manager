@@ -16,6 +16,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using MaterialDesignThemes.Wpf;
 using Tool_Data_Inventory_Manager.Features.AuthenticationService.Views;
+using Tool_Data_Inventory_Manager.Features.InventoryManager.Views;
 
 namespace Tool_Data_Inventory_Manager
 {
@@ -96,7 +97,9 @@ namespace Tool_Data_Inventory_Manager
 
         private void btn_next_Click(object sender, RoutedEventArgs e)
         {
-
+            ListMachineData lmd = new ListMachineData();
+            this.Close();
+            lmd.Show();
         }
 
         private void LoadMachines(bool loadWithEmptyField)
