@@ -29,4 +29,8 @@
 
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\InventoryManager\Views\Tool\" />
+  </ItemGroup>
+
 </Project>

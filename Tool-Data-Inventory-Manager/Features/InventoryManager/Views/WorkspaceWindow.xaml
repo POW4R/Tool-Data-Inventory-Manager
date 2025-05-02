@@ -8,96 +8,107 @@
     <Window.Resources>
         <local:ToolListToStringConverter x:Key="ToolListToStringConverter"/>
     </Window.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="10">
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <Label Content="Tool keresés:" VerticalAlignment="Center"/>
-                <ComboBox x:Name="ToolFilterField" Width="120" Margin="5,0">
-                    <ComboBoxItem Content="Name" IsSelected="True"/>
-                    <ComboBoxItem Content="MaterialNumber"/>
-                    <ComboBoxItem Content="MagPlace"/>
-                    <ComboBoxItem Content="Price"/>
-                </ComboBox>
-                <TextBox x:Name="ToolSearchBox" Width="200" Margin="5,0" TextChanged="ToolSearchBox_TextChanged"/>
-            </StackPanel>
-            <Button Content="Új Tool hozzáadása" Click="AddTool_Click" Margin="5" Width="150"/>
-            <GroupBox Header="Tool lista" Margin="0 0 0 20">
-                <DataGrid x:Name="ToolDataGrid" AutoGenerateColumns="True" IsReadOnly="True" Height="200" Margin="5" MouseDoubleClick="ToolDataGrid_MouseDoubleClick" SelectionMode="Single"/>
-            </GroupBox>
-            <Button Content="Kijelölt szerszám törlése" Margin="5" Click="DeleteTool_Click"/>
 
-            <!-- === PRODUCT SZEKCIÓ === -->
-            <GroupBox Header="Product hozzáadása" Margin="0 0 0 10">
-                <StackPanel Orientation="Vertical" Margin="5">
+    <TabControl>
+        <!-- TOOL TAB -->
+        <TabItem Header="Tools">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="10">
                     <StackPanel Orientation="Horizontal" Margin="0,5">
-                        <Label Content="Product keresés:" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="ProductFilterField" Width="120" Margin="5,0">
-                            <ComboBoxItem Content="Type" IsSelected="True"/>
-                            <ComboBoxItem Content="ProductNumber"/>
-                            <ComboBoxItem Content="Tools"/>
-                        </ComboBox>
-                        <TextBox x:Name="ProductSearchBox" Width="200" Margin="5,0" TextChanged="ProductSearchBox_TextChanged"/>
-                    </StackPanel>
-                    <Button Content="Product hozzáadása" Click="AddProduct_Click" Margin="5" Width="150"/>
-                </StackPanel>
-            </GroupBox>
-
-            <GroupBox Header="Product lista">
-                <DataGrid x:Name="ProductDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Height="200" Margin="5" MouseDoubleClick="ProductDataGrid_MouseDoubleClick"
-          SelectionMode="Single">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ProductNumber" Binding="{Binding ProductNumber}" />
-                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" />
-                        <DataGridTemplateColumn Header="Tools">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Tools, Converter={StaticResource ToolListToStringConverter}}" TextWrapping="Wrap"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Tools">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Tools, Converter={StaticResource ToolListToStringConverter}}" TextWrapping="Wrap"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </GroupBox>
-            <Button Content="Kijelölt termék törlése" Margin="5" Click="DeleteProduct_Click"/>
-
-            <GroupBox Header="Machine keresés" Margin="0 0 0 10">
-                <StackPanel Orientation="Vertical" Margin="5">
-                    <StackPanel Orientation="Horizontal" Margin="0,5">
-                        <Label Content="Keresés:" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="MachineFilterField" Width="120" Margin="5,0">
+                        <Label Content="Tool keresés:" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="ToolFilterField" Width="120" Margin="5,0">
                             <ComboBoxItem Content="Name" IsSelected="True"/>
-                            <ComboBoxItem Content="ProductNumber"/>
+                            <ComboBoxItem Content="MaterialNumber"/>
+                            <ComboBoxItem Content="MagPlace"/>
+                            <ComboBoxItem Content="Price"/>
                         </ComboBox>
-                        <TextBox x:Name="MachineSearchBox" Width="200" Margin="5,0" TextChanged="MachineSearchBox_TextChanged"/>
+                        <TextBox x:Name="ToolSearchBox" Width="200" Margin="5,0" TextChanged="ToolSearchBox_TextChanged"/>
                     </StackPanel>
-                    <Button Content="Machine hozzáadása" Click="AddMachine_Click" Margin="5" Width="150"/>
+                    <Button Content="Új Tool hozzáadása" Click="AddTool_Click" Margin="5" Width="150"/>
+                    <GroupBox Header="Tool lista" Margin="0 0 0 20">
+                        <DataGrid x:Name="ToolDataGrid" AutoGenerateColumns="True" IsReadOnly="True" Height="200" Margin="5"
+                                  MouseDoubleClick="ToolDataGrid_MouseDoubleClick" SelectionMode="Single"/>
+                    </GroupBox>
+                    <Button Content="Kijelölt szerszám törlése" Margin="5" Click="DeleteTool_Click"/>
                 </StackPanel>
-            </GroupBox>
+            </ScrollViewer>
+        </TabItem>
 
-            <!-- Machine lista -->
-            <GroupBox Header="Gépek" Grid.Row="2" Margin="0 10 0 10">
-                <DataGrid x:Name="MachineDataGrid" AutoGenerateColumns="False" IsReadOnly="True"
-                      SelectionMode="Single" MouseDoubleClick="MachineDataGrid_MouseDoubleClick">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
-                        <DataGridTextColumn Header="Név" Binding="{Binding Name}" Width="*"/>
-                        <DataGridTextColumn Header="Termékek" Binding="{Binding Products}" Width="2*"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </GroupBox>
+        <!-- PRODUCT TAB -->
+        <TabItem Header="Products">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="10">
+                    <GroupBox Header="Product hozzáadása" Margin="0 0 0 10">
+                        <StackPanel Orientation="Vertical" Margin="5">
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <Label Content="Product keresés:" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="ProductFilterField" Width="120" Margin="5,0">
+                                    <ComboBoxItem Content="Type" IsSelected="True"/>
+                                    <ComboBoxItem Content="ProductNumber"/>
+                                    <ComboBoxItem Content="Tools"/>
+                                </ComboBox>
+                                <TextBox x:Name="ProductSearchBox" Width="200" Margin="5,0" TextChanged="ProductSearchBox_TextChanged"/>
+                            </StackPanel>
+                            <Button Content="Product hozzáadása" Click="AddProduct_Click" Margin="5" Width="150"/>
+                        </StackPanel>
+                    </GroupBox>
 
-            <!-- Gép törlés gomb -->
-            <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right" Margin="0 10 0 0">
-                <Button Content="Gép törlése" Click="DeleteMachineButton_Click" Width="120"/>
-                <Button Content="Gép hozzáadása" Click="AddMachineButton_Click" Width="120" Margin="10 0 0 0"/>
-            </StackPanel>
-        </StackPanel>
-    </ScrollViewer>
+                    <GroupBox Header="Product lista">
+                        <DataGrid x:Name="ProductDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Height="200" Margin="5"
+                                  MouseDoubleClick="ProductDataGrid_MouseDoubleClick" SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ProductNumber" Binding="{Binding ProductNumber}" />
+                                <DataGridTextColumn Header="Type" Binding="{Binding Type}" />
+                                <DataGridTemplateColumn Header="Tools">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Tools, Converter={StaticResource ToolListToStringConverter}}" TextWrapping="Wrap"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                    <Button Content="Kijelölt termék törlése" Margin="5" Click="DeleteProduct_Click"/>
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+
+        <!-- MACHINE TAB -->
+        <TabItem Header="Machines">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="10">
+                    <GroupBox Header="Machine keresés" Margin="0 0 0 10">
+                        <StackPanel Orientation="Vertical" Margin="5">
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <Label Content="Keresés:" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="MachineFilterField" Width="120" Margin="5,0">
+                                    <ComboBoxItem Content="Name" IsSelected="True"/>
+                                    <ComboBoxItem Content="ProductNumber"/>
+                                </ComboBox>
+                                <TextBox x:Name="MachineSearchBox" Width="200" Margin="5,0" TextChanged="MachineSearchBox_TextChanged"/>
+                            </StackPanel>
+                            <Button Content="Machine hozzáadása" Click="AddMachine_Click" Margin="5" Width="150"/>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <GroupBox Header="Gépek" Margin="0 10 0 10">
+                        <DataGrid x:Name="MachineDataGrid" AutoGenerateColumns="False" IsReadOnly="True"
+                                  SelectionMode="Single" MouseDoubleClick="MachineDataGrid_MouseDoubleClick">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                                <DataGridTextColumn Header="Név" Binding="{Binding Name}" Width="*"/>
+                                <DataGridTextColumn Header="Termékek" Binding="{Binding Products}" Width="2*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">
+                        <Button Content="Gép törlése" Click="DeleteMachineButton_Click" Width="120"/>
+                        <Button Content="Gép hozzáadása" Click="AddMachineButton_Click" Width="120" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+    </TabControl>
 </Window>
