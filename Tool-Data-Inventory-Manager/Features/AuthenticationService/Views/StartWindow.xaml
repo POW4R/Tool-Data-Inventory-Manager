@@ -8,7 +8,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Üdvözlünk" Height="400" Width="600"
         Background="{DynamicResource MaterialDesignPaper}"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="/Resources/Tool-Data-Icon.png">
     <Grid Margin="30">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 

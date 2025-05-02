@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Tool-Data-Icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.5.1" />
     <PackageReference Include="Firebase.Auth" Version="1.0.0" />
     <PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
@@ -31,6 +35,10 @@
 
   <ItemGroup>
     <Folder Include="Features\InventoryManager\Views\Tool\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Tool-Data-Icon.png" />
   </ItemGroup>
 
 </Project>

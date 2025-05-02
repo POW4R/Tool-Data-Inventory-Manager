@@ -39,6 +39,7 @@ namespace Tool_Data_Inventory_Manager
                 .CreateLogger();
 
             Log.Information("Alkalmazás elindult.");
+
             base.OnStartup(e);
         }
 
