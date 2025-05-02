@@ -1,0 +1,14 @@
+﻿<Window x:Class="Tool_Data_Inventory_Manager.Features.InventoryManager.Views.ToolHasProductsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Kapcsolódó termékek" Height="300" Width="400">
+    <Grid Margin="10">
+        <TextBlock Text="Ez a szerszám a következő termékekhez van hozzárendelve:" 
+                   FontWeight="Bold" Margin="0,0,0,10"/>
+        <ListBox x:Name="ProductList" Margin="0,30,0,50"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button Content="Mégsem" Width="80" Margin="5" Click="Cancel_Click"/>
+            <Button Content="Törlés és leválasztás" Width="150" Margin="5" Click="Confirm_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

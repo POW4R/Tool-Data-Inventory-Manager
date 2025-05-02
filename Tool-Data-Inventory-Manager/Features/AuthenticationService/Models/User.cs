@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Tool_Data_Inventory_Manager
 {
-    internal class User
+    public class User
     {
         public int Id { get; set; }
 

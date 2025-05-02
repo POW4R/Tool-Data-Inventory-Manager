@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.CodeAnalysis;
+using Tool_Data_Inventory_Manager.Features.InventoryManager.Views;
 
 namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
 {
@@ -38,9 +40,9 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
             string password = pb_password.Password;
             if(Login(email, password))
             {
-                SelectMachineWindow smw = new SelectMachineWindow();
+                WorkspaceWindow ww = new WorkspaceWindow();
                 this.Close();
-                smw.Show();
+                ww.Show();
             }
         }
         private bool Login(string Email, string Password)

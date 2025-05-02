@@ -1,0 +1,9 @@
+﻿<Window x:Class="Tool_Data_Inventory_Manager.Features.InventoryManager.Views.AssignProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Product hozzárendelése" Height="300" Width="400">
+    <Grid Margin="10">
+        <ListBox x:Name="AvailableProductsListBox" DisplayMemberPath="ProductNumber"/>
+        <Button Content="Hozzárendelés" VerticalAlignment="Bottom" Click="AssignButton_Click"/>
+    </Grid>
+</Window>
