@@ -2,7 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Tool_Data_Inventory_Manager.Features.InventoryManager.Converters"
-        Title="Tool Product Manager" Height="700" Width="900">
+        Title="Tool Product Manager" Height="1200" Width="900"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
     <Window.Resources>
         <local:ToolListToStringConverter x:Key="ToolListToStringConverter"/>
     </Window.Resources>
@@ -64,24 +66,7 @@
                 </DataGrid>
             </GroupBox>
             <Button Content="Kijelölt termék törlése" Margin="5" Click="DeleteProduct_Click"/>
-            <Grid Margin="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <ComboBox x:Name="MachineComboBox" Width="300" DisplayMemberPath="Name" SelectionChanged="MachineComboBox_SelectionChanged"/>
-                    <Button Content="Hozzárendelés" Margin="10,0,0,0" Click="AssignProductButton_Click"/>
-                </StackPanel>
-
-                <DataGrid x:Name="MachineProductsDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Product Number" Binding="{Binding ProductNumber}"/>
-                        <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
             <GroupBox Header="Machine keresés" Margin="0 0 0 10">
                 <StackPanel Orientation="Vertical" Margin="5">
                     <StackPanel Orientation="Horizontal" Margin="0,5">

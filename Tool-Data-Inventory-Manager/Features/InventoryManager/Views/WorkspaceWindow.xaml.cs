@@ -226,30 +226,7 @@ public partial class WorkspaceWindow : Window
             MessageBox.Show("Előbb válassz ki egy szerszámot a törléshez.", "Nincs kijelölés", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
-    private void MachineComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        _selectedMachine = MachineComboBox.SelectedItem as Machine;
-        if (_selectedMachine != null)
-        {
-            MachineProductsDataGrid.ItemsSource = _selectedMachine.Products;
-        }
-    }
-    private void AssignProductButton_Click(object sender, RoutedEventArgs e)
-    {
-        if (_selectedMachine == null)
-        {
-            MessageBox.Show("Előbb válassz ki egy gépet!");
-            return;
-        }
 
-        var assignWindow = new AssignProductWindow(_context, _selectedMachine);
-        if (assignWindow.ShowDialog() == true)
-        {
-            _context.SaveChanges();
-            LoadMachines();
-            MachineComboBox.SelectedItem = _selectedMachine; // újratöltés
-        }
-    }
     private void AddMachineButton_Click(object sender, RoutedEventArgs e)
     {
         var addWindow = new AddMachineWindow(_context) { Owner = this };
