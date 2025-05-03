@@ -80,5 +80,10 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
             this.Close();
             fpw.Show();
         }
+
+        private void btn_Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

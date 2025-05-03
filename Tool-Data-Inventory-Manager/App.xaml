@@ -5,16 +5,316 @@
             xmlns:local="clr-namespace:Tool_Data_Inventory_Manager"
             StartupUri="Features/AuthenticationService/Views/StartWindow.xaml">
    <Application.Resources>
-       <ResourceDictionary>
-           <ResourceDictionary.MergedDictionaries>
-               <materialDesign:BundledTheme BaseTheme="Light"
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light"
                                             PrimaryColor="Indigo"
                                             SecondaryColor="Indigo"/>
 
-               <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Indigo.xaml" />
-           </ResourceDictionary.MergedDictionaries>
-           <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-           <local:ComboBoxSelectionToEnabledConverter x:Key="ComboBoxSelectionToEnabledConverter"/>
-       </ResourceDictionary>
-   </Application.Resources>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Indigo.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            <local:ComboBoxSelectionToEnabledConverter x:Key="ComboBoxSelectionToEnabledConverter"/>
+
+            <!-- Alapszínek -->
+            <Color x:Key="PrimaryBackgroundColor">#FFFDFDFD</Color>
+            <!-- fő háttér -->
+            <Color x:Key="SecondaryBackgroundColor">#FFF0F0F0</Color>
+            <!-- másodlagos háttér -->
+            <Color x:Key="CardBackgroundColor">#FFFFFFFF</Color>
+            <!-- panelek -->
+            <Color x:Key="PrimaryTextColor">#FF1E1E1E</Color>
+            <!-- fő szöveg -->
+            <Color x:Key="SecondaryTextColor">#FF5A5A5A</Color>
+            <!-- halványabb szöveg -->
+            <Color x:Key="BorderColor">#FFE0E0E0</Color>
+            <!-- határvonalak -->
+
+            <!-- Akcentusok -->
+            <Color x:Key="AccentColor">#FFAAAAAA</Color>
+            <!-- halványabb akcentus (pl. linkekhez) -->
+            <Color x:Key="AccentHoverColor">#FF888888</Color>
+
+            <!-- Gomb színek -->
+            <Color x:Key="ButtonBackgroundColor">#FF2C2C2C</Color>
+            <!-- feketés-szürke -->
+            <Color x:Key="ButtonHoverColor">#FF3D3D3D</Color>
+            <Color x:Key="ButtonTextColor">#FFFFFFFF</Color>
+
+            <!-- Ritkán használt Hilti piros -->
+            <Color x:Key="HiltiRedColor">#FFD20A11</Color>
+
+            <!-- Brush definíciók -->
+            <SolidColorBrush x:Key="PrimaryBackgroundBrush" Color="{StaticResource PrimaryBackgroundColor}"/>
+            <SolidColorBrush x:Key="SecondaryBackgroundBrush" Color="{StaticResource SecondaryBackgroundColor}"/>
+            <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource CardBackgroundColor}"/>
+            <SolidColorBrush x:Key="PrimaryTextBrush" Color="{StaticResource PrimaryTextColor}"/>
+            <SolidColorBrush x:Key="SecondaryTextBrush" Color="{StaticResource SecondaryTextColor}"/>
+            <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
+            <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+            <SolidColorBrush x:Key="AccentHoverBrush" Color="{StaticResource AccentHoverColor}"/>
+            <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackgroundColor}"/>
+            <SolidColorBrush x:Key="ButtonHoverBrush" Color="{StaticResource ButtonHoverColor}"/>
+            <SolidColorBrush x:Key="ButtonTextBrush" Color="{StaticResource ButtonTextColor}"/>
+            <SolidColorBrush x:Key="HiltiRedBrush" Color="{StaticResource HiltiRedColor}"/>
+
+            <!-- Gomb stílus -->
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource ButtonTextBrush}" />
+                <Setter Property="Padding" Value="10,6"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="4">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{StaticResource ButtonHoverBrush}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="StackPanel">
+                <Setter Property="Margin" Value="16"/>
+                <Setter Property="Orientation" Value="Vertical"/>
+            </Style>
+
+            <Style TargetType="Window">
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryTextBrush}"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Padding" Value="20"/>
+                <Setter Property="ResizeMode" Value="NoResize"/>
+                <Setter Property="AllowsTransparency" Value="False"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Icon" Value="/Resources/Tool-Data-Icon.png"/>
+            </Style>
+
+            <!-- 🔵 Normál ablak stílus -->
+            <Style x:Key="StandardWindowStyle" TargetType="Window">
+                <Setter Property="WindowStyle" Value="SingleBorderWindow"/>
+                <Setter Property="ResizeMode" Value="CanResize"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Padding" Value="16"/>
+            </Style>
+
+            <!-- 🔴 Lekerekített ablak stílus -->
+            <Style x:Key="RoundedWindowStyle" TargetType="Window">
+                <Setter Property="WindowStyle" Value="None"/>
+                <Setter Property="AllowsTransparency" Value="True"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="ResizeMode" Value="NoResize"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            
+            <!-- Border for rounded window -->
+            <Style x:Key="RoundedWindowBorderStyle" TargetType="Border">
+                <Setter Property="CornerRadius" Value="16"/>
+                <Setter Property="Background" Value="{StaticResource PrimaryBackgroundBrush}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Padding" Value="16"/>
+            </Style>
+
+            <!-- H1 - Nagy főcím -->
+            <Style x:Key="h1" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="32"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Foreground" Value="#222"/>
+                <Setter Property="Margin" Value="0 16 0 8"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+            </Style>
+
+            <!-- H2 - Alcím -->
+            <Style x:Key="h2" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="26"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Foreground" Value="#333"/>
+                <Setter Property="Margin" Value="0 14 0 8"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+            </Style>
+
+            <!-- H3 - Fejléc kisebb egységekhez -->
+            <Style x:Key="h3" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Foreground" Value="#444"/>
+                <Setter Property="Margin" Value="0 12 0 6"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+            </Style>
+
+            <!-- H4 - Alcím vagy szakaszfejléc -->
+            <Style x:Key="h4" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="Foreground" Value="#555"/>
+                <Setter Property="Margin" Value="0 10 0 4"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+            </Style>
+
+            <!-- H5 - Kiemelés -->
+            <Style x:Key="h5" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="Foreground" Value="#666"/>
+                <Setter Property="Margin" Value="0 8 0 4"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+            </Style>
+
+            <!-- H6 - Megjegyzés, segédszöveg -->
+            <Style x:Key="h6" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="Light"/>
+                <Setter Property="Foreground" Value="Gray"/>
+                <Setter Property="Margin" Value="0 6 0 2"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+            </Style>
+            <!-- P - Normál szöveg -->
+            <Style x:Key="p" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="Foreground" Value="#222"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="Margin" Value="0 6 0 6"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="LineHeight" Value="20"/>
+            </Style>
+
+            <Style TargetType="TextBox" x:Key="ModernTextBox">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="#222"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Padding" Value="8"/>
+                <Setter Property="Margin" Value="0 4 0 4"/>
+                <Setter Property="BorderBrush" Value="#CCC"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TextBox">
+                            <Border x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="6">
+                                <ScrollViewer x:Name="PART_ContentHost" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#999"/>
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocused" Value="True">
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#D0011B"/>
+                                    <!-- Hilti piros fókusz -->
+                                    <Setter TargetName="border" Property="BorderThickness" Value="2"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.5"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="FloatingLabel" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Foreground" Value="Gray"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="IsHitTestVisible" Value="False"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Margin" Value="12,6,12,0"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="Opacity" Value="0.85"/>
+            </Style>
+
+            <Style x:Key="ModernPasswordBox" TargetType="PasswordBox">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="#222"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Padding" Value="8"/>
+                <Setter Property="Margin" Value="0 4 0 4"/>
+                <Setter Property="BorderBrush" Value="#CCC"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="PasswordBox">
+                            <Border x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="6">
+                                <ScrollViewer x:Name="PART_ContentHost"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#999"/>
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocused" Value="True">
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#D0011B"/>
+                                    <!-- Hilti piros -->
+                                    <Setter TargetName="border" Property="BorderThickness" Value="2"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.5"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="CloseButtonStyle" TargetType="Button">
+                <Setter Property="Content" Value="✖"/>
+                <Setter Property="Width" Value="32"/>
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Margin" Value="0,8,8,0"/>
+                <Setter Property="BorderThickness" Value="0"/>
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#EEE"/>
+                        <Setter Property="Foreground" Value="Red"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Background" Value="#DDD"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="WrapperStackPanel" TargetType="StackPanel">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Height" Value="355"/>
+                <Setter Property="Width" Value="550"/>
+            </Style>
+
+
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
