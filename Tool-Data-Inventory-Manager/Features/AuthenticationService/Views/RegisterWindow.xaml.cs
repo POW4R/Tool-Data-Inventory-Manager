@@ -37,12 +37,17 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
             string confirmPassword = pb_ConfirmPassword.Password;
             reg.Registering(firstName, lastName, email, password, confirmPassword);
         }
-        private void btn_back_Click(object sender, RoutedEventArgs e)
+
+        private void btn_Close_Click(object sender, RoutedEventArgs e)
         {
-            StartWindow mw = new StartWindow();
             this.Close();
-            mw.Show();
         }
-        
+
+        private void tb_alreadyHaveAccount_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            LoginWindow lw = new LoginWindow();
+            this.Close();
+            lw.Show();
+        }
     }
 }

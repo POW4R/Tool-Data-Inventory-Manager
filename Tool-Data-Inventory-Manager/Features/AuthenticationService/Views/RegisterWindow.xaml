@@ -5,130 +5,122 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tool_Data_Inventory_Manager"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:helper="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Regisztráció" Height="500" Width="650"
+        Height="500" Width="650"
         WindowStartupLocation="CenterScreen"
-        Icon="/Resources/Tool-Data-Icon.png">
-    <Border Width="650"
-            Height="500"
-            Background="White"
-            CornerRadius="6">
-        <Border.Effect>
-            <DropShadowEffect BlurRadius="15"
-                              Direction ="-90" 
-                              RenderingBias ="Quality" 
-                              ShadowDepth ="2" 
-                              Color ="Gray" />
-        </Border.Effect>
-        <StackPanel Orientation="Vertical" Margin="10,20,10,20">
-            <TextBlock Text="Regisztráció" 
-                       FontSize="25"
+        Style="{StaticResource RoundedWindowStyle}">
+
+    <Border Style="{StaticResource RoundedWindowBorderStyle}">
+        <StackPanel Style="{StaticResource WrapperStackPanel}" Height="484" Width="630">
+            <Button Style="{StaticResource CloseButtonStyle}"
+                    x:Name="btn_Close"
+                    Click="btn_Close_Click"/>
+
+            <TextBlock Text="Regisztráció"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"
-                       FontWeight="Bold"
-                       Padding="10"/>
+                       Style="{StaticResource h1}" />
+
             <Grid VerticalAlignment="Center">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <!-- Vezetéknév -->
-                <TextBlock Text="Vezetéknév:" Grid.Row="0" Margin="89,10,0,0" HorizontalAlignment="Left"/>
+                <TextBlock Text="Vezetéknév"
+                           Margin="71,8,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource p}" RenderTransformOrigin="0.523,-0.378" />
                 <TextBox x:Name="tb_LastName"
                          Grid.Row="0"
-                         Width="254"
-                         Padding="0,5"
-                         BorderThickness="0,0,0,1"
-                         HorizontalAlignment="Center"
-                         Margin="0,0,0,10"/>
+                         Width="260"
+                         HorizontalAlignment="Left"
+                         Margin="201,0,0,10"
+                         Style="{StaticResource ModernTextBox}" />
 
                 <!-- Keresztnév -->
-                <TextBlock Text="Keresztnév:" Grid.Row="1" Margin="89,0,0,0" HorizontalAlignment="Left"/>
+                <TextBlock Text="Keresztnév"
+                           Grid.Row="1"
+                           Margin="71,8,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource p}" />
                 <TextBox x:Name="tb_FirstName"
                          Grid.Row="1"
-                         Width="254"
-                         Padding="0,5"
-                         BorderThickness="0,0,0,1"
-                         HorizontalAlignment="Center"
-                         Margin="0,0,0,10"/>
+                         Width="260"
+                         HorizontalAlignment="Left"
+                         Margin="201,0,0,18"
+                         Style="{StaticResource ModernTextBox}" />
 
                 <!-- Email -->
-                <TextBlock Text="Email cím:" Grid.Row="2" Margin="89,0,0,0" HorizontalAlignment="Left"/>
+                <TextBlock Text="Email"
+                           Grid.Row="2"
+                           Margin="71,0,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource p}" />
                 <TextBox x:Name="tb_RegEmail"
-                         Grid.Row="2"
-                         Width="254"
-                         Padding="0,5"
-                         BorderThickness="0,0,0,1"
-                         HorizontalAlignment="Center"
-                         Margin="0,0,0,10"/>
+                         Grid.Row="1"
+                         Width="260"
+                         HorizontalAlignment="Left"
+                         Margin="201,49,0,74"
+                         Style="{StaticResource ModernTextBox}" Grid.RowSpan="3" />
 
                 <!-- Jelszó -->
-                <TextBlock Text="Jelszó:" Grid.Row="3" Margin="89,0,0,0" HorizontalAlignment="Left"/>
+                <TextBlock Text="Jelszó"
+                           Grid.Row="3"
+                           Margin="71,0,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource p}" />
                 <PasswordBox x:Name="pb_Password"
                              Grid.Row="3"
-                             Width="254"
-                             Padding="0,5"
-                             BorderThickness="0,0,0,1"
-                             HorizontalAlignment="Center"
-                             Margin="0,0,0,10"/>
+                             Width="260"
+                             HorizontalAlignment="Left"
+                             Margin="201,24,0,19"
+                             Style="{StaticResource ModernPasswordBox}" />
 
                 <!-- Jelszó megerősítése -->
-                <TextBlock Text="Jelszó megerősítése:" Grid.Row="4" Margin="89,0,0,0" HorizontalAlignment="Left"/>
+                <TextBlock Text="Jelszó megerősítése"
+                           Grid.Row="4"
+                           Margin="71,2,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource p}" Grid.RowSpan="2" />
                 <PasswordBox x:Name="pb_ConfirmPassword"
-                             Grid.Row="4"
-                             Width="254"
-                             Padding="0,5"
-                             BorderThickness="0,0,0,1"
-                             HorizontalAlignment="Center"
-                             Margin="0,0,0,10"/>
+                             Grid.Row="3"
+                             Width="260"
+                             HorizontalAlignment="Left"
+                             Margin="201,71,0,0"
+                             Style="{StaticResource ModernPasswordBox}" Grid.RowSpan="3" />
             </Grid>
 
             <!-- Regisztráció gomb -->
-            <Button x:Name="btn_reg" 
-                    Content="Regisztráció" 
-                    Foreground="White"
-                    Background="Black"
-                    Margin="0,25"
+            <Button x:Name="btn_reg"
+                    Content="Regisztráció"
                     Height="35"
-                    Width="250"
-                    Click="btn_reg_Click">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border x:Name="RegisterBorder" Background="{TemplateBinding Background}" CornerRadius="16">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="AliceBlue" TargetName="RegisterBorder"/>
-                                            <Setter Property="TextBlock.Foreground" Value="Black" TargetName="RegisterBorder"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Button.Style>
-            </Button>
+                    Margin="0 20 0 0"
+                    Width="150"
+                    Click="btn_reg_Click" />
 
-            <!-- Vissza gomb -->
-            <TextBlock Text="Már van fiókod?" 
-                       Margin="2"
-                       VerticalAlignment="Bottom"
-                       HorizontalAlignment="Center"/>
-            <Button Content="Vissza"
-                    x:Name="btn_back"
-                    Margin="0,10"
-                    VerticalAlignment="Bottom"
-                    HorizontalAlignment="Center"
-                    Click="btn_back_Click"/>
+            <!-- Már van fiókod / vissza link -->
+            <StackPanel Orientation="Vertical"
+                        Margin="0,10,0,10"
+                        HorizontalAlignment="Center">
+                <TextBlock Text="Már van fiókom"
+                           x:Name="tb_alreadyHaveAccount"
+                           MouseLeftButtonDown="tb_alreadyHaveAccount_MouseLeftButtonDown"
+                           HorizontalAlignment="Center"
+                           Cursor="Hand"
+                           />
+            </StackPanel>
         </StackPanel>
     </Border>
 </Window>
