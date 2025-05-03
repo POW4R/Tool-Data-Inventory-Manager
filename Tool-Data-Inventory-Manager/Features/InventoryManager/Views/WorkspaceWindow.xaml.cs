@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Windows;
+using System.IO;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -11,6 +12,8 @@ using System.Windows.Shapes;
 using Tool_Data_Inventory_Manager.Features.InventoryManager.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using ClosedXML.Excel;
+using Microsoft.Win32;
 
 namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views;
 
@@ -322,5 +325,77 @@ public partial class WorkspaceWindow : Window
         }).ToList();
 
         MachineDataGrid.ItemsSource = filtered;
+    }
+
+    private void btn_export_Click(object sender, RoutedEventArgs e)
+    {
+        var saveDialog = new SaveFileDialog
+        {
+            FileName = "TDV-list",
+            DefaultExt = ".xlsx",
+            Filter = "Excel munkafüzet (*.xlsx)|*.xlsx"
+        };
+
+        if (saveDialog.ShowDialog() != true)
+            return;
+
+        var workbook = new XLWorkbook();
+        var worksheet = workbook.Worksheets.Add("Export");
+
+        int startRow = 8;
+        int startCol = 2;
+
+        // Fejlécek
+        worksheet.Cell(startRow, startCol).Value = "MachineName";
+        worksheet.Cell(startRow, startCol + 1).Value = "ProductNumber";
+        worksheet.Cell(startRow, startCol + 2).Value = "ToolName";
+        worksheet.Cell(startRow, startCol + 3).Value = "MaterialNumber";
+        worksheet.Cell(startRow, startCol + 4).Value = "MagPlace";
+
+        int currentRow = startRow + 1;
+
+        foreach (var machine in _allMachines)
+        {
+            foreach (var product in machine.Products)
+            {
+                var productWithTools = _context.Products
+                    .Include(p => p.Tools)
+                    .FirstOrDefault(p => p.Id == product.Id);
+
+                if (productWithTools != null)
+                {
+                    foreach (var tool in productWithTools.Tools)
+                    {
+                        worksheet.Cell(currentRow, startCol).Value = machine.Name;
+                        worksheet.Cell(currentRow, startCol + 1).Value = product.ProductNumber;
+                        worksheet.Cell(currentRow, startCol + 2).Value = tool.Name;
+                        worksheet.Cell(currentRow, startCol + 3).Value = tool.MaterialNumber;
+                        worksheet.Cell(currentRow, startCol + 4).Value = tool.MagPlace;
+                        currentRow++;
+                    }
+                }
+            }
+        }
+        // Formázás
+        var headerRange = worksheet.Range(startRow, startCol, startRow, startCol + 4);
+        headerRange.Style.Font.Bold = true;
+        headerRange.Style.Fill.BackgroundColor = ClosedXML.Excel.XLColor.LightGray;
+        headerRange.Style.Alignment.Horizontal = ClosedXML.Excel.XLAlignmentHorizontalValues.Center;
+
+        var dataRange = worksheet.Range(startRow, startCol, currentRow - 1, startCol + 4);
+        dataRange.Style.Border.OutsideBorder = ClosedXML.Excel.XLBorderStyleValues.Thin;
+        dataRange.Style.Border.InsideBorder = ClosedXML.Excel.XLBorderStyleValues.Thin;
+
+        worksheet.Columns().AdjustToContents();
+
+        try
+        {
+            workbook.SaveAs(saveDialog.FileName);
+            MessageBox.Show("Sikeres exportálás Excel fájlba!", "Export kész", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Hiba történt a mentés során: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 }
