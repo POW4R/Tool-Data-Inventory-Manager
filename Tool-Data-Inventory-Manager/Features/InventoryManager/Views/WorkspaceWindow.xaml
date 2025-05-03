@@ -107,6 +107,9 @@
                         <Button Content="Gép törlése" Click="DeleteMachineButton_Click" Width="120"/>
                         <Button Content="Gép hozzáadása" Click="AddMachineButton_Click" Width="120" Margin="10 0 0 0"/>
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,10,0,0">
+                        <Button x:Name="btn_export" Content="Export" Click="btn_export_Click" Width="120"/>
+                    </StackPanel>
                 </StackPanel>
             </ScrollViewer>
         </TabItem>
