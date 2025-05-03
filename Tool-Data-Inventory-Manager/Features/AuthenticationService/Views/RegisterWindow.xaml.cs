@@ -20,12 +20,17 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
     public partial class RegisterWindow : Window
     {
         private readonly Register reg;
-        private readonly AppDbContext _dbContext;
         public RegisterWindow()
         {
             InitializeComponent();
-            _dbContext = new AppDbContext();
             reg = new Register();
+        }
+
+        private void btn_back_Click(object sender, RoutedEventArgs e)
+        {
+            StartWindow mw = new StartWindow();
+            this.Close();
+            mw.Show();
         }
 
         private void btn_reg_Click(object sender, RoutedEventArgs e)
@@ -37,12 +42,5 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
             string confirmPassword = pb_ConfirmPassword.Password;
             reg.Registering(firstName, lastName, email, password, confirmPassword);
         }
-        private void btn_back_Click(object sender, RoutedEventArgs e)
-        {
-            StartWindow mw = new StartWindow();
-            this.Close();
-            mw.Show();
-        }
-        
     }
 }
