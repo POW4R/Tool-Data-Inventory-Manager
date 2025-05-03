@@ -38,32 +38,33 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
         {
             string email = tb_Email.Text;
             string password = pb_password.Password;
-            if(Login(email, password))
+            var loggedInUser = Login(email, password);
+            if (loggedInUser != null)
             {
-                WorkspaceWindow ww = new WorkspaceWindow();
+                var workspaceWindow = new WorkspaceWindow(loggedInUser);
+                workspaceWindow.Show();
                 this.Close();
-                ww.Show();
             }
         }
-        private bool Login(string Email, string Password)
+        private User Login(string Email, string Password)
         {
+            User user = new User();
             if (Password == null || Email == null)
             {
                 MessageBox.Show("A mezők kitöltése kötelező!");
-                return false;
+                return user;
             }
             string hashedPassword = PasswordManager.HashPassword(Password);
-            var user = _dbContext.Users.FirstOrDefault(u => u.Email == Email && u.PasswordHash == hashedPassword);
+            user = _dbContext.Users.FirstOrDefault(u => u.Email == Email && u.PasswordHash == hashedPassword);
 
             if (user != null)
             {
-                MessageBox.Show("Sikeres bejelentkezés!");
-                return true;
+                return user;
             }
             else
             {
                 MessageBox.Show("Hibás e-mail vagy jelszó.");
-                return false;
+                return user;
             }
         }
 

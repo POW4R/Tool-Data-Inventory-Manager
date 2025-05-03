@@ -27,14 +27,18 @@ public partial class WorkspaceWindow : Window
     private List<Product> _allProducts;
     private Machine _selectedMachine;
     private List<Machine> _allMachines;
+    private readonly string _loggedInUserName;
 
 
-    public WorkspaceWindow()
+
+    public WorkspaceWindow(User user)
     {
         InitializeComponent();
         _context = new AppDbContext();
         _context.Database.Migrate();
 
+        _loggedInUserName = user.LastName + " " + user.FirstName;
+        tb_loggedInUserName.Text = _loggedInUserName;
         LoadTools();
         LoadProducts();
         LoadMachines();

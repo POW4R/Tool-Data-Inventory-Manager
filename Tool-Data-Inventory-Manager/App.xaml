@@ -194,6 +194,16 @@
                 <Setter Property="LineHeight" Value="20"/>
             </Style>
 
+            <Style x:Key="textBlockWithHover" TargetType="TextBlock">
+                <Setter Property="TextDecorations" Value="{x:Null}" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="TextDecorations" Value="Underline" />
+                        <Setter Property="Cursor" Value="Hand" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
             <Style TargetType="TextBox" x:Key="ModernTextBox">
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="Foreground" Value="#222"/>
@@ -314,6 +324,40 @@
                 <Setter Property="Width" Value="550"/>
             </Style>
 
+
+            <Style TargetType="TabItem">
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="Padding" Value="10,5"/>
+                <Setter Property="Margin" Value="2,0,2,0"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem">
+                            <Border x:Name="Bd"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="0"
+                        Padding="{TemplateBinding Padding}"
+                        Cursor="Hand">
+                                <ContentPresenter
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        ContentSource="Header"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Bd" Property="Background" Value="#FF888888"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
         </ResourceDictionary>
     </Application.Resources>

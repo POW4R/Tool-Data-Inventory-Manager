@@ -37,6 +37,5 @@
                   Click="btn_register_Click"/>
             </StackPanel>
         </StackPanel>
-
     </Border>
 </Window>
