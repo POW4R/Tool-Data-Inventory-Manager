@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Tool_Data_Inventory_Manager.Features.InventoryManager.Views.ProductEditorWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Product szerkesztése" Height="350" Width="400" WindowStartupLocation="CenterScreen">
+        Title="{DynamicResource EditProduct}" Height="350" Width="400" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -11,23 +11,23 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Content="Product Number:" Width="120"/>
+            <Label Content="{DynamicResource ProductNumber}" Width="120"/>
             <TextBox x:Name="ProductNumberTextBox" Width="200"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,10">
-            <Label Content="Típus:" Width="120"/>
+            <Label Content="{DynamicResource Type}" Width="120"/>
             <TextBox x:Name="TypeTextBox" Width="200"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Margin="0,0,0,10">
-            <Label Content="Kapcsolódó Tools:"/>
+            <Label Content="{DynamicResource RelatedTools}"/>
             <ListBox x:Name="ToolsListBox" SelectionMode="Multiple" DisplayMemberPath="Name" Height="150"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3">
-            <Button Content="Mentés" Width="80" Margin="5" Click="Save_Click" Height="30"/>
-            <Button Content="Mégse" Width="80" Margin="5" Click="Cancel_Click" Height="30"/>
+            <Button Content="{DynamicResource Save}" Width="80" Margin="5" Click="Save_Click" Height="30"/>
+            <Button Content="{DynamicResource Cancel}" Width="80" Margin="5" Click="Cancel_Click" Height="30"/>
         </StackPanel>
     </Grid>
 </Window>

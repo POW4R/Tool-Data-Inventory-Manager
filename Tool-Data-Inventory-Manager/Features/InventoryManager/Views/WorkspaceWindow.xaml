@@ -19,27 +19,27 @@
 
         <!-- Felhasználó neve -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-            <TextBlock Text="Bejelentkezve: " FontWeight="Bold"/>
+            <TextBlock Text="{DynamicResource LoggedIn}" FontWeight="Bold"/>
             <TextBlock Text="{Binding LoggedInUserName}" x:Name="tb_loggedInUserName" />
         </StackPanel>
         <TabControl>
             <!-- TOOL TAB -->
-            <TabItem Header="Tools">
+            <TabItem Header="{DynamicResource Tools}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10">
                         <GroupBox Header="Tool keresése">
                             <StackPanel Orientation="Horizontal" Margin="0,5">
-                                <Label Content="Tool keresés:" VerticalAlignment="Center"/>
+                                <Label Content="{DynamicResource Search}" VerticalAlignment="Center"/>
                                 <ComboBox x:Name="ToolFilterField" Width="120" Margin="5,0" SelectionChanged="ToolFilterField_SelectionChanged">
-                                    <ComboBoxItem Content="Name" IsSelected="True"/>
-                                    <ComboBoxItem Content="MaterialNumber"/>
-                                    <ComboBoxItem Content="MagPlace"/>
-                                    <ComboBoxItem Content="Price"/>
+                                    <ComboBoxItem Content="{DynamicResource Name}" IsSelected="True"/>
+                                    <ComboBoxItem Content="{DynamicResource MaterialNumber}"/>
+                                    <ComboBoxItem Content="{DynamicResource MagPlace}"/>
+                                    <ComboBoxItem Content="{DynamicResource Price}"/>
                                 </ComboBox>
                                 <TextBox x:Name="ToolSearchBox" Width="200" Margin="5,0" TextChanged="ToolSearchBox_TextChanged"/>
                             </StackPanel>
                         </GroupBox>
-                        <Button Content="Új Tool hozzáadása" Click="AddTool_Click" Margin="5" Width="138" Height="30"/>
+                        <Button Content="{DynamicResource AddNewTool}" Click="AddTool_Click" Margin="5" Width="138" Height="30"/>
                         <GroupBox Header="Tool lista" Margin="0 0 0 20">
                             <DataGrid x:Name="ToolDataGrid" 
                                   AutoGenerateColumns="False" 
@@ -49,43 +49,43 @@
                                   MouseDoubleClick="ToolDataGrid_MouseDoubleClick" 
                                   SelectionMode="Single">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Material Number" Binding="{Binding MaterialNumber}" CanUserSort="False"/>
-                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" CanUserSort="False"/>
-                                    <DataGridTextColumn Header="Mag Place" Binding="{Binding MagPlace}" CanUserSort="False"/>
-                                    <DataGridTextColumn Header="Price" Binding="{Binding Price}" CanUserSort="False"/>
+                                    <DataGridTextColumn Header="{DynamicResource MaterialNumber}" Binding="{Binding MaterialNumber}" CanUserSort="False"/>
+                                    <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Name}" CanUserSort="False"/>
+                                    <DataGridTextColumn Header="{DynamicResource MagPlace}" Binding="{Binding MagPlace}" CanUserSort="False"/>
+                                    <DataGridTextColumn Header="{DynamicResource Price}" Binding="{Binding Price}" CanUserSort="False"/>
 
-                                    <DataGridCheckBoxColumn Header="Nagyolómarsó" Binding="{Binding IsNagyolomaro}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="Sorjázómarsó" Binding="{Binding IsSorjazomaro}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="Simítómarsó" Binding="{Binding IsSimitomaro}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="Nagyoló I" Binding="{Binding IsNagyoloI}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="Nagyoló II" Binding="{Binding IsNagyoloII}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="Simító 2" Binding="{Binding IsSimito2}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="Előfúró" Binding="{Binding IsElofuro}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="Csigafúró" Binding="{Binding IsCsigafuro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource Nagyolomaro}" Binding="{Binding IsNagyolomaro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource Sorjazomaro}" Binding="{Binding IsSorjazomaro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource Simitomaro}" Binding="{Binding IsSimitomaro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource NagyoloI}" Binding="{Binding IsNagyoloI}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource NagyoloII}" Binding="{Binding IsNagyoloII}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource Simito2}" Binding="{Binding IsSimito2}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource Elofuro}" Binding="{Binding IsElofuro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource Csigafuro}" Binding="{Binding IsCsigafuro}" CanUserSort="False"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </GroupBox>
-                        <Button Content="Kijelölt szerszám törlése" Margin="5" Click="DeleteTool_Click" Height="30" Width="170"/>
+                        <Button Content="{DynamicResource DeleteSelectedTool}" Margin="5" Click="DeleteTool_Click" Height="30" Width="170"/>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
 
             <!-- PRODUCT TAB -->
-            <TabItem Header="Products">
+            <TabItem Header="{DynamicResource Products}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10">
                         <GroupBox Header="Product hozzáadása" Margin="0 0 0 10">
                             <StackPanel Orientation="Vertical" Margin="5">
                                 <StackPanel Orientation="Horizontal" Margin="0,5">
-                                    <Label Content="Product keresés:" VerticalAlignment="Center"/>
+                                    <Label Content="{DynamicResource Search}" VerticalAlignment="Center"/>
                                     <ComboBox x:Name="ProductFilterField" Width="120" Margin="5,0" SelectionChanged="ProductFilterField_SelectionChanged">
-                                        <ComboBoxItem Content="Type" IsSelected="True"/>
-                                        <ComboBoxItem Content="ProductNumber"/>
-                                        <ComboBoxItem Content="Tools"/>
+                                        <ComboBoxItem Content="{DynamicResource Type}" IsSelected="True"/>
+                                        <ComboBoxItem Content="{DynamicResource ProductNumber}"/>
+                                        <ComboBoxItem Content="{DynamicResource Tools}"/>
                                     </ComboBox>
                                     <TextBox x:Name="ProductSearchBox" Width="200" Margin="5,0" TextChanged="ProductSearchBox_TextChanged"/>
                                 </StackPanel>
-                                <Button Content="Product hozzáadása" Click="AddProduct_Click" Margin="5" Width="139" Height="30"/>
+                                <Button Content="{DynamicResource AddNewProduct}" Click="AddProduct_Click" Margin="5" Width="139" Height="30"/>
                             </StackPanel>
                         </GroupBox>
 
@@ -98,9 +98,9 @@
                                       MouseDoubleClick="ProductDataGrid_MouseDoubleClick" 
                                       SelectionMode="Single">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ProductNumber" Binding="{Binding ProductNumber}" />
-                                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" />
-                                    <DataGridTemplateColumn Header="Tools">
+                                    <DataGridTextColumn Header="{DynamicResource ProductNumber}" Binding="{Binding ProductNumber}" />
+                                    <DataGridTextColumn Header="{DynamicResource Type}" Binding="{Binding Type}" />
+                                    <DataGridTemplateColumn Header="{DynamicResource Tools}">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock Text="{Binding Tools, Converter={StaticResource ToolListToStringConverter}}" TextWrapping="Wrap"/>
@@ -110,26 +110,26 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </GroupBox>
-                        <Button Content="Kijelölt termék törlése" Margin="5" Click="DeleteProduct_Click" Height="30" Width="170"/>
+                        <Button Content="{DynamicResource DeleteSelectedProduct}" Margin="5" Click="DeleteProduct_Click" Height="30" Width="170"/>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
 
             <!-- MACHINE TAB -->
-            <TabItem Header="Machines">
+            <TabItem Header="{DynamicResource Machines}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10">
                         <GroupBox Header="Machine keresés" Margin="0 0 0 10">
                             <StackPanel Orientation="Vertical" Margin="5">
                                 <StackPanel Orientation="Horizontal" Margin="0,5">
-                                    <Label Content="Keresés:" VerticalAlignment="Center"/>
+                                    <Label Content="{DynamicResource Search}" VerticalAlignment="Center"/>
                                     <ComboBox x:Name="MachineFilterField" Width="120" Margin="5,0" SelectionChanged="MachineFilterField_SelectionChanged">
-                                        <ComboBoxItem Content="Name" IsSelected="True"/>
-                                        <ComboBoxItem Content="ProductNumber"/>
+                                        <ComboBoxItem Content="{DynamicResource Name}" IsSelected="True"/>
+                                        <ComboBoxItem Content="{DynamicResource ProductNumber}"/>
                                     </ComboBox>
                                     <TextBox x:Name="MachineSearchBox" Width="200" Margin="5,0" TextChanged="MachineSearchBox_TextChanged"/>
                                 </StackPanel>
-                                <Button Content="Machine hozzáadása" Click="AddMachine_Click" Margin="5" Width="150" Height="30"/>
+                                <Button Content="{DynamicResource AddNewMachine}" Click="AddMachine_Click" Margin="5" Width="150" Height="30"/>
                             </StackPanel>
                         </GroupBox>
 
@@ -141,21 +141,21 @@
                                       SelectionMode="Single" 
                                       MouseDoubleClick="MachineDataGrid_MouseDoubleClick">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Név" Binding="{Binding Name}" Width="*"/>
-                                    <DataGridTextColumn Header="Termékek" Binding="{Binding Products}" Width="3*"/>
+                                    <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Name}" Width="*"/>
+                                    <DataGridTextColumn Header="{DynamicResource Products}" Binding="{Binding Products}" Width="3*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </GroupBox>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
-                            <Button Content="Gép törlése" Click="DeleteMachineButton_Click" Width="130" Height="30"/>
+                            <Button Content="{DynamicResource DeleteMachine}" Click="DeleteMachineButton_Click" Width="130" Height="30"/>
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="Export">
+            <TabItem Header="{DynamicResource Export}">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,10,0,0">
-                    <Button x:Name="btn_export" Content="Export" Click="btn_export_Click" Width="120" Height="30"/>
+                    <Button x:Name="btn_export" Content="{DynamicResource Export}" Click="btn_export_Click" Width="120" Height="30"/>
                 </StackPanel>
             </TabItem>
         </TabControl>

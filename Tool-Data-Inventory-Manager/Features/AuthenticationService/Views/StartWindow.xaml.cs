@@ -52,5 +52,13 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
                 DragMove();
             }
         }
+        private void LanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems[0] is ComboBoxItem selectedItem)
+            {
+                string langCode = selectedItem.Tag.ToString();
+                App.ChangeLanguage(langCode);
+            }
+        }
     }
 }

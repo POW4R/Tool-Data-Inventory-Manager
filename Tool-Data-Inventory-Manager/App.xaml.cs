@@ -49,6 +49,33 @@ namespace Tool_Data_Inventory_Manager
             Log.CloseAndFlush();
             base.OnExit(e);
         }
+
+        public static void ChangeLanguage(string languageCode)
+        {
+            var dict = new ResourceDictionary();
+            switch (languageCode)
+            {
+                case "hu":
+                    dict.Source = new Uri("Resources/Localization/Strings.hu.xaml", UriKind.Relative);
+                    break;
+                case "de":
+                    dict.Source = new Uri("Resources/Localization/Strings.de.xaml", UriKind.Relative);
+                    break;
+                default:
+                    dict.Source = new Uri("Resources/Localization/Strings.en.xaml", UriKind.Relative);
+                    break;
+            }
+
+            var oldDict = Application.Current.Resources.MergedDictionaries
+                            .FirstOrDefault(d => d.Source != null && d.Source.OriginalString.Contains("StringResources"));
+
+            if (oldDict != null)
+            {
+                Application.Current.Resources.MergedDictionaries.Remove(oldDict);
+            }
+
+            Application.Current.Resources.MergedDictionaries.Add(dict);
+        }
     }
 
 }

@@ -1,11 +1,12 @@
 ﻿<Window x:Class="Tool_Data_Inventory_Manager.Features.InventoryManager.Views.ToolCreateWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Új Tool hozzáadása" Height="400" Width="400" WindowStartupLocation="CenterScreen">
+        Title="{DynamicResource AddNewTool}" Height="400" Width="400" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="33*" />
+            <ColumnDefinition Width="119*"/>
+            <ColumnDefinition Width="228*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,36 +17,36 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Név:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5"/>
-        <TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5"/>
+        <Label Content="{DynamicResource Name}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Margin="0,0,5,0" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="2" Margin="0,0,0,5"/>
 
-        <Label Content="Material Number:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5"/>
-        <TextBox x:Name="MaterialNumberTextBox" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5"/>
+        <Label Content="{DynamicResource MaterialNumber}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="0,0,5,0" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="MaterialNumberTextBox" Grid.Row="1" Grid.Column="2" Margin="0,0,0,5"/>
 
-        <Label Content="Mag Place (opcionális):" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,5"/>
-        <TextBox x:Name="MagPlaceTextBox" Grid.Row="2" Grid.Column="1" Margin="0,0,0,5"/>
+        <Label Content="{DynamicResource OptionalMagPlace}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="0,33,5,0" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <TextBox x:Name="MagPlaceTextBox" Grid.Row="1" Grid.Column="2" Margin="0,33,0,5" Grid.RowSpan="2"/>
 
-        <Label Content="Ár (€):" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,0"/>
-        <TextBox x:Name="PriceTextBox" Grid.Row="3" Grid.Column="1"/>
+        <Label Content="{DynamicResource PriceWithCurrency}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,0" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="PriceTextBox" Grid.Row="3" Grid.Column="2"/>
 
         <!-- Új: Kategória Checkboxok -->
-        <GroupBox Header="Kategóriák" Grid.Row="4" Margin="0,10,0,0" Grid.ColumnSpan="2">
+        <GroupBox Header="{DynamicResource Categories}" Grid.Row="4" Margin="0,10,0,138" Grid.ColumnSpan="3">
             <WrapPanel Margin="10" VerticalAlignment="Top">
-                <CheckBox Content="Nagyolómaró" x:Name="CheckNagyolomaro" Margin="5"/>
-                <CheckBox Content="Sorjázómaró" x:Name="CheckSorjazomaro" Margin="5"/>
-                <CheckBox Content="Simítómaró" x:Name="CheckSimitomaro" Margin="5"/>
-                <CheckBox Content="Nagyoló maró I." x:Name="CheckNagyoloI" Margin="5"/>
-                <CheckBox Content="Nagyoló maró II." x:Name="CheckNagyoloII" Margin="5"/>
-                <CheckBox Content="Simítómaró" x:Name="CheckSimito2" Margin="5"/>
-                <CheckBox Content="Előfúró" x:Name="CheckElofuro" Margin="5"/>
-                <CheckBox Content="Csigafúró" x:Name="CheckCsigafuro" Margin="5"/>
+                <CheckBox Content="{DynamicResource Nagyolomaro}" x:Name="CheckNagyolomaro" Margin="5"/>
+                <CheckBox Content="{DynamicResource Sorjazomaro}" x:Name="CheckSorjazomaro" Margin="5"/>
+                <CheckBox Content="{DynamicResource Simitomaro}" x:Name="CheckSimitomaro" Margin="5"/>
+                <CheckBox Content="{DynamicResource NagyoloI}" x:Name="CheckNagyoloI" Margin="5"/>
+                <CheckBox Content="{DynamicResource NagyoloII}" x:Name="CheckNagyoloII" Margin="5"/>
+                <CheckBox Content="{DynamicResource Simito2}" x:Name="CheckSimito2" Margin="5"/>
+                <CheckBox Content="{DynamicResource Elofuro}" x:Name="CheckElofuro" Margin="5"/>
+                <CheckBox Content="{DynamicResource Csigafuro}" x:Name="CheckCsigafuro" Margin="5"/>
             </WrapPanel>
         </GroupBox>
 
         <!-- Gombok -->
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="2"  Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-            <Button Content="Mentés" Width="80" Click="Save_Click" Margin="5" Height="30"/>
-            <Button Content="Mégse" Width="80" Click="Cancel_Click" Margin="5" Height="30"/>
+        <StackPanel Grid.Row="4"  Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,149,0,42" Grid.Column="2">
+            <Button Content="{DynamicResource Save}" Width="80" Click="Save_Click" Margin="5" Height="30"/>
+            <Button Content="{DynamicResource Cancel}" Width="80" Click="Cancel_Click" Margin="5" Height="30"/>
         </StackPanel>
     </Grid>
 </Window>

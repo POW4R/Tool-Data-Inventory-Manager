@@ -14,28 +14,33 @@
             <Button Style="{StaticResource CloseButtonStyle}"
                     x:Name="btn_Close"
                     Click="btn_Close_Click"/>
-            <TextBlock Text="Üdvözlünk!" Margin="0 50 0 0"
+            <TextBlock Text="{DynamicResource Welcome}" Margin="0 50 0 0"
                  HorizontalAlignment="Center"
                  Style="{StaticResource h1}"/>
 
-            <TextBlock Text="Kérlek válassz egy lehetőséget:" 
+            <TextBlock Text="{DynamicResource PleaseChooseAnOption}" 
                  HorizontalAlignment="Center"
                  Style="{StaticResource h4}" />
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Bejelentkezés" 
+                <Button Content="{DynamicResource Login}" 
                   x:Name="btn_login"
                   Width="120"
                   Height="30"
                   Margin="10 10 10 10"
                   Click="btn_login_Click"/>
-                <Button Content="Regisztráció" 
+                <Button Content="{DynamicResource Register}" 
                   x:Name="btn_register"
                   Width="120"
                   Height="30"
                   Margin="10 10 10 10"
                   Click="btn_register_Click"/>
             </StackPanel>
+            <ComboBox SelectedIndex="0" SelectionChanged="LanguageComboBox_SelectionChanged" Width="120">
+                <ComboBoxItem Tag="en">English</ComboBoxItem>
+                <ComboBoxItem Tag="hu">Magyar</ComboBoxItem>
+                <ComboBoxItem Tag="de">Deutsch</ComboBoxItem>
+            </ComboBox>
         </StackPanel>
     </Border>
 </Window>

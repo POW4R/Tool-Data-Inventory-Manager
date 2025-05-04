@@ -17,7 +17,7 @@
                     x:Name="btn_Close"
                     Click="btn_Close_Click"/>
 
-            <TextBlock Text="Regisztráció"
+            <TextBlock Text="{DynamicResource Registration}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"
                        Style="{StaticResource h1}" />
@@ -33,7 +33,7 @@
                 </Grid.RowDefinitions>
 
                 <!-- Vezetéknév -->
-                <TextBlock Text="Vezetéknév"
+                <TextBlock Text="{DynamicResource LastName}"
                            Margin="71,8,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
@@ -46,7 +46,7 @@
                          Style="{StaticResource ModernTextBox}" />
 
                 <!-- Keresztnév -->
-                <TextBlock Text="Keresztnév"
+                <TextBlock Text="{DynamicResource FirstName}"
                            Grid.Row="1"
                            Margin="71,8,0,0"
                            HorizontalAlignment="Left"
@@ -60,7 +60,7 @@
                          Style="{StaticResource ModernTextBox}" />
 
                 <!-- Email -->
-                <TextBlock Text="Email"
+                <TextBlock Text="{DynamicResource Email}"
                            Grid.Row="2"
                            Margin="71,0,0,0"
                            HorizontalAlignment="Left"
@@ -74,7 +74,7 @@
                          Style="{StaticResource ModernTextBox}" Grid.RowSpan="3" />
 
                 <!-- Jelszó -->
-                <TextBlock Text="Jelszó"
+                <TextBlock Text="{DynamicResource Password}"
                            Grid.Row="3"
                            Margin="71,0,0,0"
                            HorizontalAlignment="Left"
@@ -88,7 +88,7 @@
                              Style="{StaticResource ModernPasswordBox}" />
 
                 <!-- Jelszó megerősítése -->
-                <TextBlock Text="Jelszó megerősítése"
+                <TextBlock Text="{DynamicResource RepeatPassword}"
                            Grid.Row="4"
                            Margin="71,2,0,0"
                            HorizontalAlignment="Left"
@@ -104,7 +104,7 @@
 
             <!-- Regisztráció gomb -->
             <Button x:Name="btn_reg"
-                    Content="Regisztráció"
+                    Content="{DynamicResource Registration}"
                     Height="35"
                     Margin="0 20 0 0"
                     Width="150"
@@ -114,7 +114,7 @@
             <StackPanel Orientation="Vertical"
                         Margin="0,10,0,10"
                         HorizontalAlignment="Center">
-                <TextBlock Text="Már van fiókom"
+                <TextBlock Text="{DynamicResource AlreadyHaveAccount}"
                            Style="{StaticResource textBlockWithHover}"
                            x:Name="tb_alreadyHaveAccount"
                            MouseLeftButtonDown="tb_alreadyHaveAccount_MouseLeftButtonDown"
