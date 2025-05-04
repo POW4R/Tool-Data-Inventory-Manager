@@ -404,4 +404,22 @@ public partial class WorkspaceWindow : Window
             column.CanUserSort = false;
         }
     }
+
+    private void ToolFilterField_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if(ToolSearchBox != null)
+            ToolSearchBox.Clear();
+    }
+
+    private void ProductFilterField_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (ProductSearchBox != null)
+            ProductSearchBox.Clear();
+    }
+
+    private void MachineFilterField_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (MachineSearchBox != null)
+            MachineSearchBox.Clear();
+    }
 }

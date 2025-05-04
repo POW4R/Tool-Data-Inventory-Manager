@@ -30,7 +30,7 @@
                         <GroupBox Header="Tool keresése">
                             <StackPanel Orientation="Horizontal" Margin="0,5">
                                 <Label Content="Tool keresés:" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="ToolFilterField" Width="120" Margin="5,0">
+                                <ComboBox x:Name="ToolFilterField" Width="120" Margin="5,0" SelectionChanged="ToolFilterField_SelectionChanged">
                                     <ComboBoxItem Content="Name" IsSelected="True"/>
                                     <ComboBoxItem Content="MaterialNumber"/>
                                     <ComboBoxItem Content="MagPlace"/>
@@ -78,7 +78,7 @@
                             <StackPanel Orientation="Vertical" Margin="5">
                                 <StackPanel Orientation="Horizontal" Margin="0,5">
                                     <Label Content="Product keresés:" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="ProductFilterField" Width="120" Margin="5,0">
+                                    <ComboBox x:Name="ProductFilterField" Width="120" Margin="5,0" SelectionChanged="ProductFilterField_SelectionChanged">
                                         <ComboBoxItem Content="Type" IsSelected="True"/>
                                         <ComboBoxItem Content="ProductNumber"/>
                                         <ComboBoxItem Content="Tools"/>
@@ -123,7 +123,7 @@
                             <StackPanel Orientation="Vertical" Margin="5">
                                 <StackPanel Orientation="Horizontal" Margin="0,5">
                                     <Label Content="Keresés:" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="MachineFilterField" Width="120" Margin="5,0">
+                                    <ComboBox x:Name="MachineFilterField" Width="120" Margin="5,0" SelectionChanged="MachineFilterField_SelectionChanged">
                                         <ComboBoxItem Content="Name" IsSelected="True"/>
                                         <ComboBoxItem Content="ProductNumber"/>
                                     </ComboBox>
@@ -141,9 +141,8 @@
                                       SelectionMode="Single" 
                                       MouseDoubleClick="MachineDataGrid_MouseDoubleClick">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
                                     <DataGridTextColumn Header="Név" Binding="{Binding Name}" Width="*"/>
-                                    <DataGridTextColumn Header="Termékek" Binding="{Binding Products}" Width="2*"/>
+                                    <DataGridTextColumn Header="Termékek" Binding="{Binding Products}" Width="3*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </GroupBox>
