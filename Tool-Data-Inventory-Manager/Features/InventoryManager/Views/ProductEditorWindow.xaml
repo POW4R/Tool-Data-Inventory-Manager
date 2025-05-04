@@ -26,8 +26,8 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3">
-            <Button Content="Mentés" Width="80" Margin="5" Click="Save_Click"/>
-            <Button Content="Mégse" Width="80" Margin="5" Click="Cancel_Click"/>
+            <Button Content="Mentés" Width="80" Margin="5" Click="Save_Click" Height="30"/>
+            <Button Content="Mégse" Width="80" Margin="5" Click="Cancel_Click" Height="30"/>
         </StackPanel>
     </Grid>
 </Window>

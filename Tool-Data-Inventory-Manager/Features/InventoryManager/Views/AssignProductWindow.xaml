@@ -4,6 +4,8 @@
         Title="Product hozzárendelése" Height="300" Width="400">
     <Grid Margin="10">
         <ListBox x:Name="AvailableProductsListBox" DisplayMemberPath="ProductNumber"/>
-        <Button Content="Hozzárendelés" VerticalAlignment="Bottom" Click="AssignButton_Click"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">
+            <Button Content="Hozzárendelés" VerticalAlignment="Bottom" Click="AssignButton_Click" Width="120" Height="30"/>
+        </StackPanel>
     </Grid>
 </Window>

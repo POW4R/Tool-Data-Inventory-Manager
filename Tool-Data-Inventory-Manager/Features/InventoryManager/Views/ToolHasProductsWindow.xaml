@@ -6,9 +6,9 @@
         <TextBlock Text="Ez a szerszám a következő termékekhez van hozzárendelve:" 
                    FontWeight="Bold" Margin="0,0,0,10"/>
         <ListBox x:Name="ProductList" Margin="0,30,0,50"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Button Content="Mégsem" Width="80" Margin="5" Click="Cancel_Click"/>
-            <Button Content="Törlés és leválasztás" Width="150" Margin="5" Click="Confirm_Click"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,5">
+            <Button Content="Törlés és leválasztás" Width="150" Margin="5" Click="Confirm_Click" Height="30"/>
+            <Button Content="Mégsem" Width="80" Margin="5" Click="Cancel_Click" Height="30"/>
         </StackPanel>
     </Grid>
 </Window>

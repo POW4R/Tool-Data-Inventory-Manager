@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Tool_Data_Inventory_Manager.Features.InventoryManager.Views.ProductCreateWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Új Product hozzáadása" Height="300" Width="400" WindowStartupLocation="CenterScreen">
+        Title="Új Product hozzáadása" Height="400" Width="400" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -26,8 +26,8 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3">
-            <Button Content="Mentés" Width="80" Margin="5" Click="Save_Click"/>
-            <Button Content="Mégse" Width="80" Margin="5" Click="Cancel_Click"/>
+            <Button Content="Mentés" Width="80" Margin="5" Click="Save_Click" Height="30"/>
+            <Button Content="Mégse" Width="80" Margin="5" Click="Cancel_Click" Height="30"/>
         </StackPanel>
     </Grid>
 </Window>

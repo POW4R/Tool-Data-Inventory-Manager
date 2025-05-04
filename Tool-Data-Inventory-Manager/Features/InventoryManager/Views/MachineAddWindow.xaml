@@ -20,6 +20,6 @@
             </ScrollViewer>
         </GroupBox>
 
-        <Button Grid.Row="2" Content="Hozzáadás" Click="AddMachineButton_Click" HorizontalAlignment="Right" Width="100"/>
+        <Button Grid.Row="2" Content="Hozzáadás" Click="AddMachineButton_Click" HorizontalAlignment="Right" Width="100" Height="30"/>
     </Grid>
 </Window>
