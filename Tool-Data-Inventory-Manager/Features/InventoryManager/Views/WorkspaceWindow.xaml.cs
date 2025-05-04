@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using ClosedXML.Excel;
 using Microsoft.Win32;
 using Serilog;
+using Tool_Data_Inventory_Manager.Features.AuthenticationService.Views;
 
 namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views;
 
@@ -419,5 +420,20 @@ public partial class WorkspaceWindow : Window
     {
         if (MachineSearchBox != null)
             MachineSearchBox.Clear();
+    }
+
+    private void btn_logout_Click(object sender, RoutedEventArgs e)
+    {
+        var massageBoxResult = MessageBox.Show("Biztosan ki szeretnél lépni?", "Kijelentkezés", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        if (massageBoxResult == MessageBoxResult.Yes)
+        {
+            var loginWindow = new LoginWindow();
+            loginWindow.Show();
+            this.Close();
+        }
+        else
+        {
+            return;
+        }
     }
 }
