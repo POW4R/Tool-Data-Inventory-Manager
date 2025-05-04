@@ -244,40 +244,30 @@ public partial class WorkspaceWindow : Window
     }
     private void DeleteMachineButton_Click(object sender, RoutedEventArgs e)
     {
-        var selectedItem = MachineDataGrid.SelectedItem;
-        if (selectedItem != null)
+        if (MachineDataGrid.SelectedItem != null)
         {
-            var machine = selectedItem.GetType().GetProperty("Original")?.GetValue(selectedItem) as Machine;
-            if (machine != null)
+            int selectedIndex = MachineDataGrid.SelectedIndex;
+            if (selectedIndex >= 0 && selectedIndex < _allMachines.Count)
             {
-                var result1 = MessageBox.Show(
-                    $"Biztosan törölni szeretnéd a(z) '{machine.Name}' gépet?",
-                    "Első megerősítés",
+                var selectedMachine = _allMachines[selectedIndex];
+
+                var result = MessageBox.Show(
+                    $"Biztosan törölni szeretnéd a(z) \"{selectedMachine.Name}\" gépet?",
+                    "Gép törlése",
                     MessageBoxButton.YesNo,
-                    MessageBoxImage.Question);
+                    MessageBoxImage.Warning);
 
-                if (result1 == MessageBoxResult.Yes)
+                if (result == MessageBoxResult.Yes)
                 {
-                    if (machine.Products.Any())
-                    {
-                        var result2 = MessageBox.Show(
-                            "Ez a gép termékekhez van rendelve. Törlés előtt el kell távolítani a kapcsolatot.\nFolytatod?",
-                            "Figyelmeztetés",
-                            MessageBoxButton.YesNo,
-                            MessageBoxImage.Warning);
-
-                        if (result2 != MessageBoxResult.Yes)
-                            return;
-
-                        // Kapcsolatok eltávolítása
-                        machine.Products.Clear();
-                    }
-
-                    _context.Machines.Remove(machine);
+                    _context.Machines.Remove(selectedMachine);
                     _context.SaveChanges();
                     LoadMachines();
                 }
             }
+        }
+        else
+        {
+            MessageBox.Show("Előbb válassz ki egy gépet a törléshez.", "Nincs kijelölés", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
     private void MachineDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
