@@ -35,7 +35,6 @@
                    VerticalAlignment="Center"
                    Style="{StaticResource p}"/>
                 <TextBox Name="tb_Email"
-                         Text="slemkev@hilti.com"
                          Grid.Row="1"
                          Width="260"
                          HorizontalAlignment="Center"
@@ -58,8 +57,7 @@
                     Margin="25 0 0 0"
                     Grid.Row="3"
                     Width="260"
-                    HorizontalAlignment="Center" 
-                    Password="SlemKev123."
+                    HorizontalAlignment="Center"
                     Style="{StaticResource ModernPasswordBox}"/>
             </Grid>
             <Button x:Name="LoginBtn" 
