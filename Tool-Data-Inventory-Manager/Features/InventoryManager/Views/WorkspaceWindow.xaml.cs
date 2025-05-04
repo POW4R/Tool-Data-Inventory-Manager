@@ -14,6 +14,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using ClosedXML.Excel;
 using Microsoft.Win32;
+using Serilog;
 
 namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views;
 
@@ -48,12 +49,14 @@ public partial class WorkspaceWindow : Window
     {
         _allTools = _context.Tools.ToList();
         ToolDataGrid.ItemsSource = _allTools;
+        DisableSortingOnDataGrid(ToolDataGrid);
     }
 
     private void LoadProducts()
     {
         _allProducts = _context.Products.Include(p => p.Tools).ToList();
         ProductDataGrid.ItemsSource = _allProducts;
+        DisableSortingOnDataGrid(ProductDataGrid);
     }
     private void LoadMachines()
     {
@@ -65,6 +68,7 @@ public partial class WorkspaceWindow : Window
             m.Name,
             Products = string.Join(", ", m.Products.Select(p => p.ProductNumber))
         }).ToList();
+        DisableSortingOnDataGrid(MachineDataGrid);
     }
     private void AddTool_Click(object sender, RoutedEventArgs e)
     {
@@ -76,6 +80,7 @@ public partial class WorkspaceWindow : Window
             _context.SaveChanges();
             LoadTools();
             LoadProducts();
+            Log.Information($"Új szerszám hozzáadva: {newTool.Name} ({newTool.MaterialNumber})");
         }
     }
     private void ToolDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -390,6 +395,13 @@ public partial class WorkspaceWindow : Window
         catch (Exception ex)
         {
             MessageBox.Show($"Hiba történt a mentés során: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+    private void DisableSortingOnDataGrid(DataGrid dataGrid)
+    {
+        foreach (var column in dataGrid.Columns)
+        {
+            column.CanUserSort = false;
         }
     }
 }

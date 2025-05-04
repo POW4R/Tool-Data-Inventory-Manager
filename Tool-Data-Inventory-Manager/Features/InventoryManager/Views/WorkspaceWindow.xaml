@@ -42,12 +42,28 @@
                         <Button Content="Új Tool hozzáadása" Click="AddTool_Click" Margin="5" Width="138" Height="30"/>
                         <GroupBox Header="Tool lista" Margin="0 0 0 20">
                             <DataGrid x:Name="ToolDataGrid" 
-                                      AutoGenerateColumns="True" 
-                                      IsReadOnly="True" 
-                                      Height="400" 
-                                      Margin="5"
-                                      MouseDoubleClick="ToolDataGrid_MouseDoubleClick" 
-                                      SelectionMode="Single"/>
+                                  AutoGenerateColumns="False" 
+                                  IsReadOnly="True" 
+                                  Height="400" 
+                                  Margin="5"
+                                  MouseDoubleClick="ToolDataGrid_MouseDoubleClick" 
+                                  SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Material Number" Binding="{Binding MaterialNumber}" CanUserSort="False"/>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" CanUserSort="False"/>
+                                    <DataGridTextColumn Header="Mag Place" Binding="{Binding MagPlace}" CanUserSort="False"/>
+                                    <DataGridTextColumn Header="Price" Binding="{Binding Price}" CanUserSort="False"/>
+
+                                    <DataGridCheckBoxColumn Header="Nagyolómarsó" Binding="{Binding IsNagyolomaro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="Sorjázómarsó" Binding="{Binding IsSorjazomaro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="Simítómarsó" Binding="{Binding IsSimitomaro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="Nagyoló I" Binding="{Binding IsNagyoloI}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="Nagyoló II" Binding="{Binding IsNagyoloII}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="Simító 2" Binding="{Binding IsSimito2}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="Előfúró" Binding="{Binding IsElofuro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="Csigafúró" Binding="{Binding IsCsigafuro}" CanUserSort="False"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
                         </GroupBox>
                         <Button Content="Kijelölt szerszám törlése" Margin="5" Click="DeleteTool_Click" Height="30" Width="170"/>
                     </StackPanel>
