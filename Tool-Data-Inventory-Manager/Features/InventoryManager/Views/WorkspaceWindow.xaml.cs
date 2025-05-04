@@ -135,8 +135,6 @@ public partial class WorkspaceWindow : Window
                     return tool.MaterialNumber.ToString().Contains(search);
                 case "MagPlace":
                     return tool.MagPlace.HasValue && tool.MagPlace.Value.ToString().Contains(search);
-                case "Price":
-                    return tool.Price.ToString().Contains(search);
                 default:
                     return true;
             }

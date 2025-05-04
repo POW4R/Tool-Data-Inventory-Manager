@@ -47,7 +47,6 @@ namespace Tool_Data_Inventory_Manager.Migrations
                     MaterialNumber = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MagPlace = table.Column<int>(type: "int", nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     IsNagyolomaro = table.Column<bool>(type: "bit", nullable: false),
                     IsSorjazomaro = table.Column<bool>(type: "bit", nullable: false),
                     IsSimitomaro = table.Column<bool>(type: "bit", nullable: false),

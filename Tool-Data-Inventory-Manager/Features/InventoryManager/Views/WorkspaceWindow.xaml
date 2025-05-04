@@ -52,7 +52,6 @@
                                     <DataGridTextColumn Header="{DynamicResource MaterialNumber}" Binding="{Binding MaterialNumber}" CanUserSort="False"/>
                                     <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Name}" CanUserSort="False"/>
                                     <DataGridTextColumn Header="{DynamicResource MagPlace}" Binding="{Binding MagPlace}" CanUserSort="False"/>
-                                    <DataGridTextColumn Header="{DynamicResource Price}" Binding="{Binding Price}" CanUserSort="False"/>
 
                                     <DataGridCheckBoxColumn Header="{DynamicResource Nagyolomaro}" Binding="{Binding IsNagyolomaro}" CanUserSort="False"/>
                                     <DataGridCheckBoxColumn Header="{DynamicResource Sorjazomaro}" Binding="{Binding IsSorjazomaro}" CanUserSort="False"/>

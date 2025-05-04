@@ -14,7 +14,6 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Models
         public int MaterialNumber { get; set; }
         public string Name { get; set; }
         public int? MagPlace { get; set; }
-        public decimal Price { get; set; }
 
         //Categories
         public bool IsNagyolomaro { get; set; }
