@@ -27,7 +27,6 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
             NameTextBox.Text = tool.Name;
             MaterialNumberTextBox.Text = tool.MaterialNumber.ToString();
             MagPlaceTextBox.Text = tool.MagPlace?.ToString() ?? string.Empty;
-            PriceTextBox.Text = tool.Price.ToString("F2");
 
             CheckNagyolomaro.IsChecked = tool.IsNagyolomaro;
             CheckSorjazomaro.IsChecked = tool.IsSorjazomaro;
@@ -41,13 +40,11 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(MaterialNumberTextBox.Text, out int materialNumber) &&
-                decimal.TryParse(PriceTextBox.Text, out decimal price))
+            if (int.TryParse(MaterialNumberTextBox.Text, out int materialNumber))
             {
                 Tool.Name = NameTextBox.Text;
                 Tool.MaterialNumber = materialNumber;
                 Tool.MagPlace = int.TryParse(MagPlaceTextBox.Text, out int mag) ? mag : null;
-                Tool.Price = price;
 
                 Tool.IsNagyolomaro = CheckNagyolomaro.IsChecked == true;
                 Tool.IsSorjazomaro = CheckSorjazomaro.IsChecked == true;

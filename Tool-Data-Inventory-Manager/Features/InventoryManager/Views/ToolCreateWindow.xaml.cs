@@ -26,8 +26,7 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (!int.TryParse(MaterialNumberTextBox.Text, out int materialNumber) ||
-                !decimal.TryParse(PriceTextBox.Text, out decimal price))
+            if (!int.TryParse(MaterialNumberTextBox.Text, out int materialNumber))
             {
                 MessageBox.Show("Hibás formátum a Material Number vagy Ár mezőben.");
                 return;
@@ -44,7 +43,6 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
                 Name = NameTextBox.Text,
                 MaterialNumber = materialNumber,
                 MagPlace = magPlace,
-                Price = price,
 
                 IsNagyolomaro = CheckNagyolomaro.IsChecked == true,
                 IsSorjazomaro = CheckSorjazomaro.IsChecked == true,

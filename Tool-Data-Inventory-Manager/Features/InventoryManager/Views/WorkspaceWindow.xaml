@@ -52,7 +52,6 @@
                                     <DataGridTextColumn Header="Material Number" Binding="{Binding MaterialNumber}" CanUserSort="False"/>
                                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" CanUserSort="False"/>
                                     <DataGridTextColumn Header="Mag Place" Binding="{Binding MagPlace}" CanUserSort="False"/>
-                                    <DataGridTextColumn Header="Price" Binding="{Binding Price}" CanUserSort="False"/>
 
                                     <DataGridCheckBoxColumn Header="Nagyolómarsó" Binding="{Binding IsNagyolomaro}" CanUserSort="False"/>
                                     <DataGridCheckBoxColumn Header="Sorjázómarsó" Binding="{Binding IsSorjazomaro}" CanUserSort="False"/>
