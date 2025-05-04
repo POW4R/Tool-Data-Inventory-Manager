@@ -53,5 +53,13 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
             this.Close();
             lw.Show();
         }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
     }
 }

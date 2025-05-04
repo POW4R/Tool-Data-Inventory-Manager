@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource RoundedWindowStyle}">
 
-    <Border Style="{StaticResource RoundedWindowBorderStyle}">
+    <Border Style="{StaticResource RoundedWindowBorderStyle}" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <StackPanel Style="{StaticResource WrapperStackPanel}" Height="484" Width="630">
             <Button Style="{StaticResource CloseButtonStyle}"
                     x:Name="btn_Close"

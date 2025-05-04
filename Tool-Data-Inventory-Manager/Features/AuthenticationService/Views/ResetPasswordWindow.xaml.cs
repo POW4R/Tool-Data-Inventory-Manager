@@ -2,6 +2,7 @@
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using Microsoft.EntityFrameworkCore;
 
 namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
@@ -94,6 +95,14 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
         private void btn_Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
     }
 }
