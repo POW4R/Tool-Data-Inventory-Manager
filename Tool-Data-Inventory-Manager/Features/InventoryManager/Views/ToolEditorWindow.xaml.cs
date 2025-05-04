@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Serilog;
 using Tool_Data_Inventory_Manager.Features.InventoryManager.Models;
 
 namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
@@ -55,11 +56,18 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
                 Tool.IsElofuro = CheckElofuro.IsChecked == true;
                 Tool.IsCsigafuro = CheckCsigafuro.IsChecked == true;
 
+                Log.Information("Tool modified: Name = {Name}, MaterialNumber = {MaterialNumber}, MagPlace = {MagPlace}, Categories = [RoughMillingCutter={IsNagyolomaro}, DeburringCutter={IsSorjazomaro}, FinishingCutter={IsSimitomaro}, RoughingCutterI={IsNagyoloI}, RoughingCutterII={IsNagyoloII}, FinishingCutterII={IsSimito2}, PilotDrill={IsElofuro}, TwistDrill={IsCsigafuro}]",
+                    Tool.Name, Tool.MaterialNumber, Tool.MagPlace,
+                    Tool.IsNagyolomaro, Tool.IsSorjazomaro, Tool.IsSimitomaro,
+                    Tool.IsNagyoloI, Tool.IsNagyoloII, Tool.IsSimito2,
+                    Tool.IsElofuro, Tool.IsCsigafuro);
+
                 DialogResult = true;
                 Close();
             }
             else
             {
+                Log.Warning("Failed tool save: invalid data format in the Material Number field. Input: {Input}", MaterialNumberTextBox.Text);
                 MessageBox.Show("Hibás adatformátum.");
             }
         }

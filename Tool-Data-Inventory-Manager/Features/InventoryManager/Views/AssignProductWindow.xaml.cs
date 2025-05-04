@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Serilog;
 using Tool_Data_Inventory_Manager.Features.InventoryManager.Models;
 
 namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
@@ -45,10 +46,13 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
             if (AvailableProductsListBox.SelectedItem is Product selectedProduct)
             {
                 _machine.Products.Add(selectedProduct);
+                Log.Information("Product assigned: {ProductName} to machine: {MachineName}", selectedProduct.ProductNumber, _machine.Name);
+
                 DialogResult = true;
             }
             else
             {
+                Log.Warning("Product assignment failed: no product selected.");
                 MessageBox.Show("Válassz ki egy terméket.");
             }
         }

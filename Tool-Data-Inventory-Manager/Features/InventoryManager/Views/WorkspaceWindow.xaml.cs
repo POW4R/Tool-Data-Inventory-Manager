@@ -186,17 +186,24 @@ public partial class WorkspaceWindow : Window
                 _context.Products.Remove(selectedProduct);
                 _context.SaveChanges();
                 LoadProducts();
+                Log.Information("Product deleted: {ProductNumber} - {Type}", selectedProduct.ProductNumber, selectedProduct.Type);
+            } else
+            {
+                Log.Information("User canceled product deletion: {ProductNumber} - {Type}", selectedProduct.ProductNumber, selectedProduct.Type);
             }
         }
         else
         {
             MessageBox.Show("Előbb válassz ki egy terméket a törléshez.", "Nincs kijelölés", MessageBoxButton.OK, MessageBoxImage.Information);
+            Log.Information("Delete attempt without selecting a product.");
         }
     }
     private void DeleteTool_Click(object sender, RoutedEventArgs e)
     {
         if (ToolDataGrid.SelectedItem is Tool selectedTool)
         {
+            Log.Information("DeleteTool_Click triggered for tool: {ToolName} (ID: {ToolId})", selectedTool.Name, selectedTool.Id);
+
             var productsWithTool = _context.Products
                 .Include(p => p.Tools)
                 .Where(p => p.Tools.Any(t => t.Id == selectedTool.Id))
@@ -204,11 +211,16 @@ public partial class WorkspaceWindow : Window
 
             if (productsWithTool.Any())
             {
+                Log.Information("Tool '{ToolName}' is assigned to {Count} product(s). Showing warning dialog.", selectedTool.Name, productsWithTool.Count);
                 var warningWindow = new ToolHasProductsWindow(productsWithTool);
                 warningWindow.Owner = this;
 
                 if (warningWindow.ShowDialog() != true || !warningWindow.Confirmed)
+                {
+                    Log.Information("User canceled deletion of tool: {ToolName}", selectedTool.Name);
                     return;
+                }
+                Log.Information("User confirmed detachment of tool: {ToolName} from all related products", selectedTool.Name);
             }
 
             var result = MessageBox.Show(
@@ -219,21 +231,28 @@ public partial class WorkspaceWindow : Window
 
             if (result == MessageBoxResult.Yes)
             {
+                Log.Information("User confirmed deletion of tool: {ToolName}", selectedTool.Name);
                 foreach (var product in productsWithTool)
                 {
                     product.Tools.Remove(selectedTool);
+                    Log.Information("Tool '{ToolName}' detached from product {ProductNumber}", selectedTool.Name, product.ProductNumber);
                 }
 
                 _context.Tools.Remove(selectedTool);
                 _context.SaveChanges();
+                Log.Information("Tool '{ToolName}' deleted from database.", selectedTool.Name);
 
                 LoadTools();
                 LoadProducts();
+            } else
+            {
+                Log.Information("User declined deletion of tool: {ToolName}", selectedTool.Name);
             }
         }
         else
         {
             MessageBox.Show("Előbb válassz ki egy szerszámot a törléshez.", "Nincs kijelölés", MessageBoxButton.OK, MessageBoxImage.Information);
+            Log.Information("DeleteTool_Click invoked with no tool selected.");
         }
     }
 
@@ -254,6 +273,8 @@ public partial class WorkspaceWindow : Window
             {
                 var selectedMachine = _allMachines[selectedIndex];
 
+                Log.Information("DeleteMachineButton_Click triggered for machine: {MachineName} (ID: {MachineId})", selectedMachine.Name, selectedMachine.Id);
+
                 var result = MessageBox.Show(
                     $"Biztosan törölni szeretnéd a(z) \"{selectedMachine.Name}\" gépet?",
                     "Gép törlése",
@@ -262,15 +283,24 @@ public partial class WorkspaceWindow : Window
 
                 if (result == MessageBoxResult.Yes)
                 {
+                    Log.Information("User confirmed deletion of machine: {MachineName}", selectedMachine.Name);
+
                     _context.Machines.Remove(selectedMachine);
                     _context.SaveChanges();
+
+                    Log.Information("Machine '{MachineName}' deleted from database.", selectedMachine.Name);
+
                     LoadMachines();
+                } else
+                {
+                    Log.Information("User canceled deletion of machine: {MachineName}", selectedMachine.Name);
                 }
             }
         }
         else
         {
             MessageBox.Show("Előbb válassz ki egy gépet a törléshez.", "Nincs kijelölés", MessageBoxButton.OK, MessageBoxImage.Information);
+            Log.Information("DeleteMachineButton_Click invoked with no machine selected.");
         }
     }
     private void MachineDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)

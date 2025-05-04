@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Serilog;
 using Tool_Data_Inventory_Manager.Features.InventoryManager.Models;
 
 namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
@@ -44,12 +45,12 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
                 _product.ProductNumber = productNumber;
                 _product.Type = TypeTextBox.Text;
 
-                // Tools frissítése
                 _product.Tools.Clear();
                 foreach (Tool selectedTool in ToolsListBox.SelectedItems)
                 {
                     _product.Tools.Add(selectedTool);
                 }
+                Log.Information("Product saved: ProductNumber = {ProductNumber}, Type = {Type}, Tools = [{Tools}]", _product.ProductNumber, _product.Type, string.Join(", ", _product.Tools.Select(t => t.Name)));
 
                 DialogResult = true;
                 Close();

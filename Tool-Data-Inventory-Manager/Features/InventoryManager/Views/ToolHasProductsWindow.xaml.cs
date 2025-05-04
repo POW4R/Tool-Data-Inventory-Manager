@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Serilog;
 using Tool_Data_Inventory_Manager.Features.InventoryManager.Models;
 
 namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
@@ -31,6 +32,7 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
             Confirmed = true;
+            Log.Information("User confirmed the action in the confirmation dialog.");
             this.DialogResult = true;
             this.Close();
         }

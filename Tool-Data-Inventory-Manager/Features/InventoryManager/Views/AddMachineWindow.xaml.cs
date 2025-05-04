@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Serilog;
 using Tool_Data_Inventory_Manager.Features.InventoryManager.Models;
 
 namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
@@ -36,6 +37,7 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
             var name = MachineNameTextBox.Text.Trim();
             if (string.IsNullOrWhiteSpace(name))
             {
+                Log.Warning("Save failed: The machine name is empty.");
                 MessageBox.Show("A gép neve kötelező.", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
@@ -50,6 +52,8 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
 
             _context.Machines.Add(CreatedMachine);
             _context.SaveChanges();
+
+            Log.Information("New machine saved: {MachineName}, number of assigned products: {ProductCount}", name, selectedProducts.Count);
 
             DialogResult = true;
             Close();
