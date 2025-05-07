@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Serilog;
 using Tool_Data_Inventory_Manager.Features.InventoryManager.Models;
 
 namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
@@ -39,6 +40,7 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
             var name = MachineNameTextBox.Text.Trim();
             if (string.IsNullOrEmpty(name))
             {
+                Log.Warning("Machine addition failed: name is missing.");
                 MessageBox.Show("Kérlek adj meg egy gépnevet!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
@@ -53,6 +55,7 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
 
             _context.Machines.Add(newMachine);
             _context.SaveChanges();
+            Log.Information("New machine added: {MachineName}, assigned products: {ProductCount}", name, selectedProducts.Count);
 
             MessageBox.Show("Gép sikeresen hozzáadva!", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
             DialogResult = true;

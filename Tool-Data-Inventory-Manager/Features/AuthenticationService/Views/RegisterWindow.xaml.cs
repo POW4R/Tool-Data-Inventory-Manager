@@ -41,6 +41,9 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
             string password = pb_Password.Password;
             string confirmPassword = pb_ConfirmPassword.Password;
             reg.Registering(firstName, lastName, email, password, confirmPassword);
+            LoginWindow lw = new LoginWindow();
+            lw.Show();
+            this.Close();
         }
         private void btn_Close_Click(object sender, RoutedEventArgs e)
         {

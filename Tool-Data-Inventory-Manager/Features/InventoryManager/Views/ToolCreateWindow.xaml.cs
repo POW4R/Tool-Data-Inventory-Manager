@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Serilog;
 using Tool_Data_Inventory_Manager.Features.InventoryManager.Models;
 
 namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
@@ -28,6 +29,7 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
         {
             if (!int.TryParse(MaterialNumberTextBox.Text, out int materialNumber))
             {
+                Log.Warning("Failed tool save: invalid Material Number or Price field. Input: {Input}", MaterialNumberTextBox.Text);
                 MessageBox.Show("Hibás formátum a Material Number vagy Ár mezőben.");
                 return;
             }
@@ -53,6 +55,12 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
                 IsElofuro = CheckElofuro.IsChecked == true,
                 IsCsigafuro = CheckCsigafuro.IsChecked == true
             };
+
+            Log.Information("New tool created: Name = {Name}, MaterialNumber = {MaterialNumber}, MagPlace = {MagPlace}, Categories = [Nagyolomaro={IsNagyolomaro}, Sorjazomaro={IsSorjazomaro}, Simitomaro={IsSimitomaro}, NagyoloI={IsNagyoloI}, NagyoloII={IsNagyoloII}, Simito2={IsSimito2}, Elofuro={IsElofuro}, Csigafuro={IsCsigafuro}]",
+                NewTool.Name, NewTool.MaterialNumber, NewTool.MagPlace,
+                NewTool.IsNagyolomaro, NewTool.IsSorjazomaro, NewTool.IsSimitomaro,
+                NewTool.IsNagyoloI, NewTool.IsNagyoloII, NewTool.IsSimito2,
+                NewTool.IsElofuro, NewTool.IsCsigafuro);
 
             DialogResult = true;
             Close();

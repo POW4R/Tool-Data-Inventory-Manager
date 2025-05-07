@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Serilog;
 using Tool_Data_Inventory_Manager.Features.InventoryManager.Models;
 
 namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
@@ -32,6 +33,7 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
         {
             if (!int.TryParse(ProductNumberTextBox.Text, out int productNumber))
             {
+                Log.Warning("Failed to save product: Invalid Product Number value: {Input}", ProductNumberTextBox.Text);
                 MessageBox.Show("Hibás Product Number.");
                 return;
             }
@@ -44,6 +46,8 @@ namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views
                 Type = TypeTextBox.Text,
                 Tools = new List<Tool>(selectedTools)
             };
+            Log.Information("New product created: ProductNumber = {ProductNumber}, Type = {Type}, Number of tools = {ToolCount}", NewProduct.ProductNumber, NewProduct.Type, selectedTools.Count);
+
 
             DialogResult = true;
             Close();
