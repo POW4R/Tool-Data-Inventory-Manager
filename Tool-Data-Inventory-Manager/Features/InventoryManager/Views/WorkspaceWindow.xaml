@@ -27,18 +27,6 @@
             <TabItem Header="{DynamicResource Tools}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10">
-                        <GroupBox Header="Tool keresése">
-                            <StackPanel Orientation="Horizontal" Margin="0,5">
-                                <Label Content="{DynamicResource Search}" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="ToolFilterField" Width="120" Margin="5,0" SelectionChanged="ToolFilterField_SelectionChanged">
-                                    <ComboBoxItem Content="{DynamicResource Name}" IsSelected="True"/>
-                                    <ComboBoxItem Content="{DynamicResource MaterialNumber}"/>
-                                    <ComboBoxItem Content="{DynamicResource MagPlace}"/>
-                                    <ComboBoxItem Content="{DynamicResource Price}"/>
-                                </ComboBox>
-                                <TextBox x:Name="ToolSearchBox" Width="200" Margin="5,0" TextChanged="ToolSearchBox_TextChanged"/>
-                            </StackPanel>
-                        </GroupBox>
                         <Button Content="{DynamicResource AddNewTool}" Click="AddTool_Click" Margin="5" Width="138" Height="30"/>
                         <GroupBox Header="Tool lista" Margin="0 0 0 20">
                             <DataGrid x:Name="ToolDataGrid" 
@@ -75,15 +63,6 @@
                     <StackPanel Margin="10">
                         <GroupBox Header="Product hozzáadása" Margin="0 0 0 10">
                             <StackPanel Orientation="Vertical" Margin="5">
-                                <StackPanel Orientation="Horizontal" Margin="0,5">
-                                    <Label Content="{DynamicResource Search}" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="ProductFilterField" Width="120" Margin="5,0" SelectionChanged="ProductFilterField_SelectionChanged">
-                                        <ComboBoxItem Content="{DynamicResource Type}" IsSelected="True"/>
-                                        <ComboBoxItem Content="{DynamicResource ProductNumber}"/>
-                                        <ComboBoxItem Content="{DynamicResource Tools}"/>
-                                    </ComboBox>
-                                    <TextBox x:Name="ProductSearchBox" Width="200" Margin="5,0" TextChanged="ProductSearchBox_TextChanged"/>
-                                </StackPanel>
                                 <Button Content="{DynamicResource AddNewProduct}" Click="AddProduct_Click" Margin="5" Width="139" Height="30"/>
                             </StackPanel>
                         </GroupBox>
@@ -120,14 +99,6 @@
                     <StackPanel Margin="10">
                         <GroupBox Header="Machine keresés" Margin="0 0 0 10">
                             <StackPanel Orientation="Vertical" Margin="5">
-                                <StackPanel Orientation="Horizontal" Margin="0,5">
-                                    <Label Content="{DynamicResource Search}" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="MachineFilterField" Width="120" Margin="5,0" SelectionChanged="MachineFilterField_SelectionChanged">
-                                        <ComboBoxItem Content="{DynamicResource Name}" IsSelected="True"/>
-                                        <ComboBoxItem Content="{DynamicResource ProductNumber}"/>
-                                    </ComboBox>
-                                    <TextBox x:Name="MachineSearchBox" Width="200" Margin="5,0" TextChanged="MachineSearchBox_TextChanged"/>
-                                </StackPanel>
                                 <Button Content="{DynamicResource AddNewMachine}" Click="AddMachine_Click" Margin="5" Width="150" Height="30"/>
                             </StackPanel>
                         </GroupBox>
