@@ -121,57 +121,7 @@ public partial class WorkspaceWindow : Window
             }
         }
     }
-    private void ToolSearchBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string search = ToolSearchBox.Text.ToLower();
-        string selectedField = (ToolFilterField.SelectedItem as ComboBoxItem)?.Content.ToString();
-
-        var filtered = _allTools.Where(tool =>
-        {
-            switch (selectedField)
-            {
-                case "Name":
-                    return tool.Name?.ToLower().Contains(search) == true;
-                case "MaterialNumber":
-                    return tool.MaterialNumber.ToString().Contains(search);
-                case "MagPlace":
-                    return tool.MagPlace.HasValue && tool.MagPlace.Value.ToString().Contains(search);
-                default:
-                    return true;
-            }
-        }).ToList();
-
-        ToolDataGrid.ItemsSource = filtered;
-    }
-
-    private void ProductSearchBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string search = ProductSearchBox.Text.ToLower();
-        string selectedField = (ProductFilterField.SelectedItem as ComboBoxItem)?.Content.ToString();
-
-        var filtered = _allProducts.Where(p =>
-        {
-            switch (selectedField)
-            {
-                case "Type":
-                    return p.Type?.ToLower().Contains(search) == true;
-                case "ProductNumber":
-                    return p.ProductNumber.ToString().Contains(search);
-                case "Tools":
-                    return p.Tools.Any(t => t.Name.ToLower().Contains(search));
-                default:
-                    return true;
-            }
-        });
-
-        ProductDataGrid.ItemsSource = filtered.Select(p => new
-        {
-            p.Id,
-            p.ProductNumber,
-            p.Type,
-            Tools = string.Join(", ", p.Tools.Select(t => t.Name))
-        }).ToList();
-    }
+    
     private void DeleteProduct_Click(object sender, RoutedEventArgs e)
     {
         if (ProductDataGrid.SelectedItem is Product selectedProduct)
@@ -328,32 +278,6 @@ public partial class WorkspaceWindow : Window
             LoadMachines();
         }
     }
-    private void MachineSearchBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string keyword = MachineSearchBox.Text.ToLower();
-        string selectedField = (MachineFilterField.SelectedItem as ComboBoxItem)?.Content.ToString();
-
-        var filtered = _allMachines.Where(m =>
-        {
-            if (selectedField == "Name")
-            {
-                return m.Name.ToLower().Contains(keyword);
-            }
-            else if (selectedField == "ProductNumber")
-            {
-                return m.Products.Any(p => p.ProductNumber.ToString().Contains(keyword));
-            }
-            return true;
-        })
-        .Select(m => new
-        {
-            m.Id,
-            m.Name,
-            Products = string.Join(", ", m.Products.Select(p => p.ProductNumber))
-        }).ToList();
-
-        MachineDataGrid.ItemsSource = filtered;
-    }
 
     private void btn_export_Click(object sender, RoutedEventArgs e)
     {
@@ -432,24 +356,6 @@ public partial class WorkspaceWindow : Window
         {
             column.CanUserSort = false;
         }
-    }
-
-    private void ToolFilterField_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if(ToolSearchBox != null)
-            ToolSearchBox.Clear();
-    }
-
-    private void ProductFilterField_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (ProductSearchBox != null)
-            ProductSearchBox.Clear();
-    }
-
-    private void MachineFilterField_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (MachineSearchBox != null)
-            MachineSearchBox.Clear();
     }
 
     private void btn_logout_Click(object sender, RoutedEventArgs e)
