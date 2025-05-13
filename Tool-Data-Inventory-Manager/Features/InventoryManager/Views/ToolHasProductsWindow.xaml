@@ -1,7 +1,8 @@
 ﻿<Window x:Class="Tool_Data_Inventory_Manager.Features.InventoryManager.Views.ToolHasProductsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="{DynamicResource AssignedProducts}" Height="300" Width="400" WindowStartupLocation="CenterScreen">
+        Title="{DynamicResource AssignedProducts}" Height="300" Width="400" WindowStartupLocation="CenterScreen"
+        Icon="/Resources/Tool-Data-Icon.png">
     <Grid Margin="10">
         <TextBlock Text="{DynamicResource ThisToolIsAssignedToTheFollowingProducts}" 
                    FontWeight="Bold" Margin="0,0,0,10"/>

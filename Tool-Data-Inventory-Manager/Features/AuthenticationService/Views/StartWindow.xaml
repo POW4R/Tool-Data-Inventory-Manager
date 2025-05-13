@@ -8,7 +8,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Height="400" Width="600"
         WindowStartupLocation="CenterScreen"
-        Style="{StaticResource RoundedWindowStyle}">
+        Style="{StaticResource RoundedWindowStyle}"
+        Icon="/Resources/Tool-Data-Icon.png">
     <Border Style="{StaticResource RoundedWindowBorderStyle}" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <StackPanel Style="{StaticResource WrapperStackPanel}">
             <Button Style="{StaticResource CloseButtonStyle}"
@@ -37,8 +38,8 @@
                   Click="btn_register_Click"/>
             </StackPanel>
             <ComboBox SelectedIndex="0" SelectionChanged="LanguageComboBox_SelectionChanged" Width="120">
-                <ComboBoxItem Tag="en">English</ComboBoxItem>
                 <ComboBoxItem Tag="hu">Magyar</ComboBoxItem>
+                <ComboBoxItem Tag="en">English</ComboBoxItem>
                 <ComboBoxItem Tag="de">Deutsch</ComboBoxItem>
             </ComboBox>
         </StackPanel>

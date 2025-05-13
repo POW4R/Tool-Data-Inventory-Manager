@@ -1,7 +1,8 @@
 ﻿<Window x:Class="Tool_Data_Inventory_Manager.Features.InventoryManager.Views.AssignProductWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="{DynamicResource ProductAssignment}" Height="300" Width="400">
+        Title="{DynamicResource ProductAssignment}" Height="300" Width="400"
+        Icon="/Resources/Tool-Data-Icon.png">
     <Grid Margin="10">
         <ListBox x:Name="AvailableProductsListBox" DisplayMemberPath="ProductNumber"/>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">

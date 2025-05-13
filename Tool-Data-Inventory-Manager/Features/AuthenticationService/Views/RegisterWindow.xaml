@@ -9,7 +9,8 @@
         mc:Ignorable="d"
         Height="500" Width="650"
         WindowStartupLocation="CenterScreen"
-        Style="{StaticResource RoundedWindowStyle}">
+        Style="{StaticResource RoundedWindowStyle}"
+        Icon="/Resources/Tool-Data-Icon.png">
 
     <Border Style="{StaticResource RoundedWindowBorderStyle}" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <StackPanel Style="{StaticResource WrapperStackPanel}" Height="484" Width="630">
