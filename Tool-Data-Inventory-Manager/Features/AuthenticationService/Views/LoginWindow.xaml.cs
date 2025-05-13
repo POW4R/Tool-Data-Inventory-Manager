@@ -94,5 +94,12 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
                 DragMove();
             }
         }
+
+        private void tb_Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            StartWindow mw = new StartWindow();
+            this.Close();
+            mw.Show();
+        }
     }
 }

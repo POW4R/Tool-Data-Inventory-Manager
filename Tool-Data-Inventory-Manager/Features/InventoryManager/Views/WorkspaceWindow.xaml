@@ -131,6 +131,6 @@
                 </StackPanel>
             </TabItem>
         </TabControl>
-        <Button x:Name="btn_logout" Content="Log Out" Click="btn_logout_Click" RenderTransformOrigin="0.5,0.56" Margin="550,3,255,630" HorizontalAlignment="Right"/>
+        <Button x:Name="btn_logout" Content="Log Out" Click="btn_logout_Click" RenderTransformOrigin="0.5,0.60" Margin="0,3,255,622" Padding="10" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

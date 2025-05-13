@@ -66,8 +66,8 @@
                     Margin="0 20 0 0"
                     Width="150"
                     Click="LoginBtn_Click">
-
             </Button>
+            
             <!-- Forgot password and not a member links -->
             <StackPanel Orientation="Vertical"
             Margin="0,10,0,10"
@@ -88,6 +88,8 @@
                Cursor="Hand"
                Margin="0 5 0 5"
                MouseLeftButtonDown="tb_notMember_MouseLeftButtonDown"/>
+                <TextBlock Text="{DynamicResource Back}" Style="{StaticResource textBlockWithHover}" HorizontalAlignment="Center"
+                           x:Name="tb_Back" Cursor="Hand" Margin="0,5,0,5" MouseLeftButtonDown="tb_Back_MouseLeftButtonDown"/>
             </StackPanel>
             <!-- Back button -->
         </StackPanel>

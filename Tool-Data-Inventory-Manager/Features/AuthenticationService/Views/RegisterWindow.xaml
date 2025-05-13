@@ -121,6 +121,9 @@
                            HorizontalAlignment="Center"
                            Cursor="Hand"
                            />
+
+                <TextBlock Text="{DynamicResource Back}" Style="{StaticResource textBlockWithHover}" HorizontalAlignment="Center"
+                           x:Name="tb_Back" Cursor="Hand" Margin="0,5,0,5" MouseLeftButtonDown="tb_Back_MouseLeftButtonDown"/>
             </StackPanel>
         </StackPanel>
     </Border>
