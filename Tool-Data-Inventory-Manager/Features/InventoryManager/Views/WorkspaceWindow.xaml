@@ -53,40 +53,6 @@
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
-            
-            <!-- TOOL TAB -->
-            <TabItem Header="{DynamicResource Tools}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel Margin="10">
-                        <Button Content="{DynamicResource AddNewTool}" Click="AddTool_Click" Margin="5" Width="138" Height="30"/>
-                        <GroupBox Header="Tool lista" Margin="0 0 0 20">
-                            <DataGrid x:Name="ToolDataGrid" 
-                                  AutoGenerateColumns="False" 
-                                  IsReadOnly="True" 
-                                  Height="400" 
-                                  Margin="5"
-                                  MouseDoubleClick="ToolDataGrid_MouseDoubleClick" 
-                                  SelectionMode="Single">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="{DynamicResource MaterialNumber}" Binding="{Binding MaterialNumber}" CanUserSort="False"/>
-                                    <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Name}" CanUserSort="False"/>
-                                    <DataGridTextColumn Header="{DynamicResource MagPlace}" Binding="{Binding MagPlace}" CanUserSort="False"/>
-
-                                    <DataGridCheckBoxColumn Header="{DynamicResource Nagyolomaro}" Binding="{Binding IsNagyolomaro}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource Sorjazomaro}" Binding="{Binding IsSorjazomaro}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource Simitomaro}" Binding="{Binding IsSimitomaro}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource NagyoloI}" Binding="{Binding IsNagyoloI}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource NagyoloII}" Binding="{Binding IsNagyoloII}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource Simito2}" Binding="{Binding IsSimito2}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource Elofuro}" Binding="{Binding IsElofuro}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource Csigafuro}" Binding="{Binding IsCsigafuro}" CanUserSort="False"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </GroupBox>
-                        <Button Content="{DynamicResource DeleteSelectedTool}" Margin="5" Click="DeleteTool_Click" Height="30" Width="170"/>
-                    </StackPanel>
-                </ScrollViewer>
-            </TabItem>
 
             <!-- PRODUCT TAB -->
             <TabItem Header="{DynamicResource Products}">
@@ -124,7 +90,41 @@
                 </ScrollViewer>
             </TabItem>
 
-            
+            <!-- TOOL TAB -->
+            <TabItem Header="{DynamicResource Tools}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="10">
+                        <Button Content="{DynamicResource AddNewTool}" Click="AddTool_Click" Margin="5" Width="138" Height="30"/>
+                        <GroupBox Header="Tool lista" Margin="0 0 0 20">
+                            <DataGrid x:Name="ToolDataGrid" 
+                                  AutoGenerateColumns="False" 
+                                  IsReadOnly="True" 
+                                  Height="400" 
+                                  Margin="5"
+                                  MouseDoubleClick="ToolDataGrid_MouseDoubleClick" 
+                                  SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{DynamicResource MaterialNumber}" Binding="{Binding MaterialNumber}" CanUserSort="False"/>
+                                    <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Name}" CanUserSort="False"/>
+                                    <DataGridTextColumn Header="{DynamicResource MagPlace}" Binding="{Binding MagPlace}" CanUserSort="False"/>
+
+                                    <DataGridCheckBoxColumn Header="{DynamicResource Nagyolomaro}" Binding="{Binding IsNagyolomaro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource Sorjazomaro}" Binding="{Binding IsSorjazomaro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource Simitomaro}" Binding="{Binding IsSimitomaro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource NagyoloI}" Binding="{Binding IsNagyoloI}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource NagyoloII}" Binding="{Binding IsNagyoloII}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource Simito2}" Binding="{Binding IsSimito2}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource Elofuro}" Binding="{Binding IsElofuro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn Header="{DynamicResource Csigafuro}" Binding="{Binding IsCsigafuro}" CanUserSort="False"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </GroupBox>
+                        <Button Content="{DynamicResource DeleteSelectedTool}" Margin="5" Click="DeleteTool_Click" Height="30" Width="170"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+
             <TabItem Header="{DynamicResource Export}">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,10,0,0">
                     <Button x:Name="btn_export" Content="{DynamicResource Export}" Click="btn_export_Click" Width="120" Height="30"/>
