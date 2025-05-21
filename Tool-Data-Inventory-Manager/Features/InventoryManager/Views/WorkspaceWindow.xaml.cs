@@ -114,15 +114,14 @@ public partial class WorkspaceWindow : Window
     }
     private void ProductDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
-        if (ProductDataGrid.SelectedItem is Product selectedProduct)
+        if (ProductDataGrid.SelectedItem is ProductViewModel selectedViewModel)
         {
-            var editor = new ProductEditorWindow(selectedProduct, _context) { Owner = this };
+            var editor = new ProductEditorWindow(selectedViewModel.Product, _context) { Owner = this };
 
             if (editor.ShowDialog() == true)
             {
                 _context.SaveChanges();
                 LoadProducts();
-
             }
         }
     }
