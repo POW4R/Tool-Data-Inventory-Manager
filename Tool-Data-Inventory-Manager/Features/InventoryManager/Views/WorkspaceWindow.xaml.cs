@@ -124,11 +124,16 @@ public partial class WorkspaceWindow : Window
     
     private void DeleteProduct_Click(object sender, RoutedEventArgs e)
     {
+        string format = (string)Application.Current.Resources["DeleteProductConfirmation"];
+        string confirm = (string)Application.Current.Resources["Confirm"];
+        string selectProduct = (string)Application.Current.Resources["SelectProduct"];
+        string select = (string)Application.Current.Resources["Selection"];
         if (ProductDataGrid.SelectedItem is Product selectedProduct)
         {
+            string deleteProductMessage = string.Format(format, selectedProduct.ProductNumber, selectedProduct.Type);
             var result = MessageBox.Show(
-                $"Biztosan törölni szeretnéd a(z) \"{selectedProduct.ProductNumber} - {selectedProduct.Type}\" terméket?",
-                "Megerősítés",
+                deleteProductMessage,
+                confirm,
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning);
 
@@ -145,12 +150,14 @@ public partial class WorkspaceWindow : Window
         }
         else
         {
-            MessageBox.Show("Előbb válassz ki egy terméket a törléshez.", "Nincs kijelölés", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(selectProduct, select, MessageBoxButton.OK, MessageBoxImage.Information);
             Log.Information("Delete attempt without selecting a product.");
         }
     }
     private void DeleteTool_Click(object sender, RoutedEventArgs e)
     {
+        string selectTool = (string)Application.Current.Resources["SelectTool"];
+        string selection = (string)Application.Current.Resources["Selection"];
         if (ToolDataGrid.SelectedItem is Tool selectedTool)
         {
             Log.Information("DeleteTool_Click triggered for tool: {ToolName} (ID: {ToolId})", selectedTool.Name, selectedTool.Id);
@@ -173,12 +180,15 @@ public partial class WorkspaceWindow : Window
                 }
                 Log.Information("User confirmed detachment of tool: {ToolName} from all related products", selectedTool.Name);
             }
-
+            string format = (string)Application.Current.Resources["DeleteToolBox"];
+            string confirm = (string)Application.Current.Resources["Confirm"];
+            string deleteTool = string.Format(format, selectedTool.Name);
             var result = MessageBox.Show(
-                $"Biztosan törölni szeretnéd a(z) \"{selectedTool.Name}\" szerszámot?",
-                "Megerősítés",
+                deleteTool,
+                confirm,
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning);
+
 
             if (result == MessageBoxResult.Yes)
             {
@@ -202,7 +212,7 @@ public partial class WorkspaceWindow : Window
         }
         else
         {
-            MessageBox.Show("Előbb válassz ki egy szerszámot a törléshez.", "Nincs kijelölés", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(selectTool, selection, MessageBoxButton.OK, MessageBoxImage.Information);
             Log.Information("DeleteTool_Click invoked with no tool selected.");
         }
     }
@@ -217,6 +227,10 @@ public partial class WorkspaceWindow : Window
     }
     private void DeleteMachineButton_Click(object sender, RoutedEventArgs e)
     {
+        string format = (string)Application.Current.Resources["DeleteMeachineBox"];
+        string deleteMachine = (string)Application.Current.Resources["DeleteMachine"];
+        string selectMachine = (string)Application.Current.Resources["SelectMachine"];
+        string selection = (string)Application.Current.Resources["Selection"];
         if (MachineDataGrid.SelectedItem != null)
         {
             int selectedIndex = MachineDataGrid.SelectedIndex;
@@ -225,10 +239,10 @@ public partial class WorkspaceWindow : Window
                 var selectedMachine = _allMachines[selectedIndex];
 
                 Log.Information("DeleteMachineButton_Click triggered for machine: {MachineName} (ID: {MachineId})", selectedMachine.Name, selectedMachine.Id);
-
+                string deleteMachineBox = string.Format(format, selectedMachine.Name);
                 var result = MessageBox.Show(
-                    $"Biztosan törölni szeretnéd a(z) \"{selectedMachine.Name}\" gépet?",
-                    "Gép törlése",
+                    deleteMachineBox,
+                    deleteMachine,
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Warning);
 
@@ -250,7 +264,7 @@ public partial class WorkspaceWindow : Window
         }
         else
         {
-            MessageBox.Show("Előbb válassz ki egy gépet a törléshez.", "Nincs kijelölés", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(selectMachine, selection, MessageBoxButton.OK, MessageBoxImage.Information);
             Log.Information("DeleteMachineButton_Click invoked with no machine selected.");
         }
     }
@@ -340,14 +354,19 @@ public partial class WorkspaceWindow : Window
 
         worksheet.Columns().AdjustToContents();
 
+        string exportExel = (string)Application.Current.Resources["ExportExcel"];
         try
         {
             workbook.SaveAs(saveDialog.FileName);
-            MessageBox.Show("Sikeres exportálás Excel fájlba!", "Export kész", MessageBoxButton.OK, MessageBoxImage.Information);
+            string exportOk = (string)Application.Current.Resources["ExportOk"];
+            MessageBox.Show(exportExel, exportOk, MessageBoxButton.OK, MessageBoxImage.Information);
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Hiba történt a mentés során: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            string errorMessage = (string)Application.Current.Resources["Error"];
+            string format = (string)Application.Current.Resources["ErrorBox"];
+            string errorBox = string.Format(format, ex.Message);
+            MessageBox.Show(errorBox, errorMessage , MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
     private void DisableSortingOnDataGrid(DataGrid dataGrid)
@@ -360,7 +379,9 @@ public partial class WorkspaceWindow : Window
 
     private void btn_logout_Click(object sender, RoutedEventArgs e)
     {
-        var massageBoxResult = MessageBox.Show("Biztosan ki szeretnél lépni?", "Kijelentkezés", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        string logoutBox = (string)Application.Current.Resources["LogOutBox"];
+        string logOut = (string)Application.Current.Resources["LogOut"];
+        var massageBoxResult = MessageBox.Show(logoutBox, logOut, MessageBoxButton.YesNo, MessageBoxImage.Question);
         if (massageBoxResult == MessageBoxResult.Yes)
         {
             var loginWindow = new LoginWindow();
