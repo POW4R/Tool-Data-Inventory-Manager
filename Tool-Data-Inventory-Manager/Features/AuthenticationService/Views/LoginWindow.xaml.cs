@@ -51,7 +51,7 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
             User user = new User();
             if (Password == null || Email == null)
             {
-                MessageBox.Show("A mezők kitöltése kötelező!");
+                MessageBox.Show((string)Application.Current.FindResource("FieldsRequierd"));
                 return user;
             }
             string hashedPassword = PasswordManager.HashPassword(Password);
@@ -63,7 +63,7 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
             }
             else
             {
-                MessageBox.Show("Hibás e-mail vagy jelszó.");
+                MessageBox.Show((string)Application.Current.FindResource("IncorrectEmailOrPassword"));
                 return user;
             }
         }

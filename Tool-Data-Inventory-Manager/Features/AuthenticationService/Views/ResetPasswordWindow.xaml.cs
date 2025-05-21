@@ -26,13 +26,13 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
 
             if (string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(confirmPassword))
             {
-                MessageBox.Show("Please fill in both password fields.");
+                MessageBox.Show((string)Application.Current.FindResource("PleaseFillAllPasswordFields"));
                 return;
             }
 
             if (newPassword != confirmPassword)
             {
-                MessageBox.Show("Passwords do not match.");
+                MessageBox.Show((string)Application.Current.FindResource("PasswordsNotMatch"));
                 return;
             }
 
@@ -45,26 +45,26 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
         {
             if (NewPassword != ConfirmNewPassword)
             {
-                MessageBox.Show("Az új jelszavak nem egyeznek meg.");
+                MessageBox.Show((string)Application.Current.FindResource("NewPasswordsNotMatch"));
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(NewPassword) || string.IsNullOrWhiteSpace(ConfirmNewPassword))
             {
-                MessageBox.Show("A mezők kitöltése kötelező!");
+                MessageBox.Show((string)Application.Current.FindResource("FieldsRequierd"));
                 return;
             }
 
             if (!PasswordManager.IsValidPassword(NewPassword))
             {
-                MessageBox.Show("Az új jelszónak legalább 8 karakter hosszúnak kell lennie, és tartalmaznia kell nagybetűt, kisbetűt, számot és speciális karaktert.");
+                MessageBox.Show((string)Application.Current.FindResource("IncorrectPasswordFormat"));
                 return;
             }
 
             var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == Email);
             if (user == null)
             {
-                MessageBox.Show("Ez az e-mail cím nem létezik.");
+                MessageBox.Show((string)Application.Current.FindResource("EmailNotExist"));
                 return;
             }
 
@@ -78,10 +78,11 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Hiba történt a jelszó módosításakor: {ex.Message}");
+                String errorMessage = (string)Application.Current.FindResource("ErrorChangingPassword") + ex.Message;
+                MessageBox.Show(errorMessage);
             }
 
-            MessageBox.Show("A jelszó sikeresen megváltozott!");
+            MessageBox.Show((string)Application.Current.FindResource("PasswordChangedSuccessfully"));
         }
 
 

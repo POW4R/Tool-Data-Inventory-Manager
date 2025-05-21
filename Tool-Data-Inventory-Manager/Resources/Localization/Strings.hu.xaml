@@ -23,6 +23,27 @@
     <sys:String x:Key="SaveNewPassword">Új jelszó mentése</sys:String>
     <sys:String x:Key="Welcome">Üdvözlünk!</sys:String>
     <sys:String x:Key="PleaseChooseAnOption">Kérlek, válassz egy lehetőséget!</sys:String>
+    <sys:String x:Key="PasswordsNotMatch">A jelszavak nem egyeznek.</sys:String>
+    <sys:String x:Key="FieldsRequierd">Minden mező kitöltése kötelező!</sys:String>
+    <sys:String x:Key="IncorrectEmailFormat">Helytelen e-mail formátum.</sys:String>
+    <sys:String x:Key="IncorrectPasswordFormat">A jelszónak legalább 8 karakter hosszúnak kell lennie, tartalmaznia kell nagybetűt, kisbetűt, számot és speciális karaktert.</sys:String>
+    <sys:String x:Key="EmailAddressAlreadyTaken">Ez az e-mail cím már foglalt.</sys:String>
+    <sys:String x:Key="SuccessfullRegistration">Sikeres regisztráció!</sys:String>
+    <sys:String x:Key="IncorrectEmailOrPassword">Helytelen e-mail cím vagy jelszó.</sys:String>
+    <sys:String x:Key="PleaseFillAllPasswordFields">Kérjük, töltse ki mindkét jelszó mezőt.</sys:String>
+    <sys:String x:Key="NewPasswordsNotMatch">Az új jelszavak nem egyeznek.</sys:String>
+    <sys:String x:Key="EmailNotExist">Ez az e-mail cím nem létezik.</sys:String>
+    <sys:String x:Key="ErrorChangingPassword">Hiba történt a jelszó módosítása során:</sys:String>
+    <sys:String x:Key="PasswordChangedSuccessfully">A jelszó sikeresen megváltozott!</sys:String>
+    <sys:String x:Key="PleaseEnterEmailAddress">Kérjük, adja meg e-mail címét.</sys:String>
+    <sys:String x:Key="NoUserFoundWithThisEmail">Nem található felhasználó ezzel az e-mail címmel.</sys:String>
+    <sys:String x:Key="TemporaryCodeHasBeenSentToEmail">Ideiglenes kódot küldtünk az e-mail címére.</sys:String>
+    <sys:String x:Key="EmailAddressNotFound">Az e-mail cím nem található.</sys:String>
+    <sys:String x:Key="TooManyFailedAttemptsPleaseRequestNewPasswordReset">Túl sok sikertelen próbálkozás. Kérjük, kérjen új jelszó-visszaállítást.</sys:String>
+    <sys:String x:Key="InvalidCodeFormat">Érvénytelen kódformátum.</sys:String>
+    <sys:String x:Key="InvalidCode">Érvénytelen kód.</sys:String>
+    <sys:String x:Key="TheCodeExpiredPleaseRequestNewPasswordReset">A kód lejárt. Kérjük, kérjen új jelszó-visszaállítást.</sys:String>
+    <sys:String x:Key="CodeVerifiedPleaseSetANewPassword">A kód ellenőrizve! Kérjük, adjon meg egy új jelszót.</sys:String>
 
     <sys:String x:Key="AddNewMachine">Új gép hozzáadása</sys:String>
     <sys:String x:Key="MachineName">Gép neve</sys:String>
