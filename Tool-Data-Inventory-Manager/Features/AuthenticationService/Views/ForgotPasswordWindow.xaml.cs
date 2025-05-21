@@ -17,7 +17,7 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
             string email = tb_Email.Text.Trim();
             if (string.IsNullOrEmpty(email))
             {
-                MessageBox.Show("Please enter your email address.");
+                MessageBox.Show((string)Application.Current.FindResource("PleaseEnterEmailAddress"));
                 return;
             }
 
@@ -25,7 +25,7 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
 
             if (user == null)
             {
-                MessageBox.Show("No user found with this email address.");
+                MessageBox.Show((string)Application.Current.FindResource("NoUserFoundWithThisEmail"));
                 return;
             }
 
@@ -39,7 +39,7 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
 
             EmailSender.SendTemporaryCode(email, code.ToString());
 
-            MessageBox.Show("Temporary code has been sent to your email.");
+            MessageBox.Show((string)Application.Current.FindResource("TemporaryCodeHasBeenSentToEmail"));
         }
 
 
@@ -51,19 +51,19 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
 
             if (user == null)
             {
-                MessageBox.Show("Email address not found.");
+                MessageBox.Show((string)Application.Current.FindResource("EmailAddressNotFound"));
                 return;
             }
 
             if (user.PasswordResetAttempts >= 3)
             {
-                MessageBox.Show("Too many failed attempts. Please request a new password reset.");
+                MessageBox.Show((string)Application.Current.FindResource("TooManyFailedAttemptsPleaseRequestNewPasswordReset"));
                 return;
             }
 
             if (!int.TryParse(tb_Code.Text.Trim(), out int codeInput))
             {
-                MessageBox.Show("Invalid code format.");
+                MessageBox.Show((string)Application.Current.FindResource("InvalidCodeFormat"));
                 return;
             }
             
@@ -72,19 +72,19 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService.Views
             {
                 user.PasswordResetAttempts++;
                 _dbContext.SaveChanges();
-                MessageBox.Show("Invalid code.");
+                MessageBox.Show((string)Application.Current.FindResource("InvalidCode"));
                 return;
             }
 
             if (user.PasswordResetRequestedAt == null || user.PasswordResetRequestedAt.Value.AddMinutes(10) < DateTime.UtcNow)
             {
-                MessageBox.Show("The code has expired. Please request a new password reset.");
+                MessageBox.Show((string)Application.Current.FindResource("TheCodeExpiredPleaseRequestNewPasswordReset"));
                 return;
             }
 
             _dbContext.SaveChanges();
 
-            MessageBox.Show("Code verified! Please set a new password.");
+            MessageBox.Show((string)Application.Current.FindResource("CodeVerifiedPleaseSetANewPassword"));
             ResetPasswordWindow resetWindow = new ResetPasswordWindow(email);
             resetWindow.Show();
             this.Close();

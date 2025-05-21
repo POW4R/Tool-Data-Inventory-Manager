@@ -26,30 +26,30 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService
         {
             if (Password != ConfirmPassword)
             {
-                MessageBox.Show("A jelszavak nem egyeznek meg.");
+                MessageBox.Show((string) Application.Current.FindResource("PasswordsNotMatch"));
                 return;
             }
             if (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(ConfirmPassword))
             {
-                MessageBox.Show("A mezők kitöltése kötelező!");
+                MessageBox.Show((string)Application.Current.FindResource("FieldsRequierd"));
                 return;
             }
 
             if (!EmailValidator.IsValidEmail(Email))
             {
-                MessageBox.Show("Hibás e-mail cím formátum.");
+                MessageBox.Show((string)Application.Current.FindResource("IncorrectEmailFormat"));
                 return;
             }
 
             if (!PasswordManager.IsValidPassword(Password))
             {
-                MessageBox.Show("A jelszónak legalább 8 karakter hosszúnak kell lennie, és tartalmaznia kell nagybetűt, kisbetűt, számot és speciális karaktert.");
+                MessageBox.Show((string)Application.Current.FindResource("IncorrectPasswordFormat"));
                 return;
             }
 
             if (_dbContext.Users.Any(u => u.Email == Email))
             {
-                MessageBox.Show("Ez az e-mail cím már foglalt.");
+                MessageBox.Show((string)Application.Current.FindResource("EmailAddressAlreadyTaken"));
                 return;
             }
 
@@ -65,7 +65,7 @@ namespace Tool_Data_Inventory_Manager.Features.AuthenticationService
             {
                 MessageBox.Show(ex.ToString());
             }
-            MessageBox.Show("Sikeres regisztráció!");
+            MessageBox.Show((string)Application.Current.FindResource("SuccessfullRegistration"));
         }
     }
 }

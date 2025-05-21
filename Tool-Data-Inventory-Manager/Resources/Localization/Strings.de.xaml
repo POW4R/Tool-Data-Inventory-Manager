@@ -23,7 +23,27 @@
     <sys:String x:Key="SaveNewPassword">Neues Passwort speichern</sys:String>
     <sys:String x:Key="Welcome">Willkommen!</sys:String>
     <sys:String x:Key="PleaseChooseAnOption">Bitte wählen Sie eine Option!</sys:String>
-
+    <sys:String x:Key="PasswordsNotMatch">Die Passwörter stimmen nicht überein.</sys:String>
+    <sys:String x:Key="FieldsRequierd">Alle Felder sind erforderlich!</sys:String>
+    <sys:String x:Key="IncorrectEmailFormat">Ungültiges E-Mail-Format.</sys:String>
+    <sys:String x:Key="IncorrectPasswordFormat">Das Passwort muss mindestens 8 Zeichen lang sein und einen Großbuchstaben, einen Kleinbuchstaben, eine Zahl und ein Sonderzeichen enthalten.</sys:String>
+    <sys:String x:Key="EmailAddressAlreadyTaken">Diese E-Mail-Adresse ist bereits vergeben.</sys:String>
+    <sys:String x:Key="SuccessfullRegistration">Erfolgreiche Registrierung!</sys:String>
+    <sys:String x:Key="IncorrectEmailOrPassword">Falsche E-Mail-Adresse oder Passwort.</sys:String>
+    <sys:String x:Key="PleaseFillAllPasswordFields">Bitte füllen Sie beide Passwortfelder aus.</sys:String>
+    <sys:String x:Key="NewPasswordsNotMatch">Die neuen Passwörter stimmen nicht überein.</sys:String>
+    <sys:String x:Key="EmailNotExist">Diese E-Mail-Adresse existiert nicht.</sys:String>
+    <sys:String x:Key="ErrorChangingPassword">Fehler beim Ändern des Passworts:</sys:String>
+    <sys:String x:Key="PasswordChangedSuccessfully">Passwort erfolgreich geändert!</sys:String>
+    <sys:String x:Key="PleaseEnterEmailAddress">Bitte geben Sie Ihre E-Mail-Adresse ein.</sys:String>
+    <sys:String x:Key="NoUserFoundWithThisEmail">Kein Benutzer mit dieser E-Mail-Adresse gefunden.</sys:String>
+    <sys:String x:Key="TemporaryCodeHasBeenSentToEmail">Ein temporärer Code wurde an Ihre E-Mail gesendet.</sys:String>
+    <sys:String x:Key="EmailAddressNotFound">E-Mail-Adresse nicht gefunden.</sys:String>
+    <sys:String x:Key="TooManyFailedAttemptsPleaseRequestNewPasswordReset">Zu viele fehlgeschlagene Versuche. Bitte fordern Sie eine neue Passwortzurücksetzung an.</sys:String>
+    <sys:String x:Key="InvalidCodeFormat">Ungültiges Code-Format.</sys:String>
+    <sys:String x:Key="InvalidCode">Ungültiger Code.</sys:String>
+    <sys:String x:Key="TheCodeExpiredPleaseRequestNewPasswordReset">Der Code ist abgelaufen. Bitte fordern Sie eine neue Passwortzurücksetzung an.</sys:String>
+    <sys:String x:Key="CodeVerifiedPleaseSetANewPassword">Code bestätigt! Bitte legen Sie ein neues Passwort fest.</sys:String>
 
     <sys:String x:Key="AddNewMachine">Neue Maschine hinzufügen</sys:String>
     <sys:String x:Key="MachineName">Maschinenname</sys:String>

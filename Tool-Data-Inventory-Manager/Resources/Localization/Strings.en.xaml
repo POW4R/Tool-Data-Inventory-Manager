@@ -23,6 +23,28 @@
     <sys:String x:Key="SaveNewPassword">Save new password</sys:String>
     <sys:String x:Key="Welcome">Welcome!</sys:String>
     <sys:String x:Key="PleaseChooseAnOption">Please choose an option!</sys:String>
+    <sys:String x:Key="PasswordsNotMatch">The passwords do not match.</sys:String>
+    <sys:String x:Key="FieldsRequierd">The fields are required!</sys:String>
+    <sys:String x:Key="IncorrectEmailFormat">Incorrect email address format.</sys:String>
+    <sys:String x:Key="IncorrectPasswordFormat">The password must be at least 8 characters long and contain an uppercase letter, a lowercase letter, a number, and a special character.</sys:String>
+    <sys:String x:Key="EmailAddressAlreadyTaken">This email address is already taken.</sys:String>
+    <sys:String x:Key="SuccessfullRegistration">Successful registration!</sys:String>
+    <sys:String x:Key="IncorrectEmailOrPassword">Incorrect email or password.</sys:String>
+    <sys:String x:Key="PleaseFillAllPasswordFields">Please fill in both password fields.</sys:String>
+    <sys:String x:Key="NewPasswordsNotMatch">The new passwords do not match.</sys:String>
+    <sys:String x:Key="EmailNotExist">This email address does not exist.</sys:String>
+    <sys:String x:Key="ErrorChangingPassword">An error occurred while changing your password: </sys:String>
+    <sys:String x:Key="PasswordChangedSuccessfully">Password changed successfully!</sys:String>
+    <sys:String x:Key="PleaseEnterEmailAddress">Please enter your email address.</sys:String>
+    <sys:String x:Key="NoUserFoundWithThisEmail">No user found with this email address.</sys:String>
+    <sys:String x:Key="TemporaryCodeHasBeenSentToEmail">Temporary code has been sent to your email.</sys:String>
+    <sys:String x:Key="EmailAddressNotFound">Email address not found.</sys:String>
+    <sys:String x:Key="TooManyFailedAttemptsPleaseRequestNewPasswordReset">Too many failed attempts. Please request a new password reset.</sys:String>
+    <sys:String x:Key="InvalidCodeFormat">Invalid code format.</sys:String>
+    <sys:String x:Key="InvalidCode">Invalid code.</sys:String>
+    <sys:String x:Key="TheCodeExpiredPleaseRequestNewPasswordReset">The code has expired. Please request a new password reset.</sys:String>
+    <sys:String x:Key="CodeVerifiedPleaseSetANewPassword">Code verified! Please set a new password.</sys:String>
+
 
     <sys:String x:Key="AddNewMachine">Add new machine</sys:String>
     <sys:String x:Key="MachineName">Machine name</sys:String>
