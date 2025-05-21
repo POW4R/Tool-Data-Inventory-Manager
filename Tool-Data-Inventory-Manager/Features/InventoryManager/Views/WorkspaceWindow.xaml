@@ -73,15 +73,17 @@
                                       MouseDoubleClick="ProductDataGrid_MouseDoubleClick" 
                                       SelectionMode="Single">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="{DynamicResource ProductNumber}" Binding="{Binding ProductNumber}" />
-                                    <DataGridTextColumn Header="{DynamicResource Type}" Binding="{Binding Type}" />
-                                    <DataGridTemplateColumn Header="{DynamicResource Tools}">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Tools, Converter={StaticResource ToolListToStringConverter}}" TextWrapping="Wrap"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="ProductNumber" Binding="{Binding ProductNumber}" />
+                                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" />
+                                    <DataGridTextColumn Header="Tools" Binding="{Binding Tools}" />
+                                    <DataGridTextColumn Header="Nagyolomaro" Binding="{Binding Nagyolomaro}" />
+                                    <DataGridTextColumn Header="Sorjazomaro" Binding="{Binding Sorjazomaro}" />
+                                    <DataGridTextColumn Header="Simitomaro" Binding="{Binding Simitomaro}" />
+                                    <DataGridTextColumn Header="NagyoloI" Binding="{Binding NagyoloI}" />
+                                    <DataGridTextColumn Header="NagyoloII" Binding="{Binding NagyoloII}" />
+                                    <DataGridTextColumn Header="Simito2" Binding="{Binding Simito2}" />
+                                    <DataGridTextColumn Header="Elofuro" Binding="{Binding Elofuro}" />
+                                    <DataGridTextColumn Header="Csigafuro" Binding="{Binding Csigafuro}" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </GroupBox>

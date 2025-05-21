@@ -56,7 +56,10 @@ public partial class WorkspaceWindow : Window
     private void LoadProducts()
     {
         _allProducts = _context.Products.Include(p => p.Tools).ToList();
-        ProductDataGrid.ItemsSource = _allProducts;
+
+        var viewModelList = _allProducts.Select(p => new ProductViewModel(p)).ToList();
+
+        ProductDataGrid.ItemsSource = viewModelList;
         DisableSortingOnDataGrid(ProductDataGrid);
     }
     private void LoadMachines()
@@ -114,10 +117,12 @@ public partial class WorkspaceWindow : Window
         if (ProductDataGrid.SelectedItem is Product selectedProduct)
         {
             var editor = new ProductEditorWindow(selectedProduct, _context) { Owner = this };
+
             if (editor.ShowDialog() == true)
             {
                 _context.SaveChanges();
                 LoadProducts();
+
             }
         }
     }
