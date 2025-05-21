@@ -82,7 +82,7 @@
     <sys:String x:Key="Tools">Szerszámok</sys:String>
     <sys:String x:Key="Products">Termékek</sys:String>
     <sys:String x:Key="Machines">Gépek</sys:String>
-    <sys:String x:Key="Export">Exportálás</sys:String>
+    <sys:String x:Key="Export">Exportálás/Keresés</sys:String>
     <sys:String x:Key="Search">Keresés</sys:String>
     <sys:String x:Key="Price">Ár</sys:String>
     <sys:String x:Key="DeleteSelectedTool">Kijelölt szerszám törlése</sys:String>

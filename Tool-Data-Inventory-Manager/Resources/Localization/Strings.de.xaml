@@ -82,7 +82,7 @@
     <sys:String x:Key="Tools">Werkzeuge</sys:String>
     <sys:String x:Key="Products">Produkte</sys:String>
     <sys:String x:Key="Machines">Maschinen</sys:String>
-    <sys:String x:Key="Export">Exportieren</sys:String>
+    <sys:String x:Key="Export">Exportieren/Suchen</sys:String>
     <sys:String x:Key="Search">Suche</sys:String>
     <sys:String x:Key="Price">Preis</sys:String>
     <sys:String x:Key="DeleteSelectedTool">Ausgewähltes Werkzeug löschen</sys:String>
