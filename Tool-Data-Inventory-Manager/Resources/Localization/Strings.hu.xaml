@@ -68,5 +68,18 @@
     <sys:String x:Key="LoggedIn">Bejelentkezve: </sys:String>
     <sys:String x:Key="DeleteSelectedProduct">Kijelölt termék törlése</sys:String>
     <sys:String x:Key="DeleteMachine">Gép törlése</sys:String>
+    <sys:String x:Key="DeleteProductConfirmation">Biztosan törölni szeretnéd a(z) „{0} - {1}” terméket?</sys:String>
+    <sys:String x:Key="Confirm">Megerősítés</sys:String>
+    <sys:String x:Key="SelectProduct">Előbb válassz ki egy terméket a törléshez.</sys:String>
+    <sys:String x:Key="Selection">Nincs kijelölés</sys:String>
+    <sys:String x:Key="DeleteToolBox">Biztosan törölni szeretnéd a(z) "{1}" szerszámot?</sys:String>
+    <sys:String x:Key="SelectTool">Előbb válassz ki egy szerszámot a törléshez.</sys:String>
+    <sys:String x:Key="DeleteMeachineBox">Biztosan törölni szeretnéd a(z) "{0}" gépet?</sys:String>
+    <sys:String x:Key="SelectMachine">Előbb válassz ki egy gépet a törléshez.</sys:String>
+    <sys:String x:Key="ExportOk">Export kész</sys:String>
+    <sys:String x:Key="Error">Hiba</sys:String>
+    <sys:String x:Key="ErrorBox">Hiba történt a mentés során: {0}</sys:String>
+    <sys:String x:Key="LogOutBox">Biztosan ki szeretnél lépni?</sys:String>
+    <sys:String x:Key="LogOut">Kijelentkezés</sys:String>
 
 </ResourceDictionary>

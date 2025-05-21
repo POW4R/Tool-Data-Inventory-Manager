@@ -68,4 +68,19 @@
     <sys:String x:Key="LoggedIn">Logged in: </sys:String>
     <sys:String x:Key="DeleteSelectedProduct">Delete selected product</sys:String>
     <sys:String x:Key="DeleteMachine">Delete machine</sys:String>
+    <sys:String x:Key="DeleteProductConfirmation">Are you sure you want to delete the product "{0} - {1}"?</sys:String>
+    <sys:String x:Key="Confirm">Confirmation</sys:String>
+    <sys:String x:Key="SelectProduct">First select a product to delete.</sys:String>
+    <sys:String x:Key="Selection">No selection</sys:String>
+    <sys:String x:Key="DeleteMachineBox">Are you sure you want to delete the "{1}" tool?</sys:String>
+    <sys:String x:Key="SelectTool">First, choose a tool to erase.</sys:String>
+    <sys:String x:Key="DeleteMeachineBox">Are you sure you want to delete "{0}"?</sys:String>
+    <sys:String x:Key="SelectMachine">First, choose a machine to delete.</sys:String>
+    <sys:String x:Key="ExportOk">Export ready</sys:String>
+    <sys:String x:Key="Error">Error</sys:String>
+    <sys:String x:Key="ErrorBox">An error occurred during the rescue: {0}</sys:String>
+    <sys:String x:Key="LogOutBox">Are you sure you want to quit?</sys:String>
+    <sys:String x:Key="LogOut">Log out</sys:String>
+
+
 </ResourceDictionary>
