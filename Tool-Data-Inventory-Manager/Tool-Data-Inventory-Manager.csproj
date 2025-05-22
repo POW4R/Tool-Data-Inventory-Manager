@@ -11,10 +11,13 @@
 
   <ItemGroup>
     <None Remove="Resources\Tool-Data-Icon.png" />
+    <None Remove="Resources\userconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.104.2" />
+    <PackageReference Include="dotenv.net" Version="3.2.1" />
+    <PackageReference Include="DotNetEnv" Version="3.1.1" />
     <PackageReference Include="EntityFramework" Version="6.5.1" />
     <PackageReference Include="Firebase.Auth" Version="1.0.0" />
     <PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
@@ -40,6 +43,12 @@
 
   <ItemGroup>
     <Resource Include="Resources\Tool-Data-Icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update=".env">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

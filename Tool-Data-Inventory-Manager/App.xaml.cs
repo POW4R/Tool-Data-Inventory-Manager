@@ -3,6 +3,8 @@ using System.Data;
 using System.Windows;
 using Serilog;
 using Serilog.Sinks.MSSqlServer;
+using DotNetEnv;
+
 
 namespace Tool_Data_Inventory_Manager
 {
@@ -13,6 +15,8 @@ namespace Tool_Data_Inventory_Manager
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            Env.Load();
+
             var sinkOpts = new MSSqlServerSinkOptions
             {
                 TableName = "Logs",
@@ -31,16 +35,17 @@ namespace Tool_Data_Inventory_Manager
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.MSSqlServer(
-                    connectionString: "Server=localhost\\SQLEXPRESS;Database=Inventory Manager;Trusted_Connection=True;Encrypt=False;",
+                    connectionString: Environment.GetEnvironmentVariable("SQL_SERVER"),
                     sinkOptions: sinkOpts,
                     columnOptions: columnOpts
                 )
                 .Enrich.WithProperty("AppName", "InventoryManager")
                 .CreateLogger();
 
-            Log.Information("Alkalmazás elindult.");
-
+            
             base.OnStartup(e);
+            
+            Log.Information("Alkalmazás elindult.");
         }
 
         protected override void OnExit(ExitEventArgs e)

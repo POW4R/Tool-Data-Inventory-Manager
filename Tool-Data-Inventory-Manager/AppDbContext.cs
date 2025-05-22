@@ -1,6 +1,9 @@
 ﻿
 using Tool_Data_Inventory_Manager.Features.InventoryManager.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration;
+using System.Windows;
 
 namespace Tool_Data_Inventory_Manager
 {
@@ -10,9 +13,10 @@ namespace Tool_Data_Inventory_Manager
         public DbSet<Tool> Tools { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Machine> Machines { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Inventory Manager;Trusted_Connection=True;Encrypt=False;");
+            options.UseSqlServer(Environment.GetEnvironmentVariable("SQL_SERVER"));
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

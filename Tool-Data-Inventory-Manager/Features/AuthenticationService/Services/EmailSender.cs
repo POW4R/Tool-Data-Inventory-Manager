@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
 using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,9 +12,9 @@ namespace Tool_Data_Inventory_Manager
     {
         public static void SendTemporaryCode(string toEmail, string code)
         {
-            var fromAddress = new MailAddress("tool.data.inventory.manager@gmail.com", "Tool-Data-Inventory-Manager");
+            var fromAddress = new MailAddress(Environment.GetEnvironmentVariable("SENDER_EMAIL"), Environment.GetEnvironmentVariable("SENDER_APP_NAME"));
             var toAddress = new MailAddress(toEmail);
-            const string fromPassword = "lewe sbjq dnik lmmq";
+            string fromPassword = Environment.GetEnvironmentVariable("SENDER_APP_PASSWORD");
 
             const string subject = "Elfelejtett jelszó - Ideiglenes kód";
             string body = $"Az ideiglenes kódod: {code}\nEz a kód 10 percig érvényes.";

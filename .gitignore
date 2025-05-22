@@ -353,3 +353,9 @@ Temporary Items
 # Excel files
 *.xlsx
 *.csv
+
+# Userconfig
+userconfig.json
+
+#Env
+.env
