@@ -34,10 +34,6 @@ public partial class WorkspaceWindow : Window
     private List<Machine> _allMachines;
     private readonly string _loggedInUserName;
     private List<SearchResult> _searchResults;
-
-
-
-
     public WorkspaceWindow(User user)
     {
         InitializeComponent();
@@ -448,6 +444,8 @@ public partial class WorkspaceWindow : Window
             return;
         }
     }
+
+    //If needed to export the search results, its here. And also the button exists in the XAML.
     private void btn_export_search_Click(object sender, RoutedEventArgs e)
     {
         var _searchResults = new List<SearchResoult>();
