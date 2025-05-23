@@ -16,6 +16,9 @@ using ClosedXML.Excel;
 using Microsoft.Win32;
 using Serilog;
 using Tool_Data_Inventory_Manager.Features.AuthenticationService.Views;
+using System.DirectoryServices;
+using System.Data;
+using Tool_Data_Inventory_Manager.Features.Utils;
 
 namespace Tool_Data_Inventory_Manager.Features.InventoryManager.Views;
 
@@ -30,6 +33,8 @@ public partial class WorkspaceWindow : Window
     private Machine _selectedMachine;
     private List<Machine> _allMachines;
     private readonly string _loggedInUserName;
+    private List<SearchResult> _searchResults;
+
 
 
 
@@ -298,8 +303,8 @@ public partial class WorkspaceWindow : Window
         var saveDialog = new SaveFileDialog
         {
             FileName = "TDV-list",
-            DefaultExt = ".xlsx",
-            Filter = "Excel munkafüzet (*.xlsx)|*.xlsx"
+            DefaultExt = ".csv",
+            Filter = "Excel munkafüzet (*.csv)|*.csv"
         };
 
         if (saveDialog.ShowDialog() != true)
@@ -369,6 +374,52 @@ public partial class WorkspaceWindow : Window
             MessageBox.Show(errorBox, errorMessage , MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
+    private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        var searchText = txtSearch.Text;
+
+        if (string.IsNullOrWhiteSpace(searchText))
+        {
+            SearchResultsDataGrid.ItemsSource = null;
+            return;
+        }
+
+        var _searchResults = new List<SearchResoult>();
+
+        foreach (var machine in _allMachines)
+        {
+            foreach (var product in machine.Products)
+            {
+                var productWithTools = _context.Products
+                    .Include(p => p.Tools)
+                    .FirstOrDefault(p => p.Id == product.Id);
+
+                if (productWithTools != null)
+                {
+                    foreach (var tool in productWithTools.Tools)
+                    {
+                        if ((machine.Name != null && machine.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase)) ||
+                            (product.ProductNumber != null && product.ProductNumber.ToString().Contains(searchText, StringComparison.OrdinalIgnoreCase)) ||
+                            (tool.Name != null && tool.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase)) ||
+                            (tool.MaterialNumber != null && tool.MaterialNumber.ToString().Contains(searchText, StringComparison.OrdinalIgnoreCase)) || // Fixed: Convert MaterialNumber to string
+                            (tool.MagPlace != null && tool.MagPlace.Value.ToString().Contains(searchText, StringComparison.OrdinalIgnoreCase))) // Fixed: Convert MagPlace to string
+                        {
+                            _searchResults.Add(new SearchResoult
+                            {
+                                MachineName = machine.Name,
+                                ProductNumber = product.ProductNumber.ToString(),
+                                ToolName = tool.Name,
+                                MaterialNumber = tool.MaterialNumber.ToString() ?? string.Empty,
+                                MagPlace = tool.MagPlace?.ToString() ?? string.Empty
+                            });
+                        }
+                    }
+                }
+            }
+        }
+
+        SearchResultsDataGrid.ItemsSource = _searchResults;
+    }
     private void DisableSortingOnDataGrid(DataGrid dataGrid)
     {
         foreach (var column in dataGrid.Columns)
@@ -391,6 +442,68 @@ public partial class WorkspaceWindow : Window
         else
         {
             return;
+        }
+    }
+    private void btn_export_search_Click(object sender, RoutedEventArgs e)
+    {
+        var _searchResults = new List<SearchResoult>();
+        var saveDialog = new SaveFileDialog
+        {
+            FileName = "TDV-Search_Resoult",
+            DefaultExt = ".csv",
+            Filter = "Excel munkafüzet (*.csv)|*.csv"
+        };
+
+        if (saveDialog.ShowDialog() != true)
+            return;
+
+        var workbook = new XLWorkbook();
+        var worksheet = workbook.Worksheets.Add("Export");
+
+        int startRow = 8;
+        int startCol = 2;
+
+        // Fejlécek
+        worksheet.Cell(startRow, startCol).Value = "MachineName";
+        worksheet.Cell(startRow, startCol + 1).Value = "ProductNumber";
+        worksheet.Cell(startRow, startCol + 2).Value = "ToolName";
+        worksheet.Cell(startRow, startCol + 3).Value = "MaterialNumber";
+        worksheet.Cell(startRow, startCol + 4).Value = "MagPlace";
+
+        int currentRow = startRow + 1;
+        foreach (var resoult in _searchResults)
+        {
+            worksheet.Cell(currentRow, startCol).Value = resoult.MachineName;
+            worksheet.Cell(currentRow, startCol + 1).Value = resoult.ProductNumber;
+            worksheet.Cell(currentRow, startCol + 2).Value = resoult.ToolName;
+            worksheet.Cell(currentRow, startCol + 3).Value = resoult.MaterialNumber;
+            worksheet.Cell(currentRow, startCol + 4).Value = resoult.MagPlace;
+        }
+        // Formázás
+        var headerRange = worksheet.Range(startRow, startCol, startRow, startCol + 4);
+        headerRange.Style.Font.Bold = true;
+        headerRange.Style.Fill.BackgroundColor = ClosedXML.Excel.XLColor.LightGray;
+        headerRange.Style.Alignment.Horizontal = ClosedXML.Excel.XLAlignmentHorizontalValues.Center;
+
+        var dataRange = worksheet.Range(startRow, startCol, currentRow - 1, startCol + 4);
+        dataRange.Style.Border.OutsideBorder = ClosedXML.Excel.XLBorderStyleValues.Thin;
+        dataRange.Style.Border.InsideBorder = ClosedXML.Excel.XLBorderStyleValues.Thin;
+
+        worksheet.Columns().AdjustToContents();
+
+        string exportExel = (string)Application.Current.Resources["ExportExcel"];
+        try
+        {
+            workbook.SaveAs(saveDialog.FileName);
+            string exportOk = (string)Application.Current.Resources["ExportOk"];
+            MessageBox.Show(exportExel, exportOk, MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        catch (Exception ex)
+        {
+            string errorMessage = (string)Application.Current.Resources["Error"];
+            string format = (string)Application.Current.Resources["ErrorBox"];
+            string errorBox = string.Format(format, ex.Message);
+            MessageBox.Show(errorBox, errorMessage, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

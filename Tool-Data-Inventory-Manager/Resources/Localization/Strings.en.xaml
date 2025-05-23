@@ -83,8 +83,11 @@
     <sys:String x:Key="Tools">Tools</sys:String>
     <sys:String x:Key="Products">Products</sys:String>
     <sys:String x:Key="Machines">Machines</sys:String>
-    <sys:String x:Key="Export">Export/Search</sys:String>
-    <sys:String x:Key="Search">Search</sys:String>
+    <sys:String x:Key="ExportTab">Export/Search</sys:String>
+    <sys:String x:Key="Export_Search">Export Search</sys:String>
+    <sys:String x:Key="SearchToolTip">Search in all data (machine name, product number, tool name, etc.)</sys:String>
+    <sys:String x:Key="SearchResults">Search Results</sys:String>
+    <sys:String x:Key="ToolName">Tool Name</sys:String>
     <sys:String x:Key="Price">Price</sys:String>
     <sys:String x:Key="DeleteSelectedTool">Delete selected tool</sys:String>
     <sys:String x:Key="LoggedIn">Logged in: </sys:String>
