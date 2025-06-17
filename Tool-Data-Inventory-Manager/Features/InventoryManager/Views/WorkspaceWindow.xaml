@@ -287,7 +287,7 @@
             Padding="10"
             HorizontalAlignment="Right"
             Click="btn_logout_Click"
-            Content="Log Out"
+            Content="{DynamicResource LogOut}"
             RenderTransformOrigin="0.5,0.60" />
     </Grid>
 </Window>

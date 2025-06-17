@@ -1,6 +1,7 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:String x:Key="Login">Anmelden</sys:String>
     <sys:String x:Key="Register">Registrieren</sys:String>
     <sys:String x:Key="Email">E-Mail</sys:String>
@@ -90,7 +91,7 @@
     <sys:String x:Key="ToolName">Werkzeugname</sys:String>
     <sys:String x:Key="Price">Preis</sys:String>
     <sys:String x:Key="DeleteSelectedTool">Ausgewähltes Werkzeug löschen</sys:String>
-    <sys:String x:Key="LoggedIn">Angemeldet: </sys:String>
+    <sys:String x:Key="LoggedIn">Angemeldet:</sys:String>
     <sys:String x:Key="DeleteSelectedProduct">Ausgewähltes Produkt löschen</sys:String>
     <sys:String x:Key="DeleteMachine">Maschine löschen</sys:String>
     <sys:String x:Key="DeleteProductConfirmation">Sind Sie sicher, dass Sie „{0} - {1}“ löschen wollen?</sys:String>

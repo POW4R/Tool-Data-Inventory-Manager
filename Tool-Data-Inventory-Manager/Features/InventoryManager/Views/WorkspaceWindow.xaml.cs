@@ -347,10 +347,6 @@ public partial class WorkspaceWindow : Window
                     }
                 }
             }
-
-            string exportOk = (string)Application.Current.Resources["ExportOk"];
-            string exportExel = (string)Application.Current.Resources["ExportExcel"];
-            MessageBox.Show(exportExel, exportOk, MessageBoxButton.OK, MessageBoxImage.Information);
         }
         catch (Exception ex)
         {
