@@ -304,66 +304,52 @@ public partial class WorkspaceWindow : Window
         {
             FileName = "TDV-list",
             DefaultExt = ".csv",
-            Filter = "Excel munkafüzet (*.csv)|*.csv"
+            Filter = "CSV file (*.csv)|*.csv"
         };
 
         if (saveDialog.ShowDialog() != true)
             return;
 
-        var workbook = new XLWorkbook();
-        var worksheet = workbook.Worksheets.Add("Export");
-
-        int startRow = 8;
-        int startCol = 2;
-
-        // Fejlécek
-        worksheet.Cell(startRow, startCol).Value = "MachineName";
-        worksheet.Cell(startRow, startCol + 1).Value = "ProductNumber";
-        worksheet.Cell(startRow, startCol + 2).Value = "ToolName";
-        worksheet.Cell(startRow, startCol + 3).Value = "MaterialNumber";
-        worksheet.Cell(startRow, startCol + 4).Value = "MagPlace";
-
-        int currentRow = startRow + 1;
-
-        foreach (var machine in _allMachines)
+        try
         {
-            foreach (var product in machine.Products)
+            using (var writer = new StreamWriter(saveDialog.FileName, false, Encoding.UTF8))
             {
-                var productWithTools = _context.Products
-                    .Include(p => p.Tools)
-                    .FirstOrDefault(p => p.Id == product.Id);
+                // 1. Üres sor
+                writer.WriteLine();
 
-                if (productWithTools != null)
+                // 2. Fejléc pontosvesszőkkel
+                writer.WriteLine(";MachineName;ProductNumber;ToolName;MaterialNumber;MagPlace");
+
+                // 3. Adatsorok
+                foreach (var machine in _allMachines)
                 {
-                    foreach (var tool in productWithTools.Tools)
+                    foreach (var product in machine.Products)
                     {
-                        worksheet.Cell(currentRow, startCol).Value = machine.Name;
-                        worksheet.Cell(currentRow, startCol + 1).Value = product.ProductNumber;
-                        worksheet.Cell(currentRow, startCol + 2).Value = tool.Name;
-                        worksheet.Cell(currentRow, startCol + 3).Value = tool.MaterialNumber;
-                        worksheet.Cell(currentRow, startCol + 4).Value = tool.MagPlace;
-                        currentRow++;
+                        var productWithTools = _context.Products
+                            .Include(p => p.Tools)
+                            .FirstOrDefault(p => p.Id == product.Id);
+
+                        if (productWithTools != null)
+                        {
+                            foreach (var tool in productWithTools.Tools)
+                            {
+                                string line = ";" + string.Join(";", new[]
+                                {
+                                EscapeForCsv(machine.Name),
+                                EscapeForCsv(product.ProductNumber.ToString()),
+                                EscapeForCsv(tool.Name),
+                                EscapeForCsv(tool.MaterialNumber.ToString()),
+                                EscapeForCsv(tool.MagPlace.ToString())
+                            });
+                                writer.WriteLine(line);
+                            }
+                        }
                     }
                 }
             }
-        }
-        // Formázás
-        var headerRange = worksheet.Range(startRow, startCol, startRow, startCol + 4);
-        headerRange.Style.Font.Bold = true;
-        headerRange.Style.Fill.BackgroundColor = ClosedXML.Excel.XLColor.LightGray;
-        headerRange.Style.Alignment.Horizontal = ClosedXML.Excel.XLAlignmentHorizontalValues.Center;
 
-        var dataRange = worksheet.Range(startRow, startCol, currentRow - 1, startCol + 4);
-        dataRange.Style.Border.OutsideBorder = ClosedXML.Excel.XLBorderStyleValues.Thin;
-        dataRange.Style.Border.InsideBorder = ClosedXML.Excel.XLBorderStyleValues.Thin;
-
-        worksheet.Columns().AdjustToContents();
-
-        string exportExel = (string)Application.Current.Resources["ExportExcel"];
-        try
-        {
-            workbook.SaveAs(saveDialog.FileName);
             string exportOk = (string)Application.Current.Resources["ExportOk"];
+            string exportExel = (string)Application.Current.Resources["ExportExcel"];
             MessageBox.Show(exportExel, exportOk, MessageBoxButton.OK, MessageBoxImage.Information);
         }
         catch (Exception ex)
@@ -371,9 +357,23 @@ public partial class WorkspaceWindow : Window
             string errorMessage = (string)Application.Current.Resources["Error"];
             string format = (string)Application.Current.Resources["ErrorBox"];
             string errorBox = string.Format(format, ex.Message);
-            MessageBox.Show(errorBox, errorMessage , MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(errorBox, errorMessage, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
+
+    private string EscapeForCsv(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return "";
+
+        // Ha van pontosvessző, idézőjel vagy sortörés, akkor idézőjelek közé tesszük
+        if (input.Contains(";") || input.Contains("\"") || input.Contains("\n"))
+            return $"\"{input.Replace("\"", "\"\"")}\"";
+
+        return input;
+    }
+
+
     private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
     {
         var searchText = txtSearch.Text;

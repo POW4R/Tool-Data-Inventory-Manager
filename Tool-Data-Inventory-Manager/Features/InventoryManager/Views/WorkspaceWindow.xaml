@@ -1,124 +1,206 @@
-﻿<Window x:Class="Tool_Data_Inventory_Manager.Features.InventoryManager.Views.WorkspaceWindow"
-       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-       xmlns:local="clr-namespace:Tool_Data_Inventory_Manager.Features.InventoryManager.Converters"
-       Title="Tool Product Manager" Height="700" Width="900"
-       WindowStartupLocation="CenterScreen"
-       WindowState="Maximized"
-       Icon="/Resources/Tool-Data-Icon.png">
+﻿<Window
+    x:Class="Tool_Data_Inventory_Manager.Features.InventoryManager.Views.WorkspaceWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Tool_Data_Inventory_Manager.Features.InventoryManager.Converters"
+    Title="Tool Product Manager"
+    Width="900"
+    Height="700"
+    Icon="/Resources/Tool-Data-Icon.png"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized">
     <Window.Resources>
-        <local:ToolListToStringConverter x:Key="ToolListToStringConverter"/>
+        <local:ToolListToStringConverter x:Key="ToolListToStringConverter" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,5,627" Width="239">
-            <TextBlock Text="{DynamicResource LoggedIn}" FontWeight="Bold"/>
-            <TextBlock Text="{Binding LoggedInUserName}" x:Name="tb_loggedInUserName" />
+        <StackPanel
+            Grid.Row="0"
+            Width="239"
+            Margin="0,5,5,627"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <TextBlock FontWeight="Bold" Text="{DynamicResource LoggedIn}" />
+            <TextBlock x:Name="tb_loggedInUserName" Text="{Binding LoggedInUserName}" />
         </StackPanel>
         <TabControl>
-            <!-- MACHINE TAB -->
+            <!--  MACHINE TAB  -->
             <TabItem Header="{DynamicResource Machines}" RenderTransformOrigin="-2.334,0.498">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10">
-                        <GroupBox Header="Machine keresés" Margin="0 0 0 10">
-                            <StackPanel Orientation="Vertical" Margin="5">
-                                <Button Content="{DynamicResource AddNewMachine}" Click="AddMachine_Click" Margin="5" Width="150" Height="30"/>
+                        <GroupBox Margin="0,0,0,10" Header="Machine keresés">
+                            <StackPanel Margin="5" Orientation="Vertical">
+                                <Button
+                                    Width="150"
+                                    Height="30"
+                                    Margin="5"
+                                    Click="AddMachine_Click"
+                                    Content="{DynamicResource AddNewMachine}" />
                             </StackPanel>
                         </GroupBox>
 
-                        <GroupBox Header="Gépek" Margin="0 10 0 10">
-                            <DataGrid x:Name="MachineDataGrid"
-                         AutoGenerateColumns="False" 
-                         IsReadOnly="True"
-                         Height="400"
-                         SelectionMode="Single" 
-                         MouseDoubleClick="MachineDataGrid_MouseDoubleClick">
+                        <GroupBox Margin="0,10,0,10" Header="Gépek">
+                            <DataGrid
+                                x:Name="MachineDataGrid"
+                                Height="400"
+                                AutoGenerateColumns="False"
+                                IsReadOnly="True"
+                                MouseDoubleClick="MachineDataGrid_MouseDoubleClick"
+                                SelectionMode="Single">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Name}" Width="*"/>
-                                    <DataGridTextColumn Header="{DynamicResource Products}" Binding="{Binding Products}" Width="3*"/>
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding Name}"
+                                        Header="{DynamicResource Name}" />
+                                    <DataGridTextColumn
+                                        Width="3*"
+                                        Binding="{Binding Products}"
+                                        Header="{DynamicResource Products}" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </GroupBox>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
-                            <Button Content="{DynamicResource DeleteMachine}" Click="DeleteMachineButton_Click" Width="130" Height="30"/>
+                        <StackPanel
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Button
+                                Width="130"
+                                Height="30"
+                                Click="DeleteMachineButton_Click"
+                                Content="{DynamicResource DeleteMachine}" />
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
 
-            <!-- PRODUCT TAB -->
+            <!--  PRODUCT TAB  -->
             <TabItem Header="{DynamicResource Products}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10">
-                        <GroupBox Header="Product hozzáadása" Margin="0 0 0 10">
-                            <StackPanel Orientation="Vertical" Margin="5">
-                                <Button Content="{DynamicResource AddNewProduct}" Click="AddProduct_Click" Margin="5" Width="139" Height="30"/>
+                        <GroupBox Margin="0,0,0,10" Header="Product hozzáadása">
+                            <StackPanel Margin="5" Orientation="Vertical">
+                                <Button
+                                    Width="139"
+                                    Height="30"
+                                    Margin="5"
+                                    Click="AddProduct_Click"
+                                    Content="{DynamicResource AddNewProduct}" />
                             </StackPanel>
                         </GroupBox>
 
                         <GroupBox Header="Product lista">
-                            <DataGrid x:Name="ProductDataGrid"
-                                     AutoGenerateColumns="False" 
-                                     IsReadOnly="True" 
-                                     Height="400" 
-                                     Margin="5"
-                                     MouseDoubleClick="ProductDataGrid_MouseDoubleClick" 
-                                     SelectionMode="Single">
+                            <DataGrid
+                                x:Name="ProductDataGrid"
+                                Height="400"
+                                Margin="5"
+                                AutoGenerateColumns="False"
+                                IsReadOnly="True"
+                                MouseDoubleClick="ProductDataGrid_MouseDoubleClick"
+                                SelectionMode="Single">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ProductNumber" Binding="{Binding ProductNumber}" />
-                                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" />
-                                    <DataGridTextColumn Header="Tools" Binding="{Binding Tools}" />
-                                    <DataGridTextColumn Header="Nagyolomaro" Binding="{Binding Nagyolomaro}" />
-                                    <DataGridTextColumn Header="Sorjazomaro" Binding="{Binding Sorjazomaro}" />
-                                    <DataGridTextColumn Header="Simitomaro" Binding="{Binding Simitomaro}" />
-                                    <DataGridTextColumn Header="NagyoloI" Binding="{Binding NagyoloI}" />
-                                    <DataGridTextColumn Header="NagyoloII" Binding="{Binding NagyoloII}" />
-                                    <DataGridTextColumn Header="Simito2" Binding="{Binding Simito2}" />
-                                    <DataGridTextColumn Header="Elofuro" Binding="{Binding Elofuro}" />
-                                    <DataGridTextColumn Header="Csigafuro" Binding="{Binding Csigafuro}" />
+                                    <DataGridTextColumn Binding="{Binding ProductNumber}" Header="ProductNumber" />
+                                    <DataGridTextColumn Binding="{Binding Type}" Header="Type" />
+                                    <DataGridTextColumn Binding="{Binding Tools}" Header="Tools" />
+                                    <DataGridTextColumn Binding="{Binding Nagyolomaro}" Header="Nagyolomaro" />
+                                    <DataGridTextColumn Binding="{Binding Sorjazomaro}" Header="Sorjazomaro" />
+                                    <DataGridTextColumn Binding="{Binding Simitomaro}" Header="Simitomaro" />
+                                    <DataGridTextColumn Binding="{Binding NagyoloI}" Header="NagyoloI" />
+                                    <DataGridTextColumn Binding="{Binding NagyoloII}" Header="NagyoloII" />
+                                    <DataGridTextColumn Binding="{Binding Simito2}" Header="Simito2" />
+                                    <DataGridTextColumn Binding="{Binding Elofuro}" Header="Elofuro" />
+                                    <DataGridTextColumn Binding="{Binding Csigafuro}" Header="Csigafuro" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </GroupBox>
-                        <Button Content="{DynamicResource DeleteSelectedProduct}" Margin="5" Click="DeleteProduct_Click" Height="30" Width="170"/>
+                        <Button
+                            Width="170"
+                            Height="30"
+                            Margin="5"
+                            Click="DeleteProduct_Click"
+                            Content="{DynamicResource DeleteSelectedProduct}" />
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
 
-            <!-- TOOL TAB -->
+            <!--  TOOL TAB  -->
             <TabItem Header="{DynamicResource Tools}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10">
-                        <Button Content="{DynamicResource AddNewTool}" Click="AddTool_Click" Margin="5" Width="138" Height="30"/>
-                        <GroupBox Header="Tool lista" Margin="0 0 0 20">
-                            <DataGrid x:Name="ToolDataGrid" 
-                                 AutoGenerateColumns="False" 
-                                 IsReadOnly="True" 
-                                 Height="400" 
-                                 Margin="5"
-                                 MouseDoubleClick="ToolDataGrid_MouseDoubleClick" 
-                                 SelectionMode="Single">
+                        <Button
+                            Width="170"
+                            Height="30"
+                            Margin="5"
+                            Click="AddTool_Click"
+                            Content="{DynamicResource AddNewTool}" />
+                        <GroupBox Margin="0,0,0,20" Header="Tool lista">
+                            <DataGrid
+                                x:Name="ToolDataGrid"
+                                Height="400"
+                                Margin="5"
+                                AutoGenerateColumns="False"
+                                IsReadOnly="True"
+                                MouseDoubleClick="ToolDataGrid_MouseDoubleClick"
+                                SelectionMode="Single">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="{DynamicResource MaterialNumber}" Binding="{Binding MaterialNumber}" CanUserSort="False"/>
-                                    <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Name}" CanUserSort="False"/>
-                                    <DataGridTextColumn Header="{DynamicResource MagPlace}" Binding="{Binding MagPlace}" CanUserSort="False"/>
+                                    <DataGridTextColumn
+                                        Binding="{Binding MaterialNumber}"
+                                        CanUserSort="False"
+                                        Header="{DynamicResource MaterialNumber}" />
+                                    <DataGridTextColumn
+                                        Binding="{Binding Name}"
+                                        CanUserSort="False"
+                                        Header="{DynamicResource Name}" />
+                                    <DataGridTextColumn
+                                        Binding="{Binding MagPlace}"
+                                        CanUserSort="False"
+                                        Header="{DynamicResource MagPlace}" />
 
-                                    <DataGridCheckBoxColumn Header="{DynamicResource Nagyolomaro}" Binding="{Binding IsNagyolomaro}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource Sorjazomaro}" Binding="{Binding IsSorjazomaro}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource Simitomaro}" Binding="{Binding IsSimitomaro}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource NagyoloI}" Binding="{Binding IsNagyoloI}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource NagyoloII}" Binding="{Binding IsNagyoloII}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource Simito2}" Binding="{Binding IsSimito2}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource Elofuro}" Binding="{Binding IsElofuro}" CanUserSort="False"/>
-                                    <DataGridCheckBoxColumn Header="{DynamicResource Csigafuro}" Binding="{Binding IsCsigafuro}" CanUserSort="False"/>
+                                    <DataGridCheckBoxColumn
+                                        Binding="{Binding IsNagyolomaro}"
+                                        CanUserSort="False"
+                                        Header="{DynamicResource Nagyolomaro}" />
+                                    <DataGridCheckBoxColumn
+                                        Binding="{Binding IsSorjazomaro}"
+                                        CanUserSort="False"
+                                        Header="{DynamicResource Sorjazomaro}" />
+                                    <DataGridCheckBoxColumn
+                                        Binding="{Binding IsSimitomaro}"
+                                        CanUserSort="False"
+                                        Header="{DynamicResource Simitomaro}" />
+                                    <DataGridCheckBoxColumn
+                                        Binding="{Binding IsNagyoloI}"
+                                        CanUserSort="False"
+                                        Header="{DynamicResource NagyoloI}" />
+                                    <DataGridCheckBoxColumn
+                                        Binding="{Binding IsNagyoloII}"
+                                        CanUserSort="False"
+                                        Header="{DynamicResource NagyoloII}" />
+                                    <DataGridCheckBoxColumn
+                                        Binding="{Binding IsSimito2}"
+                                        CanUserSort="False"
+                                        Header="{DynamicResource Simito2}" />
+                                    <DataGridCheckBoxColumn
+                                        Binding="{Binding IsElofuro}"
+                                        CanUserSort="False"
+                                        Header="{DynamicResource Elofuro}" />
+                                    <DataGridCheckBoxColumn
+                                        Binding="{Binding IsCsigafuro}"
+                                        CanUserSort="False"
+                                        Header="{DynamicResource Csigafuro}" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </GroupBox>
-                        <Button Content="{DynamicResource DeleteSelectedTool}" Margin="5" Click="DeleteTool_Click" Height="30" Width="170"/>
+                        <Button
+                            Width="170"
+                            Height="30"
+                            Margin="5"
+                            Click="DeleteTool_Click"
+                            Content="{DynamicResource DeleteSelectedTool}" />
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
@@ -128,42 +210,84 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10">
                         <GroupBox Header="{DynamicResource Search}">
-                            <StackPanel Orientation="Horizontal" Margin="5">
-                                <ComboBox x:Name="cmbSearchCategory" Width="120" Margin="0,0,5,0" SelectedIndex="0">
-                                    <ComboBoxItem Content="{DynamicResource All}"/>
-                                    <ComboBoxItem Content="{DynamicResource Machines}"/>
-                                    <ComboBoxItem Content="{DynamicResource Products}"/>
-                                    <ComboBoxItem Content="{DynamicResource Tools}"/>
+                            <StackPanel Margin="5" Orientation="Horizontal">
+                                <ComboBox
+                                    x:Name="cmbSearchCategory"
+                                    Width="120"
+                                    Margin="0,0,5,0"
+                                    SelectedIndex="0">
+                                    <ComboBoxItem Content="{DynamicResource All}" />
+                                    <ComboBoxItem Content="{DynamicResource Machines}" />
+                                    <ComboBoxItem Content="{DynamicResource Products}" />
+                                    <ComboBoxItem Content="{DynamicResource Tools}" />
                                 </ComboBox>
-                                <TextBox x:Name="txtSearch" Width="200" TextChanged="TxtSearch_TextChanged" ToolTip="{DynamicResource SearchToolTip}"/>
-                                <!--This is needed if the highers want it. The code behind it is done. You just have to delete the comment.-->
+                                <TextBox
+                                    x:Name="txtSearch"
+                                    Width="200"
+                                    TextChanged="TxtSearch_TextChanged"
+                                    ToolTip="{DynamicResource SearchToolTip}" />
+                                <!--  This is needed if the highers want it. The code behind it is done. You just have to delete the comment.  -->
                                 <!--<Button x:Name="btn_export_search" Content="{DynamicResource Export_Search}" Click="btn_export_search_Click" VerticalAlignment="Top" Width="140" Height="25" Margin="380,0,5,0" HorizontalContentAlignment="Right" FlowDirection="RightToLeft" HorizontalAlignment="Right"/>-->
                             </StackPanel>
                         </GroupBox>
 
-                        <GroupBox Header="{DynamicResource SearchResults}" Margin="0 10 0 10">
-                            <DataGrid x:Name="SearchResultsDataGrid"
-                         AutoGenerateColumns="False" 
-                         IsReadOnly="True"
-                         Height="400"
-                         SelectionMode="Single">
+                        <GroupBox Margin="0,10,0,10" Header="{DynamicResource SearchResults}">
+                            <DataGrid
+                                x:Name="SearchResultsDataGrid"
+                                Height="400"
+                                AutoGenerateColumns="False"
+                                IsReadOnly="True"
+                                SelectionMode="Single">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="{DynamicResource MachineName}" Binding="{Binding MachineName}" Width="*"/>
-                                    <DataGridTextColumn Header="{DynamicResource ProductNumber}" Binding="{Binding ProductNumber}" Width="*"/>
-                                    <DataGridTextColumn Header="{DynamicResource ToolName}" Binding="{Binding ToolName}" Width="*"/>
-                                    <DataGridTextColumn Header="{DynamicResource MaterialNumber}" Binding="{Binding MaterialNumber}" Width="*"/>
-                                    <DataGridTextColumn Header="{DynamicResource MagPlace}" Binding="{Binding MagPlace}" Width="*"/>
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding MachineName}"
+                                        Header="{DynamicResource MachineName}" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding ProductNumber}"
+                                        Header="{DynamicResource ProductNumber}" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding ToolName}"
+                                        Header="{DynamicResource ToolName}" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding MaterialNumber}"
+                                        Header="{DynamicResource MaterialNumber}" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding MagPlace}"
+                                        Header="{DynamicResource MagPlace}" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </GroupBox>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
-                            <Button x:Name="btn_export" Content="{DynamicResource Export}" Click="btn_export_Click" Width="120" Height="30" Margin="5"/>
+                        <StackPanel
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Button
+                                x:Name="btn_export"
+                                Width="120"
+                                Height="30"
+                                Margin="5"
+                                Click="btn_export_Click"
+                                Content="{DynamicResource Export}" />
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
         </TabControl>
-        <Button x:Name="btn_logout" Content="Log Out" Click="btn_logout_Click" RenderTransformOrigin="0.5,0.60" Margin="0,3,255,622" Padding="10" HorizontalAlignment="Right"/>
+        <Button
+            x:Name="btn_logout"
+            Width="70"
+            Height="25"
+            Margin="0,3,255,622"
+            Padding="10"
+            HorizontalAlignment="Right"
+            Click="btn_logout_Click"
+            Content="Log Out"
+            RenderTransformOrigin="0.5,0.60" />
     </Grid>
 </Window>
