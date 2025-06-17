@@ -133,7 +133,7 @@ public partial class WorkspaceWindow : Window
         string confirm = (string)Application.Current.Resources["Confirm"];
         string selectProduct = (string)Application.Current.Resources["SelectProduct"];
         string select = (string)Application.Current.Resources["Selection"];
-        if (ProductDataGrid.SelectedItem is Product selectedProduct)
+        if (ProductDataGrid.SelectedItem is ProductViewModel selectedProduct)
         {
             string deleteProductMessage = string.Format(format, selectedProduct.ProductNumber, selectedProduct.Type);
             var result = MessageBox.Show(
@@ -144,7 +144,7 @@ public partial class WorkspaceWindow : Window
 
             if (result == MessageBoxResult.Yes)
             {
-                _context.Products.Remove(selectedProduct);
+                _context.Products.Remove(selectedProduct.Product);
                 _context.SaveChanges();
                 LoadProducts();
                 Log.Information("Product deleted: {ProductNumber} - {Type}", selectedProduct.ProductNumber, selectedProduct.Type);
@@ -185,6 +185,7 @@ public partial class WorkspaceWindow : Window
                 }
                 Log.Information("User confirmed detachment of tool: {ToolName} from all related products", selectedTool.Name);
             }
+            /*
             string format = (string)Application.Current.Resources["DeleteToolBox"];
             string confirm = (string)Application.Current.Resources["Confirm"];
             string deleteTool = string.Format(format, selectedTool.Name);
@@ -193,8 +194,12 @@ public partial class WorkspaceWindow : Window
                 confirm,
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning);
-
-
+            */
+            var result = MessageBox.Show(
+                (string)Application.Current.Resources["DeleteToolBox"],
+                (string)Application.Current.Resources["Confirm"],
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 Log.Information("User confirmed deletion of tool: {ToolName}", selectedTool.Name);

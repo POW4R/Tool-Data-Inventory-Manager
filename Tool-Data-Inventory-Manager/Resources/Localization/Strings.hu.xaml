@@ -1,6 +1,7 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:String x:Key="Login">Bejelentkezés</sys:String>
     <sys:String x:Key="Register">Regisztráció</sys:String>
     <sys:String x:Key="Email">Email</sys:String>
@@ -90,21 +91,20 @@
     <sys:String x:Key="ToolName">Szerszámnév</sys:String>
     <sys:String x:Key="Price">Ár</sys:String>
     <sys:String x:Key="DeleteSelectedTool">Kijelölt szerszám törlése</sys:String>
-    <sys:String x:Key="LoggedIn">Bejelentkezve: </sys:String>
+    <sys:String x:Key="LoggedIn">Bejelentkezve:</sys:String>
     <sys:String x:Key="DeleteSelectedProduct">Kijelölt termék törlése</sys:String>
     <sys:String x:Key="DeleteMachine">Gép törlése</sys:String>
-    <sys:String x:Key="DeleteProductConfirmation">Biztosan törölni szeretnéd a(z) „{0} - {1}” terméket?</sys:String>
+    <sys:String x:Key="DeleteProductConfirmation">Biztosan törölni szeretnéd az alábbi terméket?</sys:String>
     <sys:String x:Key="Confirm">Megerősítés</sys:String>
     <sys:String x:Key="SelectProduct">Előbb válassz ki egy terméket a törléshez.</sys:String>
     <sys:String x:Key="Selection">Nincs kijelölés</sys:String>
-    <sys:String x:Key="DeleteToolBox">Biztosan törölni szeretnéd a(z) "{1}" szerszámot?</sys:String>
+    <sys:String x:Key="DeleteToolBox">Biztosan törölni szeretnéd ezt a szerszámot?</sys:String>
     <sys:String x:Key="SelectTool">Előbb válassz ki egy szerszámot a törléshez.</sys:String>
-    <sys:String x:Key="DeleteMeachineBox">Biztosan törölni szeretnéd a(z) "{0}" gépet?</sys:String>
+    <sys:String x:Key="DeleteMeachineBox">Biztosan törölni szeretnéd ezt a gépet?</sys:String>
     <sys:String x:Key="SelectMachine">Előbb válassz ki egy gépet a törléshez.</sys:String>
     <sys:String x:Key="ExportOk">Export kész</sys:String>
     <sys:String x:Key="Error">Hiba</sys:String>
-    <sys:String x:Key="ErrorBox">Hiba történt a mentés során: {0}</sys:String>
+    <sys:String x:Key="ErrorBox">Hiba történt a mentés során</sys:String>
     <sys:String x:Key="LogOutBox">Biztosan ki szeretnél lépni?</sys:String>
     <sys:String x:Key="LogOut">Kijelentkezés</sys:String>
-
 </ResourceDictionary>

@@ -94,17 +94,17 @@
     <sys:String x:Key="LoggedIn">Angemeldet:</sys:String>
     <sys:String x:Key="DeleteSelectedProduct">Ausgewähltes Produkt löschen</sys:String>
     <sys:String x:Key="DeleteMachine">Maschine löschen</sys:String>
-    <sys:String x:Key="DeleteProductConfirmation">Sind Sie sicher, dass Sie „{0} - {1}“ löschen wollen?</sys:String>
+    <sys:String x:Key="DeleteProductConfirmation">Möchten Sie dieses Produkt wirklich löschen?</sys:String>
     <sys:String x:Key="Confirm">Konfirmation</sys:String>
     <sys:String x:Key="SelectProduct">Wählen Sie zunächst ein zu löschendes Produkt aus.</sys:String>
     <sys:String x:Key="Selection">Keine Auswahl</sys:String>
-    <sys:String x:Key="DeleteMachineBox">Sind Sie sicher, dass Sie das Werkzeug „{1}“ löschen wollen?</sys:String>
+    <sys:String x:Key="DeleteMachineBox">Möchten Sie dieses Tool wirklich löschen?</sys:String>
     <sys:String x:Key="SelectTool">Wählen Sie zunächst ein Werkzeug zum Löschen.</sys:String>
-    <sys:String x:Key="DeleteMeachineBox">Sind Sie sicher, dass Sie „{0}“ löschen wollen?</sys:String>
+    <sys:String x:Key="DeleteMeachineBox">Sind Sie sicher, dass Sie löschen wollen?</sys:String>
     <sys:String x:Key="SelectMachine">Wählen Sie zunächst einen zu löschenden Rechner aus.</sys:String>
     <sys:String x:Key="ExportOk">Export bereit</sys:String>
     <sys:String x:Key="Error">Fehler</sys:String>
-    <sys:String x:Key="ErrorBox">Während der Rettung ist ein Fehler aufgetreten: {0}</sys:String>
+    <sys:String x:Key="ErrorBox">Während der Rettung ist ein Fehler aufgetreten</sys:String>
     <sys:String x:Key="LogOutBox">Sind Sie sicher, dass Sie aufhören wollen?</sys:String>
     <sys:String x:Key="LogOut">Abmeldung</sys:String>
 
